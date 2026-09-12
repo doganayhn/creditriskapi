@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=77,<83"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "credit-risk"
+# Packaging metadata only; no release has been made.
+version = "0.0.0"
+description = "Portfolio credit-risk system: Phase 1 foundation"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["PyYAML==6.0.3"]
+
+[project.optional-dependencies]
+dev = ["pytest==9.0.2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["credit_risk*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

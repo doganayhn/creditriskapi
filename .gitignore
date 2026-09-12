@@ -1,0 +1,25 @@
+# Local environments, secrets and Python build/test outputs
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+.env
+.env.*
+!.env.example
+.ipynb_checkpoints/
+
+# Keep directory markers; never version source data or generated artifacts by default
+/data/raw/*
+!/data/raw/.gitkeep
+/data/interim/*
+!/data/interim/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+/artifacts/*
+!/artifacts/.gitkeep

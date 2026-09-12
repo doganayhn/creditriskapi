@@ -1,0 +1,6 @@
+random_seed: 42
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  artifacts: artifacts
