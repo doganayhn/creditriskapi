@@ -1,5 +1,7 @@
 # Data quality report — UCI 350
 
+Phase-2 source/quality findings below remain unchanged. Phase 3 has now implemented the primary feature policy and dataset preparation in [ADR 002](decisions/002-feature-policy-and-split.md) and [feature_engineering.md](feature_engineering.md); references below to Phase-3 decisions describe the original Phase-2 handoff.
+
 Measured by `python -m credit_risk.data.quality` from the original XLS. Raw SHA-256: `30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933`. Full precision and all column profiles are in [data_quality_summary.json](../data/metadata/data_quality_summary.json). Markdown numbers below are rounded only for display; the DataFrame and source values are unchanged.
 
 # Dataset Dimensions

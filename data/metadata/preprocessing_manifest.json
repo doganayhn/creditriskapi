@@ -1,0 +1,101 @@
+{
+  "categorical_feature_count": 6,
+  "categorical_pipeline": "constant status_missing imputation then train-only OneHotEncoder(handle_unknown=ignore)",
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "engineered_feature_count": 26,
+  "feature_engineering_version": "financial_features_v1",
+  "final_encoded_feature_count": 103,
+  "finite_matrices": {
+    "test": true,
+    "train": true,
+    "validation": true
+  },
+  "fitted_train_row_count": 21000,
+  "generated_at": "2026-09-13T13:29:08.229698+00:00",
+  "implementation_sha256": {
+    "__init__.py": "5c38b8d8cb20bc267a75867921e105cd427bea3c1f0c5886a297e5778fd86912",
+    "definitions.py": "192201a02ef2e389fb3eb38e1ef5e350481377f651e520c176b792d92e44d3da",
+    "engineering.py": "4a0af147af30ee565ad7b24c38e51038d5a498768c1c67f3a871d4d893a65f6f",
+    "prepare.py": "1b9164d88fb0a5eab2beb0da32becf73d8f495448b574203432a9400e06b948f",
+    "preprocessing.py": "aeb1868e4ed5abf220b5981cfc3511b389a3e49e8715cf260be2967ada5dcc85",
+    "split.py": "b0edf0ad37fbc5683816c26c1cd4e2a228f75920c9fb9076ee4bd4ad2c7db47d"
+  },
+  "input_categorical_features": [
+    "repayment_status_2005_09",
+    "repayment_status_2005_08",
+    "repayment_status_2005_07",
+    "repayment_status_2005_06",
+    "repayment_status_2005_05",
+    "repayment_status_2005_04"
+  ],
+  "input_numeric_features": [
+    "credit_limit",
+    "bill_amount_2005_09",
+    "bill_amount_2005_08",
+    "bill_amount_2005_07",
+    "bill_amount_2005_06",
+    "bill_amount_2005_05",
+    "bill_amount_2005_04",
+    "payment_amount_2005_09",
+    "payment_amount_2005_08",
+    "payment_amount_2005_07",
+    "payment_amount_2005_06",
+    "payment_amount_2005_05",
+    "payment_amount_2005_04",
+    "bill_amount_mean",
+    "bill_amount_std",
+    "bill_amount_min",
+    "bill_amount_max",
+    "payment_amount_mean",
+    "payment_amount_sum",
+    "payment_amount_max",
+    "bill_to_limit_2005_09",
+    "bill_to_limit_2005_08",
+    "bill_to_limit_2005_07",
+    "bill_to_limit_2005_06",
+    "bill_to_limit_2005_05",
+    "bill_to_limit_2005_04",
+    "payment_to_limit_2005_09",
+    "payment_to_limit_2005_08",
+    "payment_to_limit_2005_07",
+    "payment_to_limit_2005_06",
+    "payment_to_limit_2005_05",
+    "payment_to_limit_2005_04",
+    "bill_to_limit_mean",
+    "bill_to_limit_max",
+    "payment_to_limit_mean",
+    "payment_to_limit_max",
+    "months_with_documented_delay",
+    "max_documented_delay",
+    "recent_documented_delay_flag"
+  ],
+  "joblib_version": "1.6.0",
+  "matrix_format": "scipy.sparse.csr_matrix float64",
+  "numeric_feature_count": 39,
+  "numeric_pipeline": "training median imputation then StandardScaler; all-null training columns rejected",
+  "numpy_version": "2.5.3",
+  "pandas_version": "2.3.3",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "raw_primary_feature_count": 19,
+  "scipy_version": "1.18.1",
+  "serialization_artifact_path": "artifacts/preprocessing/preprocessor_e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4.joblib",
+  "serialization_roundtrip_passed": true,
+  "serialization_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "sklearn_version": "1.8.0",
+  "split_seed": 42,
+  "split_version": "sorted_id_two_stage_stratified_v1",
+  "transformed_shapes": {
+    "test": [
+      4500,
+      103
+    ],
+    "train": [
+      21000,
+      103
+    ],
+    "validation": [
+      4500,
+      103
+    ]
+  }
+}

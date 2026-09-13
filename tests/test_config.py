@@ -16,7 +16,7 @@ def project(tmp_path):
     configs = tmp_path / "configs"
     configs.mkdir()
     (configs / "base.yaml").write_text(
-        "random_seed: 42\npaths:\n  raw: data/raw\n  interim: data/interim\n"
+        "random_seed: 42\nsplit:\n  train_fraction: 0.70\n  validation_fraction: 0.15\n  test_fraction: 0.15\npaths:\n  raw: data/raw\n  interim: data/interim\n"
         "  processed: data/processed\n  artifacts: artifacts\n  metadata: data/metadata\n", encoding="utf-8"
     )
     (configs / "experiment.yaml").write_text(

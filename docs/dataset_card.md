@@ -1,5 +1,7 @@
 # Dataset card — Default of Credit Card Clients
 
+Phase-2 source/quality findings below remain unchanged. Phase 3 has now implemented the primary feature policy and dataset preparation in [ADR 002](decisions/002-feature-policy-and-split.md) and [feature_engineering.md](feature_engineering.md); references below to Phase-3 decisions describe the original Phase-2 handoff.
+
 # Dataset Identity
 
 Official name: Default of Credit Card Clients. UCI dataset ID: 350. Selected as V1 under [ADR 001](decisions/001-dataset-selection.md).

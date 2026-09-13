@@ -1,6 +1,7 @@
 """Load explicit, validated project configuration without global state."""
 
 from dataclasses import dataclass
+import math
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
@@ -19,6 +20,22 @@ class ProjectPaths:
 
 
 @dataclass(frozen=True)
+class SplitConfig:
+    """Validated partition fractions; uses the centralized project seed."""
+
+    train_fraction: float
+    validation_fraction: float
+    test_fraction: float
+
+    def __post_init__(self) -> None:
+        fractions = (self.train_fraction, self.validation_fraction, self.test_fraction)
+        if any(type(value) not in (int, float) or not math.isfinite(value) or not 0 < value < 1 for value in fractions):
+            raise ValueError("Split fractions must be finite numbers strictly between 0 and 1")
+        if not math.isclose(sum(fractions), 1.0, rel_tol=0, abs_tol=1e-12):
+            raise ValueError("Split fractions must sum to 1.0")
+
+
+@dataclass(frozen=True)
 class ProjectConfig:
     """Validated experiment settings; target may be unset for new experiments."""
 
@@ -26,6 +43,7 @@ class ProjectConfig:
     experiment_name: str
     target_column: str | None
     paths: ProjectPaths
+    split: SplitConfig
 
 
 class _UniqueKeyLoader(yaml.SafeLoader):
@@ -87,7 +105,7 @@ def load_config(project_root: str | Path) -> ProjectConfig:
     or implicit defaults are applied.
     """
     root = Path(project_root).resolve()
-    base = _read(root / "configs/base.yaml", {"random_seed", "paths"})
+    base = _read(root / "configs/base.yaml", {"random_seed", "paths", "split"})
     experiment = _read(
         root / "configs/experiment.yaml", {"experiment_name", "target_column"}
     )
@@ -104,4 +122,7 @@ def load_config(project_root: str | Path) -> ProjectConfig:
     resolved_paths = ProjectPaths(
         **{key: _resolve_path(root, value, f"paths.{key}") for key, value in paths.items()}
     )
-    return ProjectConfig(seed, name, target, resolved_paths)
+    split = SplitConfig(**_check_keys(
+        base["split"], {"train_fraction", "validation_fraction", "test_fraction"}, "split"
+    ))
+    return ProjectConfig(seed, name, target, resolved_paths, split)

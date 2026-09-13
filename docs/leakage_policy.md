@@ -13,7 +13,7 @@ Only predictors theoretically available at the scoring cut-off are eligible. Rec
 
 During cross-validation, fit all learned transformations inside each training fold; validation/test receive transform only. Training-only resampling must occur after splitting. Calibration and threshold fitting must use designated non-test data; final test labels never select models, features or policy. Dataset-wide schema checks must not become data-driven fitted preprocessing.
 
-Static public data often lack enough timestamps to reconstruct observation/performance windows. Random or stratified splitting can be a documented compromise, never called true out-of-time validation. Phase 2 performs semantic review only; Phase 3 will implement split/feature controls. No modeling split or preprocessing pipeline exists yet.
+Static public data often lack enough timestamps to reconstruct observation/performance windows. Random or stratified splitting is a documented compromise, never true out-of-time validation. Phase 2 performed semantic review; Phase 3 implements the split/feature controls described below.
 
 ## UCI 350 semantic/timing review
 
@@ -29,4 +29,12 @@ The question is whether information could theoretically be known at the intended
 | BILL_AMT1–BILL_AMT6 | bill_amount_2005_09 through bill_amount_2005_04 | PRE_OUTCOME_CANDIDATE | Source-documented past statements; negative balances need domain review, not automatic deletion |
 | PAY_AMT1–PAY_AMT6 | payment_amount_2005_09 through payment_amount_2005_04 | PRE_OUTCOME_CANDIDATE | Source-documented payments during past months; do not append subsequent payments when predicting the existing label |
 
-The verified workbook contains no recovery/charge-off/collection-outcome columns. Never add such post-event fields as predictors. Six history months within each row do not create six calendar scoring cohorts. The snapshot cannot support a true chronological holdout or reconstruction of individual cut-offs; document any future random/stratified split honestly. Retain all source records and codes in Phase 2; no future-feature set is finalized.
+The verified workbook contains no recovery/charge-off/collection-outcome columns. Never add such post-event fields as predictors. Six history months within each row do not create six calendar scoring cohorts. The snapshot cannot support a true chronological holdout or reconstruction of individual cut-offs. Phase 2 retained all source records and codes. Its review table above records the semantic assessment; Phase 3 resolves modeling treatment through [ADR 002](decisions/002-feature-policy-and-split.md), without inventing unresolved code meanings.
+
+## Implemented Phase-3 controls
+
+Sort unique IDs, then stratify 70/15/15 using the centralized seed. Enforce complete row coverage, no customer overlap and binary labels. No row is silently removed. IDs and targets are never predictors; sex/age/education/marital status stay only in aligned review frames.
+
+Stateless engineering accepts exactly the raw financial allowlist and has no target input. Repayment codes are literal categories; only documented positive levels feed delay summaries. No target-driven feature selection or clipping occurs. The sklearn schema guard rejects extra/forbidden columns and y arguments. Numeric medians/scaler statistics and categorical vocabulary fit only on the training branch; holdouts receive transform only. Tests contrast train with extreme holdout distributions and unseen categories, and spy on the sole fit call.
+
+The test partition is sealed for future final evaluation: only structural/finite/target-count checks occur now. No predictive model or performance metric is computed. Serialization checks compare train transforms. Review fields remain available for future fairness work; exclusion is not a guarantee against proxy effects or legal compliance. Future cross-validation must fit preprocessing independently inside each training fold.

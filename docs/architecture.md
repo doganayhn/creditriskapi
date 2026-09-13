@@ -1,15 +1,17 @@
 # Intended architecture and implemented boundary
 
-Implemented now (Phases 1–2): project rules, validated configuration, official UCI acquisition, immutable raw XLS verification, manifest generation, strict loading/canonicalization, binary target validation, descriptive quality profiling, aggregate JSON metadata, physical data contract and tests. No predictive model or preprocessing pipeline exists.
+Implemented now (Phases 1–3): project rules, validated configuration, official UCI acquisition and quality analysis, immutable raw identity checks, canonical schema, stratified dataset splitting, stateless financial features, train-only fitted preprocessing, aggregate manifests and tests. No predictive model exists.
 
 ```text
 Raw public credit dataset                 [Phase 2: implemented]
         ↓
 Data validation                         [Phase 2: implemented]
         ↓
-Leakage-safe preprocessing               [Phase 3: planned]
+Stratified train / validation / test     [Phase 3: implemented]
         ↓
-Feature engineering                     [Phase 3: planned]
+Stateless financial feature engineering  [Phase 3: implemented]
+        ↓
+Train-only fitted preprocessing         [Phase 3: implemented]
         ↓
 Baseline / challenger models            [Phases 4–5: planned]
         ↓
@@ -34,4 +36,6 @@ Use a src-layout Python package. Configuration receives an explicit project root
 
 Acquisition flow: official HTTPS ZIP → checksum-verified XLS → atomic no-overwrite publication in configured raw directory → strict loader → aggregate manifest. Profiling is a separate local-only command that verifies the raw checksum again and writes aggregate JSON. Existing matching raw bytes are reused without network requests. Existing mismatches fail without overwriting; partial downloads are never published. The XLS checksum is locally measured and pinned, not a UCI-published signature.
 
-Canonicalization renames fields and represents verified integral numeric cells as nullable Int64. It removes only the two verified header rows, never customer records. No category recoding, learned transformation, feature derivation or splitting occurs. JSON metadata contains aggregate statistics and schema, never customer records. Feature/model/explanation/utils directories remain reserved for future phases. Final serving and persistence designs require later review and ADRs.
+Canonicalization renames fields and represents verified integral numeric cells as nullable Int64. It removes only the two verified header rows, never customer records. The Phase-2 data layer remains unchanged; all modeling-data transformations are isolated under `features/`.
+
+The Phase-3 preparation CLI verifies raw bytes and manifest identity, splits sorted canonical rows, allowlists 19 financial fields, engineers each partition independently, and fits a guarded sklearn ColumnTransformer on train only. It transforms three finite CSR matrices while keeping targets and demographic/ID review frames separate. A trusted local fitted-preprocessor artifact is stored under ignored artifacts; tracked metadata contains only aggregate split statistics, definitions, encoded-name lineage and preprocessing provenance. No customer-level assignments or matrices are written to Git paths. Model/explanation/utils components remain future work. See [modeling_dataset.md](modeling_dataset.md) for the consumer contract and [ADR 002](decisions/002-feature-policy-and-split.md) for decisions.

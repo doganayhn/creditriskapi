@@ -1,0 +1,1824 @@
+{
+  "categorical_features": [
+    "repayment_status_2005_09",
+    "repayment_status_2005_08",
+    "repayment_status_2005_07",
+    "repayment_status_2005_06",
+    "repayment_status_2005_05",
+    "repayment_status_2005_04"
+  ],
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "engineered_features": {
+    "bill_amount_max": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "max(six bill amounts)",
+      "interpretation": "Six-month bill-statement level or dispersion",
+      "name": "bill_amount_max",
+      "sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ]
+    },
+    "bill_amount_mean": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "mean(six bill amounts)",
+      "interpretation": "Six-month bill-statement level or dispersion",
+      "name": "bill_amount_mean",
+      "sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ]
+    },
+    "bill_amount_min": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "min(six bill amounts)",
+      "interpretation": "Six-month bill-statement level or dispersion",
+      "name": "bill_amount_min",
+      "sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ]
+    },
+    "bill_amount_std": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "std(six bill amounts); population std, ddof=0",
+      "interpretation": "Six-month bill-statement level or dispersion",
+      "name": "bill_amount_std",
+      "sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ]
+    },
+    "bill_to_limit_2005_04": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "bill_amount_2005_04 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "bill_to_limit_2005_04",
+      "sources": [
+        "bill_amount_2005_04",
+        "credit_limit"
+      ]
+    },
+    "bill_to_limit_2005_05": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "bill_amount_2005_05 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "bill_to_limit_2005_05",
+      "sources": [
+        "bill_amount_2005_05",
+        "credit_limit"
+      ]
+    },
+    "bill_to_limit_2005_06": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "bill_amount_2005_06 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "bill_to_limit_2005_06",
+      "sources": [
+        "bill_amount_2005_06",
+        "credit_limit"
+      ]
+    },
+    "bill_to_limit_2005_07": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "bill_amount_2005_07 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "bill_to_limit_2005_07",
+      "sources": [
+        "bill_amount_2005_07",
+        "credit_limit"
+      ]
+    },
+    "bill_to_limit_2005_08": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "bill_amount_2005_08 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "bill_to_limit_2005_08",
+      "sources": [
+        "bill_amount_2005_08",
+        "credit_limit"
+      ]
+    },
+    "bill_to_limit_2005_09": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "bill_amount_2005_09 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "bill_to_limit_2005_09",
+      "sources": [
+        "bill_amount_2005_09",
+        "credit_limit"
+      ]
+    },
+    "bill_to_limit_max": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained. Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "max(six bill_amount_month / credit_limit ratios)",
+      "interpretation": "Six-month normalized amount summary",
+      "name": "bill_to_limit_max",
+      "sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ]
+    },
+    "bill_to_limit_mean": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained. Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "mean(six bill_amount_month / credit_limit ratios)",
+      "interpretation": "Six-month normalized amount summary",
+      "name": "bill_to_limit_mean",
+      "sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ]
+    },
+    "max_documented_delay": {
+      "edge_cases": "NaN if any status missing; zero means no observed positive code, not proven absence of arrears.",
+      "formula": "max(positive statuses), or 0 if none",
+      "interpretation": "Largest documented positive delay level; code 9 is top-coded at nine or more months",
+      "name": "max_documented_delay",
+      "sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ]
+    },
+    "months_with_documented_delay": {
+      "edge_cases": "NaN if any status missing; -2/-1/0 contribute no positive-delay evidence, not a no-risk meaning.",
+      "formula": "sum(status > 0 over six months)",
+      "interpretation": "Number of recorded history months with positive documented delay",
+      "name": "months_with_documented_delay",
+      "sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ]
+    },
+    "payment_amount_max": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "max(six payment amounts)",
+      "interpretation": "Six-month payment amount summary",
+      "name": "payment_amount_max",
+      "sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ]
+    },
+    "payment_amount_mean": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "mean(six payment amounts)",
+      "interpretation": "Six-month payment amount summary",
+      "name": "payment_amount_mean",
+      "sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ]
+    },
+    "payment_amount_sum": {
+      "edge_cases": "Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "sum(six payment amounts)",
+      "interpretation": "Six-month payment amount summary",
+      "name": "payment_amount_sum",
+      "sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ]
+    },
+    "payment_to_limit_2005_04": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "payment_amount_2005_04 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "payment_to_limit_2005_04",
+      "sources": [
+        "payment_amount_2005_04",
+        "credit_limit"
+      ]
+    },
+    "payment_to_limit_2005_05": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "payment_amount_2005_05 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "payment_to_limit_2005_05",
+      "sources": [
+        "payment_amount_2005_05",
+        "credit_limit"
+      ]
+    },
+    "payment_to_limit_2005_06": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "payment_amount_2005_06 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "payment_to_limit_2005_06",
+      "sources": [
+        "payment_amount_2005_06",
+        "credit_limit"
+      ]
+    },
+    "payment_to_limit_2005_07": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "payment_amount_2005_07 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "payment_to_limit_2005_07",
+      "sources": [
+        "payment_amount_2005_07",
+        "credit_limit"
+      ]
+    },
+    "payment_to_limit_2005_08": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "payment_amount_2005_08 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "payment_to_limit_2005_08",
+      "sources": [
+        "payment_amount_2005_08",
+        "credit_limit"
+      ]
+    },
+    "payment_to_limit_2005_09": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained.",
+      "formula": "payment_amount_2005_09 / credit_limit",
+      "interpretation": "Statement/payment amount relative to given credit; not regulatory utilization",
+      "name": "payment_to_limit_2005_09",
+      "sources": [
+        "payment_amount_2005_09",
+        "credit_limit"
+      ]
+    },
+    "payment_to_limit_max": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained. Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "max(six payment_amount_month / credit_limit ratios)",
+      "interpretation": "Six-month normalized amount summary",
+      "name": "payment_to_limit_max",
+      "sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ]
+    },
+    "payment_to_limit_mean": {
+      "edge_cases": "Credit limit must be present and > 0; missing numerator stays NaN; negative and >1 ratios retained. Any missing source month makes the aggregate NaN for train-fitted imputation; no clipping.",
+      "formula": "mean(six payment_amount_month / credit_limit ratios)",
+      "interpretation": "Six-month normalized amount summary",
+      "name": "payment_to_limit_mean",
+      "sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ]
+    },
+    "recent_documented_delay_flag": {
+      "edge_cases": "NaN if most recent status missing; no interpretation assigned to -2/0.",
+      "formula": "1 if repayment_status_2005_09 > 0 else 0",
+      "interpretation": "Positive documented delay in the most recent source month",
+      "name": "recent_documented_delay_flag",
+      "sources": [
+        "repayment_status_2005_09"
+      ]
+    }
+  },
+  "excluded_demographic_fields": [
+    "sex",
+    "age",
+    "education",
+    "marital_status"
+  ],
+  "excluded_from_primary_model": [
+    "customer_id",
+    "default_next_month",
+    "sex",
+    "age",
+    "education",
+    "marital_status"
+  ],
+  "fairness_review_fields": [
+    "sex",
+    "age",
+    "education",
+    "marital_status"
+  ],
+  "feature_engineering_version": "financial_features_v1",
+  "identifier": "customer_id",
+  "numeric_features": [
+    "credit_limit",
+    "bill_amount_2005_09",
+    "bill_amount_2005_08",
+    "bill_amount_2005_07",
+    "bill_amount_2005_06",
+    "bill_amount_2005_05",
+    "bill_amount_2005_04",
+    "payment_amount_2005_09",
+    "payment_amount_2005_08",
+    "payment_amount_2005_07",
+    "payment_amount_2005_06",
+    "payment_amount_2005_05",
+    "payment_amount_2005_04",
+    "bill_amount_mean",
+    "bill_amount_std",
+    "bill_amount_min",
+    "bill_amount_max",
+    "payment_amount_mean",
+    "payment_amount_sum",
+    "payment_amount_max",
+    "bill_to_limit_2005_09",
+    "bill_to_limit_2005_08",
+    "bill_to_limit_2005_07",
+    "bill_to_limit_2005_06",
+    "bill_to_limit_2005_05",
+    "bill_to_limit_2005_04",
+    "payment_to_limit_2005_09",
+    "payment_to_limit_2005_08",
+    "payment_to_limit_2005_07",
+    "payment_to_limit_2005_06",
+    "payment_to_limit_2005_05",
+    "payment_to_limit_2005_04",
+    "bill_to_limit_mean",
+    "bill_to_limit_max",
+    "payment_to_limit_mean",
+    "payment_to_limit_max",
+    "months_with_documented_delay",
+    "max_documented_delay",
+    "recent_documented_delay_flag"
+  ],
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "raw_financial_features": [
+    "credit_limit",
+    "repayment_status_2005_09",
+    "repayment_status_2005_08",
+    "repayment_status_2005_07",
+    "repayment_status_2005_06",
+    "repayment_status_2005_05",
+    "repayment_status_2005_04",
+    "bill_amount_2005_09",
+    "bill_amount_2005_08",
+    "bill_amount_2005_07",
+    "bill_amount_2005_06",
+    "bill_amount_2005_05",
+    "bill_amount_2005_04",
+    "payment_amount_2005_09",
+    "payment_amount_2005_08",
+    "payment_amount_2005_07",
+    "payment_amount_2005_06",
+    "payment_amount_2005_05",
+    "payment_amount_2005_04"
+  ],
+  "repayment_categorical_columns": [
+    "repayment_status_2005_09",
+    "repayment_status_2005_08",
+    "repayment_status_2005_07",
+    "repayment_status_2005_06",
+    "repayment_status_2005_05",
+    "repayment_status_2005_04"
+  ],
+  "target": "default_next_month",
+  "transformed_feature_names": [
+    "numeric__credit_limit",
+    "numeric__bill_amount_2005_09",
+    "numeric__bill_amount_2005_08",
+    "numeric__bill_amount_2005_07",
+    "numeric__bill_amount_2005_06",
+    "numeric__bill_amount_2005_05",
+    "numeric__bill_amount_2005_04",
+    "numeric__payment_amount_2005_09",
+    "numeric__payment_amount_2005_08",
+    "numeric__payment_amount_2005_07",
+    "numeric__payment_amount_2005_06",
+    "numeric__payment_amount_2005_05",
+    "numeric__payment_amount_2005_04",
+    "numeric__bill_amount_mean",
+    "numeric__bill_amount_std",
+    "numeric__bill_amount_min",
+    "numeric__bill_amount_max",
+    "numeric__payment_amount_mean",
+    "numeric__payment_amount_sum",
+    "numeric__payment_amount_max",
+    "numeric__bill_to_limit_2005_09",
+    "numeric__bill_to_limit_2005_08",
+    "numeric__bill_to_limit_2005_07",
+    "numeric__bill_to_limit_2005_06",
+    "numeric__bill_to_limit_2005_05",
+    "numeric__bill_to_limit_2005_04",
+    "numeric__payment_to_limit_2005_09",
+    "numeric__payment_to_limit_2005_08",
+    "numeric__payment_to_limit_2005_07",
+    "numeric__payment_to_limit_2005_06",
+    "numeric__payment_to_limit_2005_05",
+    "numeric__payment_to_limit_2005_04",
+    "numeric__bill_to_limit_mean",
+    "numeric__bill_to_limit_max",
+    "numeric__payment_to_limit_mean",
+    "numeric__payment_to_limit_max",
+    "numeric__months_with_documented_delay",
+    "numeric__max_documented_delay",
+    "numeric__recent_documented_delay_flag",
+    "repayment__repayment_status_2005_09_status_-1",
+    "repayment__repayment_status_2005_09_status_-2",
+    "repayment__repayment_status_2005_09_status_0",
+    "repayment__repayment_status_2005_09_status_1",
+    "repayment__repayment_status_2005_09_status_2",
+    "repayment__repayment_status_2005_09_status_3",
+    "repayment__repayment_status_2005_09_status_4",
+    "repayment__repayment_status_2005_09_status_5",
+    "repayment__repayment_status_2005_09_status_6",
+    "repayment__repayment_status_2005_09_status_7",
+    "repayment__repayment_status_2005_09_status_8",
+    "repayment__repayment_status_2005_08_status_-1",
+    "repayment__repayment_status_2005_08_status_-2",
+    "repayment__repayment_status_2005_08_status_0",
+    "repayment__repayment_status_2005_08_status_1",
+    "repayment__repayment_status_2005_08_status_2",
+    "repayment__repayment_status_2005_08_status_3",
+    "repayment__repayment_status_2005_08_status_4",
+    "repayment__repayment_status_2005_08_status_5",
+    "repayment__repayment_status_2005_08_status_6",
+    "repayment__repayment_status_2005_08_status_7",
+    "repayment__repayment_status_2005_08_status_8",
+    "repayment__repayment_status_2005_07_status_-1",
+    "repayment__repayment_status_2005_07_status_-2",
+    "repayment__repayment_status_2005_07_status_0",
+    "repayment__repayment_status_2005_07_status_1",
+    "repayment__repayment_status_2005_07_status_2",
+    "repayment__repayment_status_2005_07_status_3",
+    "repayment__repayment_status_2005_07_status_4",
+    "repayment__repayment_status_2005_07_status_5",
+    "repayment__repayment_status_2005_07_status_6",
+    "repayment__repayment_status_2005_07_status_7",
+    "repayment__repayment_status_2005_07_status_8",
+    "repayment__repayment_status_2005_06_status_-1",
+    "repayment__repayment_status_2005_06_status_-2",
+    "repayment__repayment_status_2005_06_status_0",
+    "repayment__repayment_status_2005_06_status_1",
+    "repayment__repayment_status_2005_06_status_2",
+    "repayment__repayment_status_2005_06_status_3",
+    "repayment__repayment_status_2005_06_status_4",
+    "repayment__repayment_status_2005_06_status_5",
+    "repayment__repayment_status_2005_06_status_6",
+    "repayment__repayment_status_2005_06_status_7",
+    "repayment__repayment_status_2005_06_status_8",
+    "repayment__repayment_status_2005_05_status_-1",
+    "repayment__repayment_status_2005_05_status_-2",
+    "repayment__repayment_status_2005_05_status_0",
+    "repayment__repayment_status_2005_05_status_2",
+    "repayment__repayment_status_2005_05_status_3",
+    "repayment__repayment_status_2005_05_status_4",
+    "repayment__repayment_status_2005_05_status_5",
+    "repayment__repayment_status_2005_05_status_6",
+    "repayment__repayment_status_2005_05_status_7",
+    "repayment__repayment_status_2005_05_status_8",
+    "repayment__repayment_status_2005_04_status_-1",
+    "repayment__repayment_status_2005_04_status_-2",
+    "repayment__repayment_status_2005_04_status_0",
+    "repayment__repayment_status_2005_04_status_2",
+    "repayment__repayment_status_2005_04_status_3",
+    "repayment__repayment_status_2005_04_status_4",
+    "repayment__repayment_status_2005_04_status_5",
+    "repayment__repayment_status_2005_04_status_6",
+    "repayment__repayment_status_2005_04_status_7",
+    "repayment__repayment_status_2005_04_status_8"
+  ],
+  "transformed_feature_trace": [
+    {
+      "canonical_sources": [
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "credit_limit",
+      "name": "numeric__credit_limit",
+      "source_columns": [
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_2005_09",
+      "name": "numeric__bill_amount_2005_09",
+      "source_columns": [
+        "BILL_AMT1"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_08"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_2005_08",
+      "name": "numeric__bill_amount_2005_08",
+      "source_columns": [
+        "BILL_AMT2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_07"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_2005_07",
+      "name": "numeric__bill_amount_2005_07",
+      "source_columns": [
+        "BILL_AMT3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_06"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_2005_06",
+      "name": "numeric__bill_amount_2005_06",
+      "source_columns": [
+        "BILL_AMT4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_05"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_2005_05",
+      "name": "numeric__bill_amount_2005_05",
+      "source_columns": [
+        "BILL_AMT5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_2005_04",
+      "name": "numeric__bill_amount_2005_04",
+      "source_columns": [
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_2005_09",
+      "name": "numeric__payment_amount_2005_09",
+      "source_columns": [
+        "PAY_AMT1"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_08"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_2005_08",
+      "name": "numeric__payment_amount_2005_08",
+      "source_columns": [
+        "PAY_AMT2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_07"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_2005_07",
+      "name": "numeric__payment_amount_2005_07",
+      "source_columns": [
+        "PAY_AMT3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_06"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_2005_06",
+      "name": "numeric__payment_amount_2005_06",
+      "source_columns": [
+        "PAY_AMT4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_05"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_2005_05",
+      "name": "numeric__payment_amount_2005_05",
+      "source_columns": [
+        "PAY_AMT5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_2005_04",
+      "name": "numeric__payment_amount_2005_04",
+      "source_columns": [
+        "PAY_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_mean",
+      "name": "numeric__bill_amount_mean",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_std",
+      "name": "numeric__bill_amount_std",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_min",
+      "name": "numeric__bill_amount_min",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_amount_max",
+      "name": "numeric__bill_amount_max",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_mean",
+      "name": "numeric__payment_amount_mean",
+      "source_columns": [
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_sum",
+      "name": "numeric__payment_amount_sum",
+      "source_columns": [
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "payment_amount_max",
+      "name": "numeric__payment_amount_max",
+      "source_columns": [
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_2005_09",
+      "name": "numeric__bill_to_limit_2005_09",
+      "source_columns": [
+        "BILL_AMT1",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_08",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_2005_08",
+      "name": "numeric__bill_to_limit_2005_08",
+      "source_columns": [
+        "BILL_AMT2",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_07",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_2005_07",
+      "name": "numeric__bill_to_limit_2005_07",
+      "source_columns": [
+        "BILL_AMT3",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_06",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_2005_06",
+      "name": "numeric__bill_to_limit_2005_06",
+      "source_columns": [
+        "BILL_AMT4",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_05",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_2005_05",
+      "name": "numeric__bill_to_limit_2005_05",
+      "source_columns": [
+        "BILL_AMT5",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_04",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_2005_04",
+      "name": "numeric__bill_to_limit_2005_04",
+      "source_columns": [
+        "BILL_AMT6",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_2005_09",
+      "name": "numeric__payment_to_limit_2005_09",
+      "source_columns": [
+        "PAY_AMT1",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_08",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_2005_08",
+      "name": "numeric__payment_to_limit_2005_08",
+      "source_columns": [
+        "PAY_AMT2",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_07",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_2005_07",
+      "name": "numeric__payment_to_limit_2005_07",
+      "source_columns": [
+        "PAY_AMT3",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_06",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_2005_06",
+      "name": "numeric__payment_to_limit_2005_06",
+      "source_columns": [
+        "PAY_AMT4",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_05",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_2005_05",
+      "name": "numeric__payment_to_limit_2005_05",
+      "source_columns": [
+        "PAY_AMT5",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_04",
+        "credit_limit"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_2005_04",
+      "name": "numeric__payment_to_limit_2005_04",
+      "source_columns": [
+        "PAY_AMT6",
+        "LIMIT_BAL"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_mean",
+      "name": "numeric__bill_to_limit_mean",
+      "source_columns": [
+        "LIMIT_BAL",
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "bill_to_limit_max",
+      "name": "numeric__bill_to_limit_max",
+      "source_columns": [
+        "LIMIT_BAL",
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_mean",
+      "name": "numeric__payment_to_limit_mean",
+      "source_columns": [
+        "LIMIT_BAL",
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "category": null,
+      "input_feature": "payment_to_limit_max",
+      "name": "numeric__payment_to_limit_max",
+      "source_columns": [
+        "LIMIT_BAL",
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ],
+      "category": null,
+      "input_feature": "months_with_documented_delay",
+      "name": "numeric__months_with_documented_delay",
+      "source_columns": [
+        "PAY_0",
+        "PAY_2",
+        "PAY_3",
+        "PAY_4",
+        "PAY_5",
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ],
+      "category": null,
+      "input_feature": "max_documented_delay",
+      "name": "numeric__max_documented_delay",
+      "source_columns": [
+        "PAY_0",
+        "PAY_2",
+        "PAY_3",
+        "PAY_4",
+        "PAY_5",
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": null,
+      "input_feature": "recent_documented_delay_flag",
+      "name": "numeric__recent_documented_delay_flag",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_-1",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_-1",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_-2",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_-2",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_0",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_0",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_1",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_1",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_2",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_2",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_3",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_3",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_4",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_4",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_5",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_5",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_6",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_6",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_7",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_7",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "category": "status_8",
+      "input_feature": "repayment_status_2005_09",
+      "name": "repayment__repayment_status_2005_09_status_8",
+      "source_columns": [
+        "PAY_0"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_-1",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_-1",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_-2",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_-2",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_0",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_0",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_1",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_1",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_2",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_2",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_3",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_3",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_4",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_4",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_5",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_5",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_6",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_6",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_7",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_7",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "category": "status_8",
+      "input_feature": "repayment_status_2005_08",
+      "name": "repayment__repayment_status_2005_08_status_8",
+      "source_columns": [
+        "PAY_2"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_-1",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_-1",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_-2",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_-2",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_0",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_0",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_1",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_1",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_2",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_2",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_3",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_3",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_4",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_4",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_5",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_5",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_6",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_6",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_7",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_7",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "category": "status_8",
+      "input_feature": "repayment_status_2005_07",
+      "name": "repayment__repayment_status_2005_07_status_8",
+      "source_columns": [
+        "PAY_3"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_-1",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_-1",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_-2",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_-2",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_0",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_0",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_1",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_1",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_2",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_2",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_3",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_3",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_4",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_4",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_5",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_5",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_6",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_6",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_7",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_7",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "category": "status_8",
+      "input_feature": "repayment_status_2005_06",
+      "name": "repayment__repayment_status_2005_06_status_8",
+      "source_columns": [
+        "PAY_4"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_-1",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_-1",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_-2",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_-2",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_0",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_0",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_2",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_2",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_3",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_3",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_4",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_4",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_5",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_5",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_6",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_6",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_7",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_7",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "category": "status_8",
+      "input_feature": "repayment_status_2005_05",
+      "name": "repayment__repayment_status_2005_05_status_8",
+      "source_columns": [
+        "PAY_5"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_-1",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_-1",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_-2",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_-2",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_0",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_0",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_2",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_2",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_3",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_3",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_4",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_4",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_5",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_5",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_6",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_6",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_7",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_7",
+      "source_columns": [
+        "PAY_6"
+      ]
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "category": "status_8",
+      "input_feature": "repayment_status_2005_04",
+      "name": "repayment__repayment_status_2005_04_status_8",
+      "source_columns": [
+        "PAY_6"
+      ]
+    }
+  ]
+}
