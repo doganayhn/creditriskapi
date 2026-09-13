@@ -1,6 +1,6 @@
 # Modeling dataset contract
 
-Phase 3 prepares data; Phase 4 now consumes that contract for one TRAIN-fitted Logistic Regression baseline and TRAIN/VALIDATION evaluation. The V1 target remains `default_next_month` with the dataset-defined next-month event and existing limitations.
+Phase 3 prepares data; Phases 4–5 consume that contract for Logistic Regression and XGBoost TRAIN fitting and VALIDATION comparison. The V1 target remains `default_next_month` with the dataset-defined next-month event and existing limitations.
 
 ## Consumer API
 
@@ -24,6 +24,10 @@ feature_names = prepared.feature_names
 `verify_dataset_manifest` checks the raw pin against the Phase-2 manifest, source schema and loaded dimensions. The CLI also checks the configured target. `prepare_dataset` is the in-memory lifecycle for canonical input: split first, select raw financial fields, engineer each partition, fit preprocessing once on train, and transform all three partitions. Its generic canonical-input API permits synthetic tests; callers loading official data must use the identity-verification boundary first.
 
 ## Partitions and alignment
+
+Phase-5 `load_training_features` reuses verified canonical loading, the same deterministic split and stateless engineering to obtain only engineered TRAIN predictors before learned preprocessing. It checks target alignment against the verified modeling contract and discards project holdouts. RandomizedSearchCV fits a fresh Phase-3-style preprocessor inside each fold. A wrapper discards y before unsupervised fitting, retaining the original no-target guard.
+
+Final XGBoost fitting uses the same Phase-3 fitted artifact and 103 numerical values as the baseline. CV and final XGBoost inputs are materialized densely because native trees treat absent CSR entries as missing rather than zero. This preserves zero values and column order; it does not change feature definitions or refit final preprocessing. No project VALIDATION/TEST rows enter CV. See [ADR 004](decisions/004-xgboost-challenger.md).
 
 Every eligible customer belongs to exactly one stratified random partition. Canonical rows are first sorted by unique customer_id, making assignment invariant to input ordering. Two sklearn `train_test_split` calls use the same centralized seed (42 in current config): a 30% temporary set, then half that set for test. Train/validation/test are 70/15/15. Invalid IDs or insufficient target-class representation fail explicitly. There is no out-of-time or vintage claim.
 

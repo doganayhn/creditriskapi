@@ -9,7 +9,7 @@ version = "0.0.0"
 description = "Portfolio credit-risk system: data quality and leakage-safe dataset preparation"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["PyYAML==6.0.3", "pandas==2.3.3", "xlrd==2.0.2", "scikit-learn==1.8.0"]
+dependencies = ["PyYAML==6.0.3", "pandas==2.3.3", "xlrd==2.0.2", "scikit-learn==1.8.0", "xgboost==3.2.0"]
 
 [project.optional-dependencies]
 dev = ["pytest==9.0.2"]

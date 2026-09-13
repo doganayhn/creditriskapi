@@ -8,7 +8,7 @@ Only an explicitly requested phase may be implemented. Each phase ends with test
 | 2 | Data Ingestion & Data Quality | Acquisition/ingestion, schema verification, quality checks, EDA and dataset-specific limitations | COMPLETED |
 | 3 | Credit Risk Feature Engineering | Feature definitions, preprocessing, transformations, leakage-safe engineering and train/validation/test preparation | COMPLETED |
 | 4 | Baseline Risk Model | Fixed Logistic Regression, raw TRAIN/VALIDATION evaluation, coefficients and versioned local artifact; TEST sealed | COMPLETED |
-| 5 | XGBoost Risk Model | Challenger, tuning, imbalance handling and model comparison | NOT_STARTED |
+| 5 | XGBoost Risk Model | TRAIN-only fold-local CV, unweighted challenger, separate weighting sensitivity and provisional validation comparison; TEST sealed | COMPLETED |
 | 6 | Probability Calibration & Decision Thresholds | Calibration analysis, probability quality, threshold methodology and risk-band strategy | NOT_STARTED |
 | 7 | Explainability & Internal Risk Score | Global/local SHAP, semantics, internal score mapping and explanation validation | NOT_STARTED |
 | 8 | Production API & Persistence | Versioned FastAPI, PostgreSQL, prediction audit and versioned business rules | NOT_STARTED |

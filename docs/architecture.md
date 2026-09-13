@@ -1,39 +1,28 @@
 # Intended architecture and implemented boundary
 
-Implemented now (Phases 1–4): project rules, configuration, official UCI acquisition/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, one Logistic Regression baseline, raw probabilities, TRAIN/VALIDATION evaluation, coefficients, aggregate manifests and tests. TEST remains sealed.
+Implemented now (Phases 1–5): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost with fold-local TRAIN CV, raw probabilities, validation comparison, coefficient/gain diagnostics, aggregate manifests and tests. TEST remains sealed.
 
 ```text
-Raw public credit dataset                 [Phase 2: implemented]
+Official UCI data / ingestion / quality  [Phase 2: implemented]
         ↓
-Data validation                         [Phase 2: implemented]
+Stratified 70/15/15 split                [Phase 3: implemented; TEST sealed]
         ↓
-Stratified train / validation / test     [Phase 3: implemented]
+Financial feature engineering           [Phase 3: implemented]
         ↓
-Stateless financial feature engineering  [Phase 3: implemented]
-        ↓
-Train-only fitted preprocessing         [Phase 3: implemented]
-        ↓
-Logistic Regression baseline            [Phase 4: implemented; TRAIN fit]
-        ↓
-Raw default probability                 [Phase 4: TRAIN / VALIDATION only]
-        ↓
-Validation evaluation / coefficients    [Phase 4: implemented]
-        ↓
-XGBoost challenger                      [Phase 5: planned]
-        ↓
-Probability calibration when justified  [Phase 6: planned]
-        ↓
-PD                                      [Phase 6: planned]
-        ↓
-Explainability                          [Phase 7: planned]
-        ↓
-Internal risk representation            [Phase 7: planned]
-        ↓
-Versioned business rules                [Phase 8: planned]
-        ↓
-Versioned API                           [Phase 8: planned]
-        ↓
-Persistence / audit                     [Phase 8: planned]
+TRAIN-only preprocessing                [Phase 3: implemented]
+        ├──── Logistic Regression        [Phase 4: implemented]
+        │
+        └──── XGBoost challenger         [Phase 5: implemented]
+                        ↓
+              Validation comparison     [Phase 5: provisional discrimination]
+
+TRAIN engineered inputs → fresh preprocessing inside each CV fold
+                        → XGBoost search → selected canonical parameters
+
+PLANNED:
+Phase 6: calibration / probability assessment
+Phase 7: explainability / internal score
+Phase 8: API / business rules / persistence
 ```
 
 The flow is conceptual: explainability also consumes the underlying model and transformed features; it does not automatically decompose calibrated PD. Training, calibration and policy retain independent identities. Operational controls arrive in Phase 9; final validation in Phase 10.
@@ -48,4 +37,8 @@ The Phase-3 preparation CLI verifies raw bytes and manifest identity, splits sor
 
 The Phase-4 `modeling/contract.py` adapter verifies committed V1 semantic manifest identities, feature implementation and runtime versions, raw bytes and the fitted-preprocessor checksum. It reuses the existing split/engineering/transform helpers; after structural splitting, it immediately discards the TEST branch and exposes only TRAIN/VALIDATION matrices and labels. It never refits preprocessing or rewrites Phase-3 metadata.
 
-`modeling/baseline.py` fits one fixed L2 LogisticRegression on TRAIN and fails on non-convergence. `metrics.py` computes discrimination, probability diagnostics, a fixed 0.50 reference threshold and deterministic validation bootstrap intervals. Coefficients retain transformed-column lineage. `artifacts.py` saves a versioned content-addressed model under ignored artifacts/models and verifies its training-probability round-trip. Only aggregate metrics, parameters and manifests are written under metadata. No calibration, challenger, SHAP, scoring, decisions or serving is implemented. See [baseline_model_report.md](baseline_model_report.md) and [ADR 003](decisions/003-logistic-baseline.md).
+`modeling/baseline.py` fits one fixed L2 LogisticRegression on TRAIN and fails on non-convergence. `metrics.py` computes discrimination, probability diagnostics, a fixed 0.50 reference threshold and deterministic validation bootstrap intervals. Coefficients retain transformed-column lineage. `artifacts.py` saves a versioned content-addressed model under ignored artifacts/models and verifies its training-probability round-trip. See [baseline_model_report.md](baseline_model_report.md) and [ADR 003](decisions/003-logistic-baseline.md).
+
+`search.py` builds a fresh Phase-3 preprocessor inside every candidate/fold Pipeline, discarding y only at its unsupervised boundary. RandomizedSearchCV receives engineered TRAIN inputs only. `xgboost_challenger.py` verifies the existing final-data/baseline contracts, performs bounded CPU search, fits the selected unweighted model on full TRAIN, evaluates TRAIN/VALIDATION, runs one separate weighted sensitivity model, maps native gain and validates native JSON serialization. Dense materialization preserves the same 103 values and zero semantics.
+
+`comparison.py` loads stored Phase-4 metrics and checks reproduced baseline probabilities, computes validation deltas and paired-bootstrap uncertainty, and assigns the deterministic provisional status. No final model is selected. No customer outputs are exported; only aggregate search results, metrics, importance and manifests enter metadata. TEST remains sealed. Calibration, SHAP, score, policy, API and persistence remain unimplemented. See [XGBoost report](xgboost_model_report.md) and [ADR 004](decisions/004-xgboost-challenger.md).

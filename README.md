@@ -3,10 +3,10 @@
 A portfolio fintech project intended to estimate borrower default risk from information available at scoring time, explain model outputs and eventually expose auditable predictions through a versioned API.
 
 ## Current status
-Phases 1–4 are COMPLETED. Implemented scope includes foundation, official ingestion, data quality, leakage-safe financial features/preprocessing, one Logistic Regression baseline, train/validation evaluation and coefficient analysis. Phases 5–10 remain NOT_STARTED. See the [Phase 4 completion report](docs/phase_reports/phase_04_completion_report.md). Historical Phase 1–3 reports remain unchanged. TEST SET REMAINS SEALED.
+Phases 1–5 are COMPLETED. Implemented scope includes reproducible ingestion/quality, leakage-safe features, Logistic Regression, XGBoost with TRAIN-only fold-safe CV, validation model comparison, class-weight sensitivity and native gain diagnostics. Phases 6–10 remain NOT_STARTED. See the [Phase 5 completion report](docs/phase_reports/phase_05_completion_report.md). Historical Phase 1–4 reports remain unchanged. TEST SET REMAINS SEALED.
 
 ## Intended architecture
-Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → calibration when justified → PD → explainability/internal score → versioned policy → API → persistence/audit. Acquisition, quality, financial features, train-only preprocessing, Logistic Regression, raw probabilities and train/validation evaluation are implemented. XGBoost, calibration, SHAP, internal score, production API, database and Docker deployment remain planned for Phases 5–10.
+Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → calibration when justified → PD → explainability/internal score → versioned policy → API → persistence/audit. Acquisition, quality, financial features, train-only preprocessing, Logistic Regression, XGBoost and validation comparison are implemented. Final TEST evaluation, calibration, SHAP, internal score, production API, PostgreSQL and Docker deployment are not implemented.
 
 ## Development
 Python 3.11 or newer is required. From the repository root:
@@ -17,7 +17,7 @@ python -m venv .venv
 .venv\Scripts\python.exe -m pytest
 ```
 
-On POSIX use `.venv/bin/python` for the last two commands. Runtime dependencies: PyYAML, pandas, xlrd (original XLS reader) and scikit-learn 1.8.0. NumPy/SciPy/joblib are used through the declared data/sklearn dependencies; HTTP uses the standard library. Development dependency: pytest. Configuration is explicit YAML, not environment-driven; `.env.example` documents this. Configuration loading creates no directories and changes no random generators.
+On POSIX use `.venv/bin/python` for the last two commands. Runtime dependencies: PyYAML, pandas, xlrd (original XLS reader), scikit-learn 1.8.0 and XGBoost 3.2.0. NumPy/SciPy/joblib are used through declared dependencies; HTTP uses the standard library. Development dependency: pytest. Configuration is explicit YAML, not environment-driven; `.env.example` documents this. Configuration loading creates no directories and changes no random generators.
 
 ```python
 from pathlib import Path
@@ -66,6 +66,18 @@ The CLI accepts `--project-root PATH`, verifies the Phase-3 V1 contracts and tru
 
 Validation ROC-AUC: **0.765638**; Average Precision: **0.519684**. Probabilities remain raw/uncalibrated. The reference threshold 0.50 is a diagnostic, not a business policy. Aggregate metrics, validation bootstrap intervals, coefficient lineage and model provenance are written under metadata. The content-addressed model binary stays ignored under artifacts/models. Only trusted project-created joblib files may be loaded; hashes do not make untrusted pickle safe. See the [baseline model report](docs/baseline_model_report.md) and [ADR 003](docs/decisions/003-logistic-baseline.md).
 
+## Run the XGBoost challenger
+
+```powershell
+.venv\Scripts\python.exe -m credit_risk.modeling.xgboost_challenger
+```
+
+The CLI accepts `--project-root PATH`, verifies the stored baseline and Phase-3 contracts, then searches 24 candidates across four stratified folds inside TRAIN. Every fold fits fresh preprocessing. `configs/xgboost.yaml` is the authoritative search/invariant configuration; the seed remains centralized in base.yaml. There are 96 candidate-fold fits, one search refit, one final canonical fit and one temporary weighted sensitivity fit. CPU hist and n_jobs=1 are used throughout; no early stopping or project-validation fitting occurs.
+
+The final unweighted challenger uses the same 103 transformed values as Logistic Regression. Dense arrays preserve zero semantics for XGBoost. Validation AUC is **0.784304**, AP **0.556212**; paired-bootstrap deltas favor XGBoost on this sample. Status: **XGBOOST_LEADS_ON_VALIDATION_DISCRIMINATION**, a provisional comparison, not final model selection. Raw probabilities remain uncalibrated. The separate weighted model is diagnostic only and is not serialized.
+
+Aggregate search results, metrics, comparison and native gain importance are written under metadata. The native JSON model stays ignored under artifacts/models; no customer outputs are exported. Only trusted XGBoost-generated native models may be loaded. Gain is not SHAP or a customer explanation. See the [XGBoost report](docs/xgboost_model_report.md) and [ADR 004](docs/decisions/004-xgboost-challenger.md).
+
 ## Ten-phase plan
 1. Foundation and data contract
 2. Ingestion and data quality
@@ -81,9 +93,9 @@ Validation ROC-AUC: **0.765638**; Average Precision: **0.519684**. Probabilities
 See [ROADMAP.md](ROADMAP.md) for scope/status and [AGENTS.md](AGENTS.md) for instruction precedence. Each phase follows phase prompt → Codex implementation → tests → phase completion report → technical review by the project owner. If issues exist, apply fixes and verify them; if no issues remain, the project owner creates the Git commit. The next phase starts only when explicitly requested. Codex must not automatically commit or start the next phase.
 
 ## Repository layout
-`src/credit_risk/config.py` handles configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements the fixed baseline, contract verification, metrics and trusted serialization. Tests use synthetic data and mocks. Aggregate metadata is tracked under `data/metadata/`; raw/interim/processed customer data, local preprocessing/model binaries, secrets and environments are ignored. Explainability and serving components remain future work.
+`src/credit_risk/config.py` handles shared configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements baseline/challenger training, fold-safe search, contract verification, comparison, metrics and local serialization. Tests use synthetic data and mocks. Aggregate metadata is tracked under `data/metadata/`; raw/interim/processed customer data, local preprocessing/model artifacts, secrets and environments are ignored. Calibration, explainability and serving remain future work.
 
 ## Limitations
-The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). True nulls and ID/exact-row duplicates are absent, but undocumented category codes and negative bill values remain. The source does not specify a regulatory default threshold or event-level scoring dates. Within-row monthly history does not support true out-of-time validation. Demographic exclusion does not resolve undocumented meanings, remove proxies or demonstrate fairness. Related features distribute signal across L2-shrunk coefficients; full one-hot encoding has no omitted reference and coefficients are not causal. Only TRAIN/VALIDATION performance has been evaluated, with no target-driven feature selection. Raw probabilities are not calibrated PD. XGBoost, calibration, SHAP, scores, API, PostgreSQL, Docker and model operations are not implemented.
+The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). Undocumented codes and negative bills remain; no regulatory default threshold or event-level scoring dates are supplied. Within-row history is not out-of-time validation. Demographic exclusion does not remove proxies or prove fairness. Related features affect both coefficients and gain; neither is causal. Only TRAIN/CV/VALIDATION performance has been evaluated. The bounded search and paired bootstrap do not establish deployment generalization. Raw probabilities are not calibrated PD. TEST evaluation, calibration, SHAP, scores, API, PostgreSQL, Docker and model operations are not implemented.
 
 This repository is educational / portfolio work, not a regulatory or production lending authority. Outputs are not real lending decisions; no real lending decision should rely on this project.

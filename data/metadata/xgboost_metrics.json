@@ -1,0 +1,93 @@
+{
+  "imbalance_sensitivity": {
+    "canonical": false,
+    "scale_pos_weight": 3.5209903121636166,
+    "test_set_evaluated": false,
+    "train_negative_count": 16355,
+    "train_positive_count": 4645,
+    "validation": {
+      "average_precision": 0.5549855462818835,
+      "brier_score": 0.17998910869451307,
+      "gini": 0.5635082688764796,
+      "ks": 0.4218811604384261,
+      "log_loss": 0.5448448549410667,
+      "mean_predicted_probability": 0.4220240169564883,
+      "observed_positive_rate": 0.22111111111111112,
+      "roc_auc": 0.7817541344382398,
+      "threshold_0_5": {
+        "f1": 0.5289885738468049,
+        "fn": 370,
+        "fp": 743,
+        "precision": 0.45687134502923976,
+        "recall": 0.628140703517588,
+        "specificity": 0.7880171184022825,
+        "tn": 2762,
+        "tp": 625
+      }
+    }
+  },
+  "model_version": "xgboost-challenger-1.0.0",
+  "probability_semantics": "raw / uncalibrated next-month default-payment probability",
+  "reference_threshold": 0.5,
+  "test_set_evaluated": false,
+  "train": {
+    "average_precision": 0.6024385526851223,
+    "brier_score": 0.1279198585558804,
+    "gini": 0.6220658235812713,
+    "ks": 0.4673480851887234,
+    "log_loss": 0.40869099425909733,
+    "mean_predicted_probability": 0.22110991098164093,
+    "observed_positive_rate": 0.2211904761904762,
+    "roc_auc": 0.8110329117906356,
+    "threshold_0_5": {
+      "f1": 0.5006870019236054,
+      "fn": 2823,
+      "fp": 811,
+      "precision": 0.6919863273832131,
+      "recall": 0.3922497308934338,
+      "specificity": 0.9504127178232956,
+      "tn": 15544,
+      "tp": 1822
+    }
+  },
+  "train_minus_validation": {
+    "average_precision": 0.04622662031875535,
+    "brier_score": -0.0073650126179523046,
+    "gini": 0.053457016349678144,
+    "ks": 0.042909200322165164,
+    "log_loss": -0.020135626924253247,
+    "mean_predicted_probability": 0.0015414024377389535,
+    "observed_positive_rate": 7.936507936506798e-05,
+    "roc_auc": 0.026728508174839072,
+    "threshold_0_5": {
+      "f1": 0.037050638287241755,
+      "fn": 2185,
+      "fp": 623,
+      "precision": 0.036940455823580076,
+      "recall": 0.03345576104418757,
+      "specificity": 0.004050378308317004,
+      "tn": 12227,
+      "tp": 1465
+    }
+  },
+  "validation": {
+    "average_precision": 0.5562119323663669,
+    "brier_score": 0.1352848711738327,
+    "gini": 0.5686088072315931,
+    "ks": 0.42443888486655823,
+    "log_loss": 0.4288266211833506,
+    "mean_predicted_probability": 0.21956850854390197,
+    "observed_positive_rate": 0.22111111111111112,
+    "roc_auc": 0.7843044036157966,
+    "threshold_0_5": {
+      "f1": 0.4636363636363636,
+      "fn": 638,
+      "fp": 188,
+      "precision": 0.655045871559633,
+      "recall": 0.3587939698492462,
+      "specificity": 0.9463623395149786,
+      "tn": 3317,
+      "tp": 357
+    }
+  }
+}

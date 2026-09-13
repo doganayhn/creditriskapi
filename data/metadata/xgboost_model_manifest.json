@@ -1,0 +1,148 @@
+{
+  "artifact_format": "XGBoost native JSON",
+  "artifact_relative_path": "artifacts/models/xgboost-challenger-1.0.0_2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef.json",
+  "artifact_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "baseline_manifest_sha256": "71c643c0d03b27db5656eae0d8706406c7a25b7c74c6bf3c248b1488f8457f50",
+  "baseline_metrics_sha256": "5480a09d6f1941da22686bf8b0a10f338e58306a5b823f1afc9d5de8b7eb9734",
+  "baseline_model_version": "logistic-baseline-1.0.0",
+  "canonical_fits": 1,
+  "configuration_sha256": "78a4cac2ca7420e464059295a81fa16e53272bf563695affffb331d5e55d862a",
+  "cv_folds": 4,
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "device": "cpu",
+  "early_stopping": false,
+  "eval_metric": "logloss",
+  "feature_engineering_version": "financial_features_v1",
+  "generated_at": "2026-09-13T20:30:45.110484+00:00",
+  "implementation_sha256": {
+    "__init__.py": "53c94b519a4da3f3dde617dbe942ff5e6db780f1d60149f7545470dada9b55d2",
+    "artifacts.py": "a8feaa34146516237a538dfe643fcdf510bc6060232ca324beb32d727e001082",
+    "baseline.py": "2e572671d0aac38e28ec2806e5e6b13f986854465d467fb973d0d6bac814ba53",
+    "comparison.py": "86fb3aed13276e17103ea82d35911d1822630153ffacc3532823fb682f4cf03e",
+    "contract.py": "ff99167eca09df0bdd25742c27285c1c47e2d28ec084e7efcb8f1de71563ecc8",
+    "metrics.py": "cb37add820f7743d8afba65373cf4f90467da0b37ec9b30acf7354cf4a398aa5",
+    "search.py": "0209541d6a69c1aede51dd54c93b6d87b1e69f22949071573fe50286e39b8180",
+    "xgboost_challenger.py": "cf287552d3d35243e21dee2e3dbf6163502bb2eb86c38e3e5c22d2cb7a3cd668"
+  },
+  "matrix_storage": "dense view of identical Phase-3 numeric values; zeros are not missing",
+  "model_name": "xgboost_challenger",
+  "model_type": "xgboost.XGBClassifier",
+  "model_version": "xgboost-challenger-1.0.0",
+  "n_jobs": 1,
+  "numpy_version": "2.5.3",
+  "objective": "binary:logistic",
+  "preprocessing_artifact_reference": "artifacts/preprocessing/preprocessor_e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4.joblib",
+  "preprocessing_artifact_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "primary_selection_metric": "roc_auc",
+  "python_version": "3.14.6",
+  "random_seed": 42,
+  "scale_pos_weight": 1.0,
+  "scoring_metrics": [
+    "roc_auc",
+    "average_precision"
+  ],
+  "search_iterations": 24,
+  "search_refit_fits": 1,
+  "search_strategy": "RandomizedSearchCV; TRAIN-only StratifiedKFold; fold-local preprocessing",
+  "selected_candidate_index": 21,
+  "selected_cv_scores": {
+    "mean_test_average_precision": 0.5616426454236878,
+    "mean_test_roc_auc": 0.7875203697650557,
+    "std_test_average_precision": 0.008710672488604522,
+    "std_test_roc_auc": 0.00841802467405852
+  },
+  "selected_hyperparameters": {
+    "colsample_bytree": 1.0,
+    "gamma": 0.5,
+    "learning_rate": 0.03,
+    "max_depth": 3,
+    "min_child_weight": 10,
+    "n_estimators": 350,
+    "reg_alpha": 0.5,
+    "reg_lambda": 5.0,
+    "subsample": 0.9
+  },
+  "selection_rule": "max mean CV AUC; machine-epsilon tie: AP, smaller depth, fewer trees, larger lambda/alpha/gamma, earlier candidate",
+  "sensitivity_fits": 1,
+  "serialization_roundtrip_passed": true,
+  "settings": {
+    "fixed": {
+      "device": "cpu",
+      "eval_metric": "logloss",
+      "n_jobs": 1,
+      "objective": "binary:logistic",
+      "scale_pos_weight": 1.0,
+      "tree_method": "hist"
+    },
+    "search": {
+      "cv_folds": 4,
+      "n_iter": 24
+    },
+    "space": {
+      "colsample_bytree": [
+        0.8,
+        0.9,
+        1.0
+      ],
+      "gamma": [
+        0.0,
+        0.1,
+        0.5
+      ],
+      "learning_rate": [
+        0.03,
+        0.05,
+        0.08,
+        0.1
+      ],
+      "max_depth": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "min_child_weight": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "n_estimators": [
+        200,
+        350,
+        500,
+        700
+      ],
+      "reg_alpha": [
+        0.0,
+        0.1,
+        0.5
+      ],
+      "reg_lambda": [
+        1.0,
+        5.0,
+        10.0
+      ],
+      "subsample": [
+        0.8,
+        0.9,
+        1.0
+      ]
+    }
+  },
+  "sklearn_version": "1.8.0",
+  "split_strategy": "stratified_random",
+  "split_version": "sorted_id_two_stage_stratified_v1",
+  "target": "default_next_month",
+  "test_rows": 4500,
+  "test_rows_source": "Phase-3 structural metadata only",
+  "test_set_evaluated": false,
+  "total_candidate_fits": 96,
+  "total_xgboost_fits": 99,
+  "training_rows": 21000,
+  "transformed_feature_count": 103,
+  "tree_method": "hist",
+  "validation_rows": 4500,
+  "xgboost_version": "3.2.0"
+}

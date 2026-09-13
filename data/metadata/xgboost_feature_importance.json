@@ -1,0 +1,1325 @@
+{
+  "definition": "gain is mean training loss reduction per split using a feature; normalized across features",
+  "features": [
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "documented_delay",
+      "feature_type": "standardized_numeric",
+      "gain": 684.8402099609375,
+      "normalized_gain": 0.3380405731045958,
+      "source_feature": "max_documented_delay",
+      "split_count": 31,
+      "transformed_feature_name": "numeric__max_documented_delay"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "documented_delay",
+      "feature_type": "standardized_numeric",
+      "gain": 466.96514892578125,
+      "normalized_gain": 0.23049634683650916,
+      "source_feature": "recent_documented_delay_flag",
+      "split_count": 29,
+      "transformed_feature_name": "numeric__recent_documented_delay_flag"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "documented_delay",
+      "feature_type": "standardized_numeric",
+      "gain": 150.4938201904297,
+      "normalized_gain": 0.07428450678848804,
+      "source_feature": "months_with_documented_delay",
+      "split_count": 104,
+      "transformed_feature_name": "numeric__months_with_documented_delay"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 104.34823608398438,
+      "normalized_gain": 0.05150681431263465,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 34,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_1"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 37.988525390625,
+      "normalized_gain": 0.01875132725512399,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 63,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_2"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 32.181495666503906,
+      "normalized_gain": 0.015884948167819397,
+      "source_feature": "payment_amount_max",
+      "split_count": 41,
+      "transformed_feature_name": "numeric__payment_amount_max"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 28.933822631835938,
+      "normalized_gain": 0.014281880418689828,
+      "source_feature": "bill_amount_max",
+      "split_count": 23,
+      "transformed_feature_name": "numeric__bill_amount_max"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 28.839813232421875,
+      "normalized_gain": 0.014235476906172708,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 4,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_-1"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 25.912405014038086,
+      "normalized_gain": 0.012790493481630503,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 10,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_-1"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 17.737388610839844,
+      "normalized_gain": 0.00875526425606527,
+      "source_feature": "bill_amount_mean",
+      "split_count": 50,
+      "transformed_feature_name": "numeric__bill_amount_mean"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_08",
+        "credit_limit"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 17.528268814086914,
+      "normalized_gain": 0.008652041672295096,
+      "source_feature": "bill_to_limit_2005_08",
+      "split_count": 63,
+      "transformed_feature_name": "numeric__bill_to_limit_2005_08"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 17.265836715698242,
+      "normalized_gain": 0.008522503868220465,
+      "source_feature": "bill_amount_std",
+      "split_count": 132,
+      "transformed_feature_name": "numeric__bill_amount_std"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 15.54468822479248,
+      "normalized_gain": 0.007672936313918886,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 23,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_0"
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 15.040617942810059,
+      "normalized_gain": 0.0074241246867277014,
+      "source_feature": "bill_to_limit_max",
+      "split_count": 44,
+      "transformed_feature_name": "numeric__bill_to_limit_max"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 14.52774715423584,
+      "normalized_gain": 0.007170969085206985,
+      "source_feature": "payment_amount_mean",
+      "split_count": 75,
+      "transformed_feature_name": "numeric__payment_amount_mean"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_08"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 14.172038078308105,
+      "normalized_gain": 0.00699538929573759,
+      "source_feature": "payment_amount_2005_08",
+      "split_count": 55,
+      "transformed_feature_name": "numeric__payment_amount_2005_08"
+    },
+    {
+      "canonical_sources": [
+        "credit_limit"
+      ],
+      "feature_family": "credit_limit",
+      "feature_type": "standardized_numeric",
+      "gain": 13.713353157043457,
+      "normalized_gain": 0.006768980110932886,
+      "source_feature": "credit_limit",
+      "split_count": 113,
+      "transformed_feature_name": "numeric__credit_limit"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_04"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 13.591666221618652,
+      "normalized_gain": 0.006708914827393695,
+      "source_feature": "payment_amount_2005_04",
+      "split_count": 42,
+      "transformed_feature_name": "numeric__payment_amount_2005_04"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "credit_limit"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 12.174768447875977,
+      "normalized_gain": 0.0060095269577855135,
+      "source_feature": "bill_to_limit_2005_09",
+      "split_count": 101,
+      "transformed_feature_name": "numeric__bill_to_limit_2005_09"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 11.415460586547852,
+      "normalized_gain": 0.00563472877731532,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 19,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_2"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_07"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 11.329188346862793,
+      "normalized_gain": 0.005592144365766504,
+      "source_feature": "payment_amount_2005_07",
+      "split_count": 68,
+      "transformed_feature_name": "numeric__payment_amount_2005_07"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 10.760028839111328,
+      "normalized_gain": 0.00531120436926833,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 3,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_-1"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_07",
+        "credit_limit"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 10.553878784179688,
+      "normalized_gain": 0.005209447665002074,
+      "source_feature": "bill_to_limit_2005_07",
+      "split_count": 35,
+      "transformed_feature_name": "numeric__bill_to_limit_2005_07"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 10.330608367919922,
+      "normalized_gain": 0.005099240264250798,
+      "source_feature": "payment_amount_2005_09",
+      "split_count": 50,
+      "transformed_feature_name": "numeric__payment_amount_2005_09"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 10.249154090881348,
+      "normalized_gain": 0.005059034023303715,
+      "source_feature": "bill_amount_2005_09",
+      "split_count": 111,
+      "transformed_feature_name": "numeric__bill_amount_2005_09"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 9.880255699157715,
+      "normalized_gain": 0.00487694392120131,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 3,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_-2"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 9.649298667907715,
+      "normalized_gain": 0.0047629423686190815,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 7,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_-2"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 9.397201538085938,
+      "normalized_gain": 0.004638505957024852,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 7,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_-1"
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 9.196505546569824,
+      "normalized_gain": 0.004539441405900187,
+      "source_feature": "bill_to_limit_mean",
+      "split_count": 34,
+      "transformed_feature_name": "numeric__bill_to_limit_mean"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 8.794868469238281,
+      "normalized_gain": 0.00434119132387163,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 2,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_0"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 8.619192123413086,
+      "normalized_gain": 0.004254476595735183,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 1,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_0"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 8.485539436340332,
+      "normalized_gain": 0.004188504956982225,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 1,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_-2"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_04",
+        "credit_limit"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 7.645672798156738,
+      "normalized_gain": 0.0037739425589606397,
+      "source_feature": "payment_to_limit_2005_04",
+      "split_count": 35,
+      "transformed_feature_name": "numeric__payment_to_limit_2005_04"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 7.5659871101379395,
+      "normalized_gain": 0.0037346093024515845,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 8,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_-2"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_04",
+        "credit_limit"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 7.432005405426025,
+      "normalized_gain": 0.0036684752589366313,
+      "source_feature": "bill_to_limit_2005_04",
+      "split_count": 59,
+      "transformed_feature_name": "numeric__bill_to_limit_2005_04"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 7.293753623962402,
+      "normalized_gain": 0.0036002334840540494,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 36,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_-1"
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 7.282660961151123,
+      "normalized_gain": 0.0035947580898826196,
+      "source_feature": "payment_to_limit_max",
+      "split_count": 48,
+      "transformed_feature_name": "numeric__payment_to_limit_max"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_06"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.9463324546813965,
+      "normalized_gain": 0.0034287446470023836,
+      "source_feature": "payment_amount_2005_06",
+      "split_count": 62,
+      "transformed_feature_name": "numeric__payment_amount_2005_06"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 6.929775714874268,
+      "normalized_gain": 0.003420572156935737,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 33,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_3"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_06",
+        "credit_limit"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.863731384277344,
+      "normalized_gain": 0.0033879723430805214,
+      "source_feature": "payment_to_limit_2005_06",
+      "split_count": 26,
+      "transformed_feature_name": "numeric__payment_to_limit_2005_06"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_06"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.759923934936523,
+      "normalized_gain": 0.00333673246382504,
+      "source_feature": "bill_amount_2005_06",
+      "split_count": 13,
+      "transformed_feature_name": "numeric__bill_amount_2005_06"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_05"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.6436076164245605,
+      "normalized_gain": 0.0032793181438138894,
+      "source_feature": "bill_amount_2005_05",
+      "split_count": 31,
+      "transformed_feature_name": "numeric__bill_amount_2005_05"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_08"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.604665279388428,
+      "normalized_gain": 0.0032600960103318652,
+      "source_feature": "bill_amount_2005_08",
+      "split_count": 43,
+      "transformed_feature_name": "numeric__bill_amount_2005_08"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "credit_limit"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.57024621963501,
+      "normalized_gain": 0.00324310658927344,
+      "source_feature": "payment_to_limit_2005_09",
+      "split_count": 23,
+      "transformed_feature_name": "numeric__payment_to_limit_2005_09"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_05",
+        "credit_limit"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.544407367706299,
+      "normalized_gain": 0.0032303524019647763,
+      "source_feature": "bill_to_limit_2005_05",
+      "split_count": 48,
+      "transformed_feature_name": "numeric__bill_to_limit_2005_05"
+    },
+    {
+      "canonical_sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.487399578094482,
+      "normalized_gain": 0.0032022130702031326,
+      "source_feature": "payment_to_limit_mean",
+      "split_count": 37,
+      "transformed_feature_name": "numeric__payment_to_limit_mean"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.484360694885254,
+      "normalized_gain": 0.0032007130621622727,
+      "source_feature": "bill_amount_min",
+      "split_count": 45,
+      "transformed_feature_name": "numeric__bill_amount_min"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 6.3839874267578125,
+      "normalized_gain": 0.003151168312031265,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 2,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_-2"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_05",
+        "credit_limit"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.208108901977539,
+      "normalized_gain": 0.003064353787345418,
+      "source_feature": "payment_to_limit_2005_05",
+      "split_count": 47,
+      "transformed_feature_name": "numeric__payment_to_limit_2005_05"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_07"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.171133518218994,
+      "normalized_gain": 0.0030461025518970586,
+      "source_feature": "bill_amount_2005_07",
+      "split_count": 28,
+      "transformed_feature_name": "numeric__bill_amount_2005_07"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_05"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.1123881340026855,
+      "normalized_gain": 0.0030171055346967057,
+      "source_feature": "payment_amount_2005_05",
+      "split_count": 29,
+      "transformed_feature_name": "numeric__payment_amount_2005_05"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_06",
+        "credit_limit"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 6.070896148681641,
+      "normalized_gain": 0.0029966248819938315,
+      "source_feature": "bill_to_limit_2005_06",
+      "split_count": 21,
+      "transformed_feature_name": "numeric__bill_to_limit_2005_06"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_08",
+        "credit_limit"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 6.009394645690918,
+      "normalized_gain": 0.002966267430700246,
+      "source_feature": "payment_to_limit_2005_08",
+      "split_count": 37,
+      "transformed_feature_name": "numeric__payment_to_limit_2005_08"
+    },
+    {
+      "canonical_sources": [
+        "bill_amount_2005_04"
+      ],
+      "feature_family": "bill",
+      "feature_type": "standardized_numeric",
+      "gain": 5.936803340911865,
+      "normalized_gain": 0.0029304359974505526,
+      "source_feature": "bill_amount_2005_04",
+      "split_count": 26,
+      "transformed_feature_name": "numeric__bill_amount_2005_04"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 5.75991153717041,
+      "normalized_gain": 0.0028431213131716055,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 4,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_0"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_07",
+        "credit_limit"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 5.449697494506836,
+      "normalized_gain": 0.002689998101009356,
+      "source_feature": "payment_to_limit_2005_07",
+      "split_count": 44,
+      "transformed_feature_name": "numeric__payment_to_limit_2005_07"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 5.446869850158691,
+      "normalized_gain": 0.0026886023615330813,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 4,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_-1"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 5.368106365203857,
+      "normalized_gain": 0.002649724309096052,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 2,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_3"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 5.033291339874268,
+      "normalized_gain": 0.002484457928120992,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 1,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_2"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 3.98836350440979,
+      "normalized_gain": 0.001968676291447666,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 16,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_4"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 3.829773187637329,
+      "normalized_gain": 0.0018903953132123781,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 3,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_4"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 3.62699294090271,
+      "normalized_gain": 0.0017903019632258582,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 2,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_2"
+    },
+    {
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "feature_family": "payment",
+      "feature_type": "standardized_numeric",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "payment_amount_sum",
+      "split_count": 0,
+      "transformed_feature_name": "numeric__payment_amount_sum"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_2"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_3"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_4"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_5"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_6"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_7"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_04",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_8"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_0"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_3"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_5"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_6"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_7"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_05",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_8"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_1"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_3"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_4"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_5"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_6"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_7"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_06",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_8"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_0"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_1"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_3"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_4"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_5"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_6"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_7"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_07",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_8"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_-2"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_1"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_2"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_5"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_6"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_7"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_08",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_8"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_4"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_5"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_6"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_7"
+    },
+    {
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "gain": 0.0,
+      "normalized_gain": 0.0,
+      "source_feature": "repayment_status_2005_09",
+      "split_count": 0,
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_8"
+    }
+  ],
+  "interpretation": "aggregate split diagnostic, not SHAP, causality or a per-customer reason",
+  "model_version": "xgboost-challenger-1.0.0",
+  "test_set_evaluated": false
+}

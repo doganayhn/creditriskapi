@@ -1,6 +1,6 @@
 # Model governance
 
-Phase-4 baseline controls are identified below. Calibration, explanation, business-policy and deployment controls remain requirements for future phases.
+Implemented Phase-4/5 model controls are identified below. Calibration, explanation, business-policy and deployment controls remain requirements for future phases.
 
 ## Model versioning
 Every deployed/serialized model must have an explicit version or immutable artifact identity; link preprocessing, feature schema and any calibrator to it.
@@ -38,3 +38,11 @@ Phase 3 fits preprocessing only, on 21,000 training rows. Manifests record split
 TRAIN diagnostics and VALIDATION assessment include ROC-AUC, Average Precision, KS, Gini, Brier/log loss, mean probability, prevalence and fixed 0.50 reference-threshold metrics. VALIDATION bootstrap intervals do not alter the model. Threshold 0.50 is not optimized and has no lending-policy meaning. TEST probabilities, predictions and predictive metrics are prohibited in Phase 4; test_set_evaluated=false is recorded. TEST SET REMAINS SEALED.
 
 Outputs are raw model probabilities of next-month default payment, not calibrated PD. Formal calibration assessment belongs to Phase 6. Future prediction metadata must identify model version, feature/preprocessing identity and raw_probability semantics; no API/persistence implementation exists yet. Phase 5's future challenger must be compared on the same validation population without opening TEST. Coefficients are conditional, L2-shrunk and noncausal, with standardized-numeric and full-one-hot caveats in the [baseline report](baseline_model_report.md).
+
+## Implemented Phase-5 challenger and provisional comparison
+
+`xgboost-challenger-1.0.0` uses XGBoost 3.2.0, CPU hist, binary:logistic, n_jobs=1 and canonical scale_pos_weight=1.0. Search is limited to 24 candidates × four stratified TRAIN folds, with fold-local preprocessing and deterministic AUC/AP/simplicity tie rules. Project VALIDATION is not used for training, tuning or early stopping. Final fitting uses full TRAIN and the verified Phase-3 representation.
+
+Stored baseline metadata and the trusted baseline artifact must agree with the current data/split/feature/preprocessor contract. Reproduced in-memory probabilities must reproduce stored metrics. Comparisons use the same VALIDATION population; paired bootstrap applies identical row indices to both models. `XGBOOST_LEADS_ON_VALIDATION_DISCRIMINATION` is the measured provisional status. Both AUC and AP increased, but final_model_selected=false: final probability/model selection remains deferred to Phase-6 assessment and later requirements.
+
+One temporary weighted model uses the TRAIN class ratio with unchanged selected parameters. Its separate validation diagnostics do not replace the canonical artifact. Raw probabilities remain uncalibrated; the fixed 0.50 reference threshold is neither optimized nor business policy. Native gain is an aggregate split diagnostic, not SHAP, causality or a customer reason. The versioned native JSON model is ignored, hash-identified and reloaded to verify TRAIN/VALIDATION probabilities. Load trusted XGBoost-created native files only. No customer-level probabilities or matrices are exported; TEST stays sealed. See [XGBoost report](xgboost_model_report.md).

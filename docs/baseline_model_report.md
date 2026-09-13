@@ -1,5 +1,7 @@
 # Objective
 
+This report records the Phase-4 baseline experiment. Phase 5 now adds the separately documented [XGBoost challenger and validation comparison](xgboost_model_report.md); baseline measurements below remain unchanged.
+
 Establish one reproducible, interpretable Logistic Regression baseline, version `logistic-baseline-1.0.0`, using train fitting and validation assessment. No performance-driven model selection occurred.
 
 # Dataset and Target

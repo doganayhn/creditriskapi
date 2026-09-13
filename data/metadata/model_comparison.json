@@ -1,0 +1,84 @@
+{
+  "baseline_model_version": "logistic-baseline-1.0.0",
+  "baseline_validation": {
+    "average_precision": 0.5196840915711507,
+    "brier_score": 0.13879160679011868,
+    "gini": 0.5312763532355071,
+    "ks": 0.4053505759897921,
+    "log_loss": 0.4413186207185612,
+    "mean_predicted_probability": 0.21972506473541445,
+    "observed_positive_rate": 0.22111111111111112,
+    "roc_auc": 0.7656381766177536,
+    "threshold_0_5": {
+      "f1": 0.45841519318926,
+      "fn": 645,
+      "fp": 182,
+      "precision": 0.6578947368421053,
+      "recall": 0.35175879396984927,
+      "specificity": 0.9480741797432239,
+      "tn": 3323,
+      "tp": 350
+    }
+  },
+  "final_model_selected": false,
+  "final_selection": "deferred to Phase-6 calibration analysis and later project requirements",
+  "paired_bootstrap": {
+    "delta_average_precision_95_ci": [
+      0.022063804246867397,
+      0.048515345183520756
+    ],
+    "delta_roc_auc_95_ci": [
+      0.011856615613170909,
+      0.026106355036558695
+    ],
+    "method": "paired validation row bootstrap; replacement; percentile 95%",
+    "random_seed": 42,
+    "requested_replicates": 1000,
+    "skipped_single_class": 0,
+    "successful_replicates": 1000,
+    "test_set_evaluated": false
+  },
+  "provisional_discrimination_status": "XGBOOST_LEADS_ON_VALIDATION_DISCRIMINATION",
+  "test_set_evaluated": false,
+  "xgboost_minus_baseline": {
+    "average_precision": 0.036527840795216204,
+    "brier_score": -0.0035067356162859775,
+    "gini": 0.03733245399608598,
+    "ks": 0.019088308876766158,
+    "log_loss": -0.01249199953521063,
+    "mean_predicted_probability": -0.00015655619151247469,
+    "observed_positive_rate": 0.0,
+    "roc_auc": 0.01866622699804299,
+    "threshold_0_5": {
+      "f1": 0.005221170447103629,
+      "fn": -7,
+      "fp": 6,
+      "precision": -0.0028488652824723015,
+      "recall": 0.007035175879396949,
+      "specificity": -0.0017118402282453316,
+      "tn": -6,
+      "tp": 7
+    }
+  },
+  "xgboost_model_version": "xgboost-challenger-1.0.0",
+  "xgboost_validation": {
+    "average_precision": 0.5562119323663669,
+    "brier_score": 0.1352848711738327,
+    "gini": 0.5686088072315931,
+    "ks": 0.42443888486655823,
+    "log_loss": 0.4288266211833506,
+    "mean_predicted_probability": 0.21956850854390197,
+    "observed_positive_rate": 0.22111111111111112,
+    "roc_auc": 0.7843044036157966,
+    "threshold_0_5": {
+      "f1": 0.4636363636363636,
+      "fn": 638,
+      "fp": 188,
+      "precision": 0.655045871559633,
+      "recall": 0.3587939698492462,
+      "specificity": 0.9463623395149786,
+      "tn": 3317,
+      "tp": 357
+    }
+  }
+}
