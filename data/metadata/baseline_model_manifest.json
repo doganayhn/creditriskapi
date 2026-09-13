@@ -1,0 +1,75 @@
+{
+  "artifact_relative_path": "artifacts/models/logistic-baseline-1.0.0_a05feadd329d36515f3e66f3ca984af52401d90702a7fea2bf3f71834c2fa07c.joblib",
+  "artifact_sha256": "a05feadd329d36515f3e66f3ca984af52401d90702a7fea2bf3f71834c2fa07c",
+  "class_weight": null,
+  "configuration": {
+    "base_yaml_sha256": "26b17c1426824e9d8fe8a19c324607d83ae6c88b556e58379c1904eeb19433be",
+    "experiment_yaml_sha256": "a05fc00dd270ee5214db4af8666512048feb844ae6055a7e4d0fa87b383b2489"
+  },
+  "convergence_status": "converged",
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "effective_penalty": "l2",
+  "feature_engineering_version": "financial_features_v1",
+  "fit_thread_limit": 1,
+  "generated_at": "2026-09-13T20:00:33.975803+00:00",
+  "implementation_sha256": {
+    "__init__.py": "53c94b519a4da3f3dde617dbe942ff5e6db780f1d60149f7545470dada9b55d2",
+    "artifacts.py": "a8feaa34146516237a538dfe643fcdf510bc6060232ca324beb32d727e001082",
+    "baseline.py": "2e572671d0aac38e28ec2806e5e6b13f986854465d467fb973d0d6bac814ba53",
+    "contract.py": "ff99167eca09df0bdd25742c27285c1c47e2d28ec084e7efcb8f1de71563ecc8",
+    "metrics.py": "cb37add820f7743d8afba65373cf4f90467da0b37ec9b30acf7354cf4a398aa5"
+  },
+  "intercept": [
+    -1.626504411859469
+  ],
+  "iterations_used": [
+    1042
+  ],
+  "joblib_version": "1.6.0",
+  "model_name": "logistic_baseline",
+  "model_parameters": {
+    "C": 1.0,
+    "class_weight": null,
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 5000,
+    "n_jobs": null,
+    "penalty": "deprecated",
+    "random_state": null,
+    "solver": "lbfgs",
+    "tol": 1e-08,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "model_type": "sklearn.linear_model.LogisticRegression",
+  "model_version": "logistic-baseline-1.0.0",
+  "numpy_version": "2.5.3",
+  "objective": "binary next-month default-payment classification",
+  "phase3_contract_identities": {
+    "feature_manifest": "412cc60a2166086604ab8989ab20619f6a8583ba7479d9d616d395accd692624",
+    "preprocessing_manifest": "3ee9a3d6e787e1e945a1c22888b727f28beb288cf2e55db528c9abad8676384f",
+    "split_manifest": "aef0a3fb52c7d62fb12d1ad6a1acabd030a42bb74f720f20fe0fbd2d2d7a60e9"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "preprocessing_artifact_relative_path": "artifacts/preprocessing/preprocessor_e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4.joblib",
+  "preprocessing_artifact_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "python_version": "3.14.6",
+  "random_seed": 42,
+  "scipy_version": "1.18.1",
+  "serialization_roundtrip_passed": true,
+  "sklearn_version": "1.8.0",
+  "solver": "lbfgs",
+  "solver_uses_random_state": false,
+  "split_strategy": "stratified_random",
+  "split_version": "sorted_id_two_stage_stratified_v1",
+  "target": "default_next_month",
+  "test_rows": 4500,
+  "test_rows_source": "Phase-3 split metadata only",
+  "test_set_evaluated": false,
+  "training_rows": 21000,
+  "transformed_feature_count": 103,
+  "validation_rows": 4500
+}

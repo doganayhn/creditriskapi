@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Added one fixed L2 Logistic Regression baseline, version logistic-baseline-1.0.0, trained only on TRAIN with verified Phase-3 contracts and the existing local preprocessor.
+- Added TRAIN/VALIDATION discrimination and raw-probability diagnostics, fixed-reference-threshold metrics, deterministic validation bootstrap intervals, coefficient lineage and content-addressed local model serialization. TEST remains sealed; no challenger, calibration or lending policy was implemented.
+- Added baseline model documentation, ADR 003, Phase-4 completion report and synthetic contract/model/test-sealing tests.
 - Added a deterministic stratified 70/15/15 split, explicit demographic/ID/target separation, 26 domain-defined financial features and train-only numeric/categorical preprocessing.
 - Added aggregate split/feature/preprocessing manifests, traceable encoded names, trusted local serialization checks and synthetic leakage-isolation tests; no predictive model was trained.
 - Completed official UCI 350 acquisition, pinned raw checksum, provenance manifest and strict canonical schema for the next-month default-payment target.

@@ -1,0 +1,61 @@
+{
+  "model_version": "logistic-baseline-1.0.0",
+  "probability_semantics": "raw model probability of next-month default payment; uncalibrated",
+  "reference_threshold": 0.5,
+  "test_set_evaluated": false,
+  "train": {
+    "average_precision": 0.5554891761018601,
+    "brier_score": 0.13394399059421763,
+    "gini": 0.5576901096796423,
+    "ks": 0.42640867538360233,
+    "log_loss": 0.42908716345882464,
+    "mean_predicted_probability": 0.22119047780392243,
+    "observed_positive_rate": 0.2211904761904762,
+    "roc_auc": 0.7788450548398211,
+    "threshold_0_5": {
+      "f1": 0.4778711484593838,
+      "fn": 2939,
+      "fp": 789,
+      "precision": 0.6837675350701403,
+      "recall": 0.3672766415500538,
+      "specificity": 0.9517578722103333,
+      "tn": 15566,
+      "tp": 1706
+    }
+  },
+  "validation": {
+    "average_precision": 0.5196840915711507,
+    "brier_score": 0.13879160679011868,
+    "gini": 0.5312763532355071,
+    "ks": 0.4053505759897921,
+    "log_loss": 0.4413186207185612,
+    "mean_predicted_probability": 0.21972506473541445,
+    "observed_positive_rate": 0.22111111111111112,
+    "roc_auc": 0.7656381766177536,
+    "threshold_0_5": {
+      "f1": 0.45841519318926,
+      "fn": 645,
+      "fp": 182,
+      "precision": 0.6578947368421053,
+      "recall": 0.35175879396984927,
+      "specificity": 0.9480741797432239,
+      "tn": 3323,
+      "tp": 350
+    }
+  },
+  "validation_uncertainty": {
+    "average_precision_95_ci": [
+      0.48739883146807816,
+      0.5584230446932125
+    ],
+    "bootstrap_requested_replicates": 1000,
+    "bootstrap_skipped_single_class": 0,
+    "bootstrap_successful_replicates": 1000,
+    "method": "row bootstrap with replacement; percentile 95%",
+    "random_seed": 42,
+    "roc_auc_95_ci": [
+      0.7476831051350789,
+      0.7830258613971136
+    ]
+  }
+}

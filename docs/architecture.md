@@ -1,6 +1,6 @@
 # Intended architecture and implemented boundary
 
-Implemented now (Phases 1–3): project rules, validated configuration, official UCI acquisition and quality analysis, immutable raw identity checks, canonical schema, stratified dataset splitting, stateless financial features, train-only fitted preprocessing, aggregate manifests and tests. No predictive model exists.
+Implemented now (Phases 1–4): project rules, configuration, official UCI acquisition/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, one Logistic Regression baseline, raw probabilities, TRAIN/VALIDATION evaluation, coefficients, aggregate manifests and tests. TEST remains sealed.
 
 ```text
 Raw public credit dataset                 [Phase 2: implemented]
@@ -13,7 +13,13 @@ Stateless financial feature engineering  [Phase 3: implemented]
         ↓
 Train-only fitted preprocessing         [Phase 3: implemented]
         ↓
-Baseline / challenger models            [Phases 4–5: planned]
+Logistic Regression baseline            [Phase 4: implemented; TRAIN fit]
+        ↓
+Raw default probability                 [Phase 4: TRAIN / VALIDATION only]
+        ↓
+Validation evaluation / coefficients    [Phase 4: implemented]
+        ↓
+XGBoost challenger                      [Phase 5: planned]
         ↓
 Probability calibration when justified  [Phase 6: planned]
         ↓
@@ -38,4 +44,8 @@ Acquisition flow: official HTTPS ZIP → checksum-verified XLS → atomic no-ove
 
 Canonicalization renames fields and represents verified integral numeric cells as nullable Int64. It removes only the two verified header rows, never customer records. The Phase-2 data layer remains unchanged; all modeling-data transformations are isolated under `features/`.
 
-The Phase-3 preparation CLI verifies raw bytes and manifest identity, splits sorted canonical rows, allowlists 19 financial fields, engineers each partition independently, and fits a guarded sklearn ColumnTransformer on train only. It transforms three finite CSR matrices while keeping targets and demographic/ID review frames separate. A trusted local fitted-preprocessor artifact is stored under ignored artifacts; tracked metadata contains only aggregate split statistics, definitions, encoded-name lineage and preprocessing provenance. No customer-level assignments or matrices are written to Git paths. Model/explanation/utils components remain future work. See [modeling_dataset.md](modeling_dataset.md) for the consumer contract and [ADR 002](decisions/002-feature-policy-and-split.md) for decisions.
+The Phase-3 preparation CLI verifies raw bytes and manifest identity, splits sorted canonical rows, allowlists 19 financial fields, engineers each partition independently, and fits a guarded sklearn ColumnTransformer on train only. It transforms three finite CSR matrices while keeping targets and demographic/ID review frames separate. Its test processing is structural only. A trusted local fitted-preprocessor artifact is stored under ignored artifacts; tracked metadata contains only aggregate split statistics, definitions, encoded-name lineage and preprocessing provenance. No customer-level assignments or matrices are written to Git paths. See [modeling_dataset.md](modeling_dataset.md) and [ADR 002](decisions/002-feature-policy-and-split.md).
+
+The Phase-4 `modeling/contract.py` adapter verifies committed V1 semantic manifest identities, feature implementation and runtime versions, raw bytes and the fitted-preprocessor checksum. It reuses the existing split/engineering/transform helpers; after structural splitting, it immediately discards the TEST branch and exposes only TRAIN/VALIDATION matrices and labels. It never refits preprocessing or rewrites Phase-3 metadata.
+
+`modeling/baseline.py` fits one fixed L2 LogisticRegression on TRAIN and fails on non-convergence. `metrics.py` computes discrimination, probability diagnostics, a fixed 0.50 reference threshold and deterministic validation bootstrap intervals. Coefficients retain transformed-column lineage. `artifacts.py` saves a versioned content-addressed model under ignored artifacts/models and verifies its training-probability round-trip. Only aggregate metrics, parameters and manifests are written under metadata. No calibration, challenger, SHAP, scoring, decisions or serving is implemented. See [baseline_model_report.md](baseline_model_report.md) and [ADR 003](decisions/003-logistic-baseline.md).

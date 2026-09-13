@@ -1,8 +1,10 @@
 # Modeling dataset contract
 
-Phase 3 prepares data; it does not train a predictive model. The V1 target remains `default_next_month` with the dataset-defined next-month event and existing limitations.
+Phase 3 prepares data; Phase 4 now consumes that contract for one TRAIN-fitted Logistic Regression baseline and TRAIN/VALIDATION evaluation. The V1 target remains `default_next_month` with the dataset-defined next-month event and existing limitations.
 
 ## Consumer API
+
+The example below is the Phase-3 preparation API, which structurally transforms all partitions. Phase-4 modeling instead uses `credit_risk.modeling.contract.load_modeling_data(root)`: it verifies committed Phase-3 semantic manifest identities and the trusted fitted-preprocessor artifact, reuses splitting/engineering, discards TEST immediately after structural splitting and transforms only TRAIN/VALIDATION. Its return value has no test matrix or labels. It does not refit preprocessing, duplicate feature definitions or repair mismatching manifests. See [baseline report](baseline_model_report.md).
 
 ```python
 from pathlib import Path

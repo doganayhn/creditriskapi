@@ -3,10 +3,10 @@
 A portfolio fintech project intended to estimate borrower default risk from information available at scoring time, explain model outputs and eventually expose auditable predictions through a versioned API.
 
 ## Current status
-Phases 1–3 are COMPLETED. Implemented scope includes foundation, official ingestion, data quality, leakage-safe financial features and reproducible train/validation/test preparation. No predictive model has been trained. Phases 4–10 remain NOT_STARTED. See the [Phase 3 completion report](docs/phase_reports/phase_03_completion_report.md). Historical [Phase 1](docs/phase_reports/phase_01_completion_report.md) and [Phase 2](docs/phase_reports/phase_02_completion_report.md) reports remain unchanged.
+Phases 1–4 are COMPLETED. Implemented scope includes foundation, official ingestion, data quality, leakage-safe financial features/preprocessing, one Logistic Regression baseline, train/validation evaluation and coefficient analysis. Phases 5–10 remain NOT_STARTED. See the [Phase 4 completion report](docs/phase_reports/phase_04_completion_report.md). Historical Phase 1–3 reports remain unchanged. TEST SET REMAINS SEALED.
 
 ## Intended architecture
-Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → calibration when justified → PD → explainability/internal score → versioned policy → API → persistence/audit. Dataset acquisition, validation, stateless financial features and train-only fitted preprocessing are implemented. Predictive modeling and subsequent components remain planned for Phases 4–10.
+Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → calibration when justified → PD → explainability/internal score → versioned policy → API → persistence/audit. Acquisition, quality, financial features, train-only preprocessing, Logistic Regression, raw probabilities and train/validation evaluation are implemented. XGBoost, calibration, SHAP, internal score, production API, database and Docker deployment remain planned for Phases 5–10.
 
 ## Development
 Python 3.11 or newer is required. From the repository root:
@@ -54,7 +54,17 @@ Real results: train 21,000 × 103; validation 4,500 × 103; test 4,500 × 103. A
 
 The command writes aggregate split/feature/preprocessing manifests under configured metadata and a trusted local fitted preprocessor under ignored artifacts/preprocessing. It validates serialization on training data. Customer matrices/targets/review frames are available through `prepare_dataset` in memory; none are exported to tracked paths. Repeated execution preserves materially identical metadata and does not rewrite unchanged files. It accepts `--project-root PATH`.
 
-See [feature engineering](docs/feature_engineering.md), [modeling dataset contract](docs/modeling_dataset.md) and [ADR 002](docs/decisions/002-feature-policy-and-split.md). Logistic Regression, XGBoost, calibration, SHAP, API and database functionality are not implemented.
+See [feature engineering](docs/feature_engineering.md), [modeling dataset contract](docs/modeling_dataset.md) and [ADR 002](docs/decisions/002-feature-policy-and-split.md).
+
+## Run the fixed baseline
+
+```powershell
+.venv\Scripts\python.exe -m credit_risk.modeling.baseline
+```
+
+The CLI accepts `--project-root PATH`, verifies the Phase-3 V1 contracts and trusted local preprocessor, fits one L2 LogisticRegression on TRAIN only, and evaluates raw probabilities on TRAIN and VALIDATION only. Version: `logistic-baseline-1.0.0`. Fixed C=1.0, class_weight=None, LBFGS; no tuning or resampling. It does not refit preprocessing or score TEST. A missing artifact requires the documented Phase-3 preparation command; contract disagreements fail instead of being silently repaired.
+
+Validation ROC-AUC: **0.765638**; Average Precision: **0.519684**. Probabilities remain raw/uncalibrated. The reference threshold 0.50 is a diagnostic, not a business policy. Aggregate metrics, validation bootstrap intervals, coefficient lineage and model provenance are written under metadata. The content-addressed model binary stays ignored under artifacts/models. Only trusted project-created joblib files may be loaded; hashes do not make untrusted pickle safe. See the [baseline model report](docs/baseline_model_report.md) and [ADR 003](docs/decisions/003-logistic-baseline.md).
 
 ## Ten-phase plan
 1. Foundation and data contract
@@ -71,9 +81,9 @@ See [feature engineering](docs/feature_engineering.md), [modeling dataset contra
 See [ROADMAP.md](ROADMAP.md) for scope/status and [AGENTS.md](AGENTS.md) for instruction precedence. Each phase follows phase prompt → Codex implementation → tests → phase completion report → technical review by the project owner. If issues exist, apply fixes and verify them; if no issues remain, the project owner creates the Git commit. The next phase starts only when explicitly requested. Codex must not automatically commit or start the next phase.
 
 ## Repository layout
-`src/credit_risk/config.py` handles configuration; `src/credit_risk/data/` contains acquisition, loading, schema and quality code. `tests/` covers foundation/data behavior. `data/raw/` holds the ignored original XLS; `data/metadata/` holds aggregate provenance and profiling JSON. `src/credit_risk/features/` implements the preparation lifecycle; `data/metadata/` also holds its aggregate manifests. Local preprocessing artifacts remain ignored. Interim/processed data exports, notebooks and model/explanation components remain future work. Customer records, generated artifacts, secrets and environments are ignored by Git.
+`src/credit_risk/config.py` handles configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements the fixed baseline, contract verification, metrics and trusted serialization. Tests use synthetic data and mocks. Aggregate metadata is tracked under `data/metadata/`; raw/interim/processed customer data, local preprocessing/model binaries, secrets and environments are ignored. Explainability and serving components remain future work.
 
 ## Limitations
-The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). True nulls and ID/exact-row duplicates are absent, but undocumented category codes and negative bill values remain. The source does not specify a regulatory default threshold or event-level scoring dates. Within-row monthly history does not support true out-of-time validation. The primary feature policy excludes demographics, retains them for review and treats raw repayment codes categorically. This does not resolve undocumented meanings or demonstrate fairness. The shared feature set contains related aggregates; no predictive performance or target-driven selection has been evaluated. Raw model probabilities must not be called calibrated PD, and underlying-model SHAP must not be described as additive calibrated-PD explanations. XGBoost, SHAP, API, PostgreSQL, Docker and model operations are not implemented.
+The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). True nulls and ID/exact-row duplicates are absent, but undocumented category codes and negative bill values remain. The source does not specify a regulatory default threshold or event-level scoring dates. Within-row monthly history does not support true out-of-time validation. Demographic exclusion does not resolve undocumented meanings, remove proxies or demonstrate fairness. Related features distribute signal across L2-shrunk coefficients; full one-hot encoding has no omitted reference and coefficients are not causal. Only TRAIN/VALIDATION performance has been evaluated, with no target-driven feature selection. Raw probabilities are not calibrated PD. XGBoost, calibration, SHAP, scores, API, PostgreSQL, Docker and model operations are not implemented.
 
 This repository is educational / portfolio work, not a regulatory or production lending authority. Outputs are not real lending decisions; no real lending decision should rely on this project.

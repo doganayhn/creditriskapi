@@ -1,0 +1,1715 @@
+{
+  "coefficients": [
+    {
+      "abs_coefficient": 0.1620329789175384,
+      "canonical_sources": [
+        "credit_limit"
+      ],
+      "coefficient": -0.1620329789175384,
+      "direction": "negative",
+      "exp_coefficient": 0.8504131583723459,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "LIMIT_BAL"
+      ],
+      "source_feature": "credit_limit",
+      "transformed_feature_name": "numeric__credit_limit"
+    },
+    {
+      "abs_coefficient": 0.27239772155916003,
+      "canonical_sources": [
+        "bill_amount_2005_09"
+      ],
+      "coefficient": 0.27239772155916003,
+      "direction": "positive",
+      "exp_coefficient": 1.3131091492876736,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT1"
+      ],
+      "source_feature": "bill_amount_2005_09",
+      "transformed_feature_name": "numeric__bill_amount_2005_09"
+    },
+    {
+      "abs_coefficient": 0.07034537606606839,
+      "canonical_sources": [
+        "bill_amount_2005_08"
+      ],
+      "coefficient": 0.07034537606606839,
+      "direction": "positive",
+      "exp_coefficient": 1.0728786638849181,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT2"
+      ],
+      "source_feature": "bill_amount_2005_08",
+      "transformed_feature_name": "numeric__bill_amount_2005_08"
+    },
+    {
+      "abs_coefficient": 0.03189964893296491,
+      "canonical_sources": [
+        "bill_amount_2005_07"
+      ],
+      "coefficient": 0.03189964893296491,
+      "direction": "positive",
+      "exp_coefficient": 1.032413896270454,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT3"
+      ],
+      "source_feature": "bill_amount_2005_07",
+      "transformed_feature_name": "numeric__bill_amount_2005_07"
+    },
+    {
+      "abs_coefficient": 0.03759727433548752,
+      "canonical_sources": [
+        "bill_amount_2005_06"
+      ],
+      "coefficient": 0.03759727433548752,
+      "direction": "positive",
+      "exp_coefficient": 1.0383129933760304,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT4"
+      ],
+      "source_feature": "bill_amount_2005_06",
+      "transformed_feature_name": "numeric__bill_amount_2005_06"
+    },
+    {
+      "abs_coefficient": 0.2336830556806924,
+      "canonical_sources": [
+        "bill_amount_2005_05"
+      ],
+      "coefficient": 0.2336830556806924,
+      "direction": "positive",
+      "exp_coefficient": 1.2632440507265268,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT5"
+      ],
+      "source_feature": "bill_amount_2005_05",
+      "transformed_feature_name": "numeric__bill_amount_2005_05"
+    },
+    {
+      "abs_coefficient": 0.1125487384600084,
+      "canonical_sources": [
+        "bill_amount_2005_04"
+      ],
+      "coefficient": -0.1125487384600084,
+      "direction": "negative",
+      "exp_coefficient": 0.8935537956112751,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_amount_2005_04",
+      "transformed_feature_name": "numeric__bill_amount_2005_04"
+    },
+    {
+      "abs_coefficient": 0.17474183310527314,
+      "canonical_sources": [
+        "payment_amount_2005_09"
+      ],
+      "coefficient": -0.17474183310527314,
+      "direction": "negative",
+      "exp_coefficient": 0.8396737687588899,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT1"
+      ],
+      "source_feature": "payment_amount_2005_09",
+      "transformed_feature_name": "numeric__payment_amount_2005_09"
+    },
+    {
+      "abs_coefficient": 0.18659824847518391,
+      "canonical_sources": [
+        "payment_amount_2005_08"
+      ],
+      "coefficient": -0.18659824847518391,
+      "direction": "negative",
+      "exp_coefficient": 0.8297770336180986,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT2"
+      ],
+      "source_feature": "payment_amount_2005_08",
+      "transformed_feature_name": "numeric__payment_amount_2005_08"
+    },
+    {
+      "abs_coefficient": 0.10698800953235499,
+      "canonical_sources": [
+        "payment_amount_2005_07"
+      ],
+      "coefficient": -0.10698800953235499,
+      "direction": "negative",
+      "exp_coefficient": 0.8985364467979071,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT3"
+      ],
+      "source_feature": "payment_amount_2005_07",
+      "transformed_feature_name": "numeric__payment_amount_2005_07"
+    },
+    {
+      "abs_coefficient": 0.09197266174751251,
+      "canonical_sources": [
+        "payment_amount_2005_06"
+      ],
+      "coefficient": -0.09197266174751251,
+      "direction": "negative",
+      "exp_coefficient": 0.9121300852468115,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT4"
+      ],
+      "source_feature": "payment_amount_2005_06",
+      "transformed_feature_name": "numeric__payment_amount_2005_06"
+    },
+    {
+      "abs_coefficient": 0.02028076166673178,
+      "canonical_sources": [
+        "payment_amount_2005_05"
+      ],
+      "coefficient": -0.02028076166673178,
+      "direction": "negative",
+      "exp_coefficient": 0.9799235097230101,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT5"
+      ],
+      "source_feature": "payment_amount_2005_05",
+      "transformed_feature_name": "numeric__payment_amount_2005_05"
+    },
+    {
+      "abs_coefficient": 0.15876727345072345,
+      "canonical_sources": [
+        "payment_amount_2005_04"
+      ],
+      "coefficient": -0.15876727345072345,
+      "direction": "negative",
+      "exp_coefficient": 0.8531948969699357,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT6"
+      ],
+      "source_feature": "payment_amount_2005_04",
+      "transformed_feature_name": "numeric__payment_amount_2005_04"
+    },
+    {
+      "abs_coefficient": 0.09798168891068644,
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "coefficient": 0.09798168891068644,
+      "direction": "positive",
+      "exp_coefficient": 1.1029425888433484,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_amount_mean",
+      "transformed_feature_name": "numeric__bill_amount_mean"
+    },
+    {
+      "abs_coefficient": 0.2514871316596374,
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "coefficient": 0.2514871316596374,
+      "direction": "positive",
+      "exp_coefficient": 1.2859363520907665,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_amount_std",
+      "transformed_feature_name": "numeric__bill_amount_std"
+    },
+    {
+      "abs_coefficient": 0.2078924727069824,
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "coefficient": 0.2078924727069824,
+      "direction": "positive",
+      "exp_coefficient": 1.23108078764708,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_amount_min",
+      "transformed_feature_name": "numeric__bill_amount_min"
+    },
+    {
+      "abs_coefficient": 0.8367846638276202,
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "coefficient": -0.8367846638276202,
+      "direction": "negative",
+      "exp_coefficient": 0.4331008518799254,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_amount_max",
+      "transformed_feature_name": "numeric__bill_amount_max"
+    },
+    {
+      "abs_coefficient": 0.21822860249952905,
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "coefficient": -0.21822860249952905,
+      "direction": "negative",
+      "exp_coefficient": 0.8039416375904959,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ],
+      "source_feature": "payment_amount_mean",
+      "transformed_feature_name": "numeric__payment_amount_mean"
+    },
+    {
+      "abs_coefficient": 0.21822860249955195,
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "coefficient": -0.21822860249955195,
+      "direction": "negative",
+      "exp_coefficient": 0.8039416375904774,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ],
+      "source_feature": "payment_amount_sum",
+      "transformed_feature_name": "numeric__payment_amount_sum"
+    },
+    {
+      "abs_coefficient": 0.6026190691706187,
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "coefficient": 0.6026190691706187,
+      "direction": "positive",
+      "exp_coefficient": 1.826897310458492,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ],
+      "source_feature": "payment_amount_max",
+      "transformed_feature_name": "numeric__payment_amount_max"
+    },
+    {
+      "abs_coefficient": 0.022515057008189912,
+      "canonical_sources": [
+        "bill_amount_2005_09",
+        "credit_limit"
+      ],
+      "coefficient": 0.022515057008189912,
+      "direction": "positive",
+      "exp_coefficient": 1.0227704339113084,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT1",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "bill_to_limit_2005_09",
+      "transformed_feature_name": "numeric__bill_to_limit_2005_09"
+    },
+    {
+      "abs_coefficient": 0.034634606979878295,
+      "canonical_sources": [
+        "bill_amount_2005_08",
+        "credit_limit"
+      ],
+      "coefficient": -0.034634606979878295,
+      "direction": "negative",
+      "exp_coefficient": 0.9659583062046943,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT2",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "bill_to_limit_2005_08",
+      "transformed_feature_name": "numeric__bill_to_limit_2005_08"
+    },
+    {
+      "abs_coefficient": 0.08821979710266623,
+      "canonical_sources": [
+        "bill_amount_2005_07",
+        "credit_limit"
+      ],
+      "coefficient": 0.08821979710266623,
+      "direction": "positive",
+      "exp_coefficient": 1.0922281642328893,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT3",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "bill_to_limit_2005_07",
+      "transformed_feature_name": "numeric__bill_to_limit_2005_07"
+    },
+    {
+      "abs_coefficient": 0.05166533225474315,
+      "canonical_sources": [
+        "bill_amount_2005_06",
+        "credit_limit"
+      ],
+      "coefficient": 0.05166533225474315,
+      "direction": "positive",
+      "exp_coefficient": 1.0530232706124876,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT4",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "bill_to_limit_2005_06",
+      "transformed_feature_name": "numeric__bill_to_limit_2005_06"
+    },
+    {
+      "abs_coefficient": 0.2492239414087009,
+      "canonical_sources": [
+        "bill_amount_2005_05",
+        "credit_limit"
+      ],
+      "coefficient": -0.2492239414087009,
+      "direction": "negative",
+      "exp_coefficient": 0.7794054126936787,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT5",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "bill_to_limit_2005_05",
+      "transformed_feature_name": "numeric__bill_to_limit_2005_05"
+    },
+    {
+      "abs_coefficient": 0.1843785190960173,
+      "canonical_sources": [
+        "bill_amount_2005_04",
+        "credit_limit"
+      ],
+      "coefficient": 0.1843785190960173,
+      "direction": "positive",
+      "exp_coefficient": 1.202470895160358,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "BILL_AMT6",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "bill_to_limit_2005_04",
+      "transformed_feature_name": "numeric__bill_to_limit_2005_04"
+    },
+    {
+      "abs_coefficient": 0.0482606309525964,
+      "canonical_sources": [
+        "payment_amount_2005_09",
+        "credit_limit"
+      ],
+      "coefficient": 0.0482606309525964,
+      "direction": "positive",
+      "exp_coefficient": 1.049444137309191,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT1",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "payment_to_limit_2005_09",
+      "transformed_feature_name": "numeric__payment_to_limit_2005_09"
+    },
+    {
+      "abs_coefficient": 0.03876489843955462,
+      "canonical_sources": [
+        "payment_amount_2005_08",
+        "credit_limit"
+      ],
+      "coefficient": -0.03876489843955462,
+      "direction": "negative",
+      "exp_coefficient": 0.9619768448202298,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT2",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "payment_to_limit_2005_08",
+      "transformed_feature_name": "numeric__payment_to_limit_2005_08"
+    },
+    {
+      "abs_coefficient": 0.051536874992262845,
+      "canonical_sources": [
+        "payment_amount_2005_07",
+        "credit_limit"
+      ],
+      "coefficient": 0.051536874992262845,
+      "direction": "positive",
+      "exp_coefficient": 1.0528880108135543,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT3",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "payment_to_limit_2005_07",
+      "transformed_feature_name": "numeric__payment_to_limit_2005_07"
+    },
+    {
+      "abs_coefficient": 0.04209135356433415,
+      "canonical_sources": [
+        "payment_amount_2005_06",
+        "credit_limit"
+      ],
+      "coefficient": 0.04209135356433415,
+      "direction": "positive",
+      "exp_coefficient": 1.0429897552304783,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT4",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "payment_to_limit_2005_06",
+      "transformed_feature_name": "numeric__payment_to_limit_2005_06"
+    },
+    {
+      "abs_coefficient": 0.046490604907685376,
+      "canonical_sources": [
+        "payment_amount_2005_05",
+        "credit_limit"
+      ],
+      "coefficient": -0.046490604907685376,
+      "direction": "negative",
+      "exp_coefficient": 0.9545735288342659,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT5",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "payment_to_limit_2005_05",
+      "transformed_feature_name": "numeric__payment_to_limit_2005_05"
+    },
+    {
+      "abs_coefficient": 0.043341304708303795,
+      "canonical_sources": [
+        "payment_amount_2005_04",
+        "credit_limit"
+      ],
+      "coefficient": 0.043341304708303795,
+      "direction": "positive",
+      "exp_coefficient": 1.0442942565798106,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_AMT6",
+        "LIMIT_BAL"
+      ],
+      "source_feature": "payment_to_limit_2005_04",
+      "transformed_feature_name": "numeric__payment_to_limit_2005_04"
+    },
+    {
+      "abs_coefficient": 0.01209035670298369,
+      "canonical_sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "coefficient": 0.01209035670298369,
+      "direction": "positive",
+      "exp_coefficient": 1.0121637405128532,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "LIMIT_BAL",
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_to_limit_mean",
+      "transformed_feature_name": "numeric__bill_to_limit_mean"
+    },
+    {
+      "abs_coefficient": 0.03502771036908005,
+      "canonical_sources": [
+        "credit_limit",
+        "bill_amount_2005_09",
+        "bill_amount_2005_08",
+        "bill_amount_2005_07",
+        "bill_amount_2005_06",
+        "bill_amount_2005_05",
+        "bill_amount_2005_04"
+      ],
+      "coefficient": 0.03502771036908005,
+      "direction": "positive",
+      "exp_coefficient": 1.035648406601592,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "LIMIT_BAL",
+        "BILL_AMT1",
+        "BILL_AMT2",
+        "BILL_AMT3",
+        "BILL_AMT4",
+        "BILL_AMT5",
+        "BILL_AMT6"
+      ],
+      "source_feature": "bill_to_limit_max",
+      "transformed_feature_name": "numeric__bill_to_limit_max"
+    },
+    {
+      "abs_coefficient": 0.02720491902803485,
+      "canonical_sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "coefficient": 0.02720491902803485,
+      "direction": "positive",
+      "exp_coefficient": 1.0275783515470553,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "LIMIT_BAL",
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ],
+      "source_feature": "payment_to_limit_mean",
+      "transformed_feature_name": "numeric__payment_to_limit_mean"
+    },
+    {
+      "abs_coefficient": 0.11779239203482482,
+      "canonical_sources": [
+        "credit_limit",
+        "payment_amount_2005_09",
+        "payment_amount_2005_08",
+        "payment_amount_2005_07",
+        "payment_amount_2005_06",
+        "payment_amount_2005_05",
+        "payment_amount_2005_04"
+      ],
+      "coefficient": -0.11779239203482482,
+      "direction": "negative",
+      "exp_coefficient": 0.8888805721469595,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "LIMIT_BAL",
+        "PAY_AMT1",
+        "PAY_AMT2",
+        "PAY_AMT3",
+        "PAY_AMT4",
+        "PAY_AMT5",
+        "PAY_AMT6"
+      ],
+      "source_feature": "payment_to_limit_max",
+      "transformed_feature_name": "numeric__payment_to_limit_max"
+    },
+    {
+      "abs_coefficient": 0.12464324731802576,
+      "canonical_sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ],
+      "coefficient": -0.12464324731802576,
+      "direction": "negative",
+      "exp_coefficient": 0.8828117918868883,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_0",
+        "PAY_2",
+        "PAY_3",
+        "PAY_4",
+        "PAY_5",
+        "PAY_6"
+      ],
+      "source_feature": "months_with_documented_delay",
+      "transformed_feature_name": "numeric__months_with_documented_delay"
+    },
+    {
+      "abs_coefficient": 0.3388866149647869,
+      "canonical_sources": [
+        "repayment_status_2005_09",
+        "repayment_status_2005_08",
+        "repayment_status_2005_07",
+        "repayment_status_2005_06",
+        "repayment_status_2005_05",
+        "repayment_status_2005_04"
+      ],
+      "coefficient": 0.3388866149647869,
+      "direction": "positive",
+      "exp_coefficient": 1.4033842134228582,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_0",
+        "PAY_2",
+        "PAY_3",
+        "PAY_4",
+        "PAY_5",
+        "PAY_6"
+      ],
+      "source_feature": "max_documented_delay",
+      "transformed_feature_name": "numeric__max_documented_delay"
+    },
+    {
+      "abs_coefficient": 0.3090373050565783,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": 0.3090373050565783,
+      "direction": "positive",
+      "exp_coefficient": 1.3621131832649973,
+      "feature_type": "standardized_numeric",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "recent_documented_delay_flag",
+      "transformed_feature_name": "numeric__recent_documented_delay_flag"
+    },
+    {
+      "abs_coefficient": 0.3522742646471249,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": 0.3522742646471249,
+      "direction": "positive",
+      "exp_coefficient": 1.4222985564417276,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_-1"
+    },
+    {
+      "abs_coefficient": 0.1194042420517706,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": -0.1194042420517706,
+      "direction": "negative",
+      "exp_coefficient": 0.8874489840442814,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_-2"
+    },
+    {
+      "abs_coefficient": 0.3629187638125078,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": -0.3629187638125078,
+      "direction": "negative",
+      "exp_coefficient": 0.695642942584284,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_0"
+    },
+    {
+      "abs_coefficient": 0.23755000538942223,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": -0.23755000538942223,
+      "direction": "negative",
+      "exp_coefficient": 0.7885574578723882,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_1"
+    },
+    {
+      "abs_coefficient": 0.9155811874862306,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": 0.9155811874862306,
+      "direction": "positive",
+      "exp_coefficient": 2.4982267681979207,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_2"
+    },
+    {
+      "abs_coefficient": 0.8087235612420247,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": 0.8087235612420247,
+      "direction": "positive",
+      "exp_coefficient": 2.2450405002726392,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_3"
+    },
+    {
+      "abs_coefficient": 0.24349982080790938,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": 0.24349982080790938,
+      "direction": "positive",
+      "exp_coefficient": 1.2757060892442025,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_4"
+    },
+    {
+      "abs_coefficient": 0.576254780140859,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": -0.576254780140859,
+      "direction": "negative",
+      "exp_coefficient": 0.5619992407090568,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_5"
+    },
+    {
+      "abs_coefficient": 0.5067326666235887,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": -0.5067326666235887,
+      "direction": "negative",
+      "exp_coefficient": 0.6024608068385576,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_6"
+    },
+    {
+      "abs_coefficient": 0.11328062870093537,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": 0.11328062870093537,
+      "direction": "positive",
+      "exp_coefficient": 1.1199461778944684,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_7"
+    },
+    {
+      "abs_coefficient": 0.6307268053390829,
+      "canonical_sources": [
+        "repayment_status_2005_09"
+      ],
+      "coefficient": -0.6307268053390829,
+      "direction": "negative",
+      "exp_coefficient": 0.5322048510780445,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_0"
+      ],
+      "source_feature": "repayment_status_2005_09",
+      "transformed_feature_name": "repayment__repayment_status_2005_09_status_8"
+    },
+    {
+      "abs_coefficient": 0.08714927194616955,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.08714927194616955,
+      "direction": "positive",
+      "exp_coefficient": 1.091059532143076,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_-1"
+    },
+    {
+      "abs_coefficient": 0.20757622708317405,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.20757622708317405,
+      "direction": "positive",
+      "exp_coefficient": 1.2306915252899346,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_-2"
+    },
+    {
+      "abs_coefficient": 0.17190345575351537,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.17190345575351537,
+      "direction": "positive",
+      "exp_coefficient": 1.1875631752873024,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_0"
+    },
+    {
+      "abs_coefficient": 0.0746757924852577,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": -0.0746757924852577,
+      "direction": "negative",
+      "exp_coefficient": 0.9280443165016402,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_1"
+    },
+    {
+      "abs_coefficient": 0.22834222157474302,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.22834222157474302,
+      "direction": "positive",
+      "exp_coefficient": 1.2565152584924137,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_2"
+    },
+    {
+      "abs_coefficient": 0.15869496298507366,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.15869496298507366,
+      "direction": "positive",
+      "exp_coefficient": 1.1719803947490366,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_3"
+    },
+    {
+      "abs_coefficient": 0.5711915894862813,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": -0.5711915894862813,
+      "direction": "negative",
+      "exp_coefficient": 0.5648519658638211,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_4"
+    },
+    {
+      "abs_coefficient": 0.4070344031263334,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.4070344031263334,
+      "direction": "positive",
+      "exp_coefficient": 1.5023557905089437,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_5"
+    },
+    {
+      "abs_coefficient": 0.028180710212034017,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": 0.028180710212034017,
+      "direction": "positive",
+      "exp_coefficient": 1.028581542816361,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_6"
+    },
+    {
+      "abs_coefficient": 0.12735382025722006,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": -0.12735382025722006,
+      "direction": "negative",
+      "exp_coefficient": 0.8804221063050595,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_7"
+    },
+    {
+      "abs_coefficient": 0.5158878509252495,
+      "canonical_sources": [
+        "repayment_status_2005_08"
+      ],
+      "coefficient": -0.5158878509252495,
+      "direction": "negative",
+      "exp_coefficient": 0.5969703385914531,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_2"
+      ],
+      "source_feature": "repayment_status_2005_08",
+      "transformed_feature_name": "repayment__repayment_status_2005_08_status_8"
+    },
+    {
+      "abs_coefficient": 0.006883026923381571,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": -0.006883026923381571,
+      "direction": "negative",
+      "exp_coefficient": 0.9931406068513753,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_-1"
+    },
+    {
+      "abs_coefficient": 0.009786213488303528,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": -0.009786213488303528,
+      "direction": "negative",
+      "exp_coefficient": 0.9902615156760951,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_-2"
+    },
+    {
+      "abs_coefficient": 0.04643619656576693,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": 0.04643619656576693,
+      "direction": "positive",
+      "exp_coefficient": 1.04753124084567,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_0"
+    },
+    {
+      "abs_coefficient": 0.19009076301603664,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": 0.19009076301603664,
+      "direction": "positive",
+      "exp_coefficient": 1.2093593577788804,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_1"
+    },
+    {
+      "abs_coefficient": 0.25758837287988035,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": 0.25758837287988035,
+      "direction": "positive",
+      "exp_coefficient": 1.2938061433031938,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_2"
+    },
+    {
+      "abs_coefficient": 0.1371960837942708,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": 0.1371960837942708,
+      "direction": "positive",
+      "exp_coefficient": 1.147053044983692,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_3"
+    },
+    {
+      "abs_coefficient": 0.3603453597038537,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": -0.3603453597038537,
+      "direction": "negative",
+      "exp_coefficient": 0.6974354183839717,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_4"
+    },
+    {
+      "abs_coefficient": 0.429328245222468,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": -0.429328245222468,
+      "direction": "negative",
+      "exp_coefficient": 0.6509462241209676,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_5"
+    },
+    {
+      "abs_coefficient": 0.5162520142812999,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": 0.5162520142812999,
+      "direction": "positive",
+      "exp_coefficient": 1.675735233398575,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_6"
+    },
+    {
+      "abs_coefficient": 0.46659128113942666,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": -0.46659128113942666,
+      "direction": "negative",
+      "exp_coefficient": 0.6271363604962873,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_7"
+    },
+    {
+      "abs_coefficient": 0.1251428954672577,
+      "canonical_sources": [
+        "repayment_status_2005_07"
+      ],
+      "coefficient": 0.1251428954672577,
+      "direction": "positive",
+      "exp_coefficient": 1.1333103864139948,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_3"
+      ],
+      "source_feature": "repayment_status_2005_07",
+      "transformed_feature_name": "repayment__repayment_status_2005_07_status_8"
+    },
+    {
+      "abs_coefficient": 0.09271185290943702,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": -0.09271185290943702,
+      "direction": "negative",
+      "exp_coefficient": 0.9114560958834511,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_-1"
+    },
+    {
+      "abs_coefficient": 0.04216055262722803,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.04216055262722803,
+      "direction": "positive",
+      "exp_coefficient": 1.0430619316413894,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_-2"
+    },
+    {
+      "abs_coefficient": 0.03244352498427363,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.03244352498427363,
+      "direction": "positive",
+      "exp_coefficient": 1.0329755541859738,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_0"
+    },
+    {
+      "abs_coefficient": 0.3942625431550814,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.3942625431550814,
+      "direction": "positive",
+      "exp_coefficient": 1.483289925175305,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_1"
+    },
+    {
+      "abs_coefficient": 0.3155958133822905,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.3155958133822905,
+      "direction": "positive",
+      "exp_coefficient": 1.3710759730566175,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_2"
+    },
+    {
+      "abs_coefficient": 0.09354717067326043,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.09354717067326043,
+      "direction": "positive",
+      "exp_coefficient": 1.0980623984623021,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_3"
+    },
+    {
+      "abs_coefficient": 0.26810519132189325,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.26810519132189325,
+      "direction": "positive",
+      "exp_coefficient": 1.3074846688220592,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_4"
+    },
+    {
+      "abs_coefficient": 0.9811828519129498,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": -0.9811828519129498,
+      "direction": "negative",
+      "exp_coefficient": 0.37486742385281246,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_5"
+    },
+    {
+      "abs_coefficient": 0.3808584779488365,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": -0.3808584779488365,
+      "direction": "negative",
+      "exp_coefficient": 0.6832745811979821,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_6"
+    },
+    {
+      "abs_coefficient": 0.23669705200635924,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.23669705200635924,
+      "direction": "positive",
+      "exp_coefficient": 1.2670572071870032,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_7"
+    },
+    {
+      "abs_coefficient": 0.07171353414794311,
+      "canonical_sources": [
+        "repayment_status_2005_06"
+      ],
+      "coefficient": 0.07171353414794311,
+      "direction": "positive",
+      "exp_coefficient": 1.0743475360953498,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_4"
+      ],
+      "source_feature": "repayment_status_2005_06",
+      "transformed_feature_name": "repayment__repayment_status_2005_06_status_8"
+    },
+    {
+      "abs_coefficient": 0.0025731206147634666,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": 0.0025731206147634666,
+      "direction": "positive",
+      "exp_coefficient": 1.002576433930857,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_-1"
+    },
+    {
+      "abs_coefficient": 0.059790597570799374,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": 0.059790597570799374,
+      "direction": "positive",
+      "exp_coefficient": 1.0616142186719097,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_-2"
+    },
+    {
+      "abs_coefficient": 0.030591996732665678,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": -0.030591996732665678,
+      "direction": "negative",
+      "exp_coefficient": 0.9698712029811005,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_0"
+    },
+    {
+      "abs_coefficient": 0.34186194772098527,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": 0.34186194772098527,
+      "direction": "positive",
+      "exp_coefficient": 1.4075659664109588,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_2"
+    },
+    {
+      "abs_coefficient": 0.1379200902759726,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": -0.1379200902759726,
+      "direction": "negative",
+      "exp_coefficient": 0.8711683037831587,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_3"
+    },
+    {
+      "abs_coefficient": 0.579464939112047,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": -0.579464939112047,
+      "direction": "negative",
+      "exp_coefficient": 0.5601980264435711,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_4"
+    },
+    {
+      "abs_coefficient": 0.09991639938954412,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": -0.09991639938954412,
+      "direction": "negative",
+      "exp_coefficient": 0.9049130661585413,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_5"
+    },
+    {
+      "abs_coefficient": 0.32827684242257904,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": 0.32827684242257904,
+      "direction": "positive",
+      "exp_coefficient": 1.388573335089008,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_6"
+    },
+    {
+      "abs_coefficient": 0.043449582560191734,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": 0.043449582560191734,
+      "direction": "positive",
+      "exp_coefficient": 1.0444073366405744,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_7"
+    },
+    {
+      "abs_coefficient": 0.07171353414794311,
+      "canonical_sources": [
+        "repayment_status_2005_05"
+      ],
+      "coefficient": 0.07171353414794311,
+      "direction": "positive",
+      "exp_coefficient": 1.0743475360953498,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_5"
+      ],
+      "source_feature": "repayment_status_2005_05",
+      "transformed_feature_name": "repayment__repayment_status_2005_05_status_8"
+    },
+    {
+      "abs_coefficient": 0.0430964793328452,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": -0.0430964793328452,
+      "direction": "negative",
+      "exp_coefficient": 0.9578189758732938,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_-1"
+    },
+    {
+      "abs_coefficient": 0.08809627871336805,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": 0.08809627871336805,
+      "direction": "positive",
+      "exp_coefficient": 1.0920932623009034,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_-2"
+    },
+    {
+      "abs_coefficient": 0.23220334375812032,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": -0.23220334375812032,
+      "direction": "negative",
+      "exp_coefficient": 0.7927848990545118,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_0"
+    },
+    {
+      "abs_coefficient": 0.08495943399235369,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": 0.08495943399235369,
+      "direction": "positive",
+      "exp_coefficient": 1.0886729026893311,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_2"
+    },
+    {
+      "abs_coefficient": 0.33646518385530483,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": 0.33646518385530483,
+      "direction": "positive",
+      "exp_coefficient": 1.3999901261625476,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_3"
+    },
+    {
+      "abs_coefficient": 0.5077822943008292,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": 0.5077822943008292,
+      "direction": "positive",
+      "exp_coefficient": 1.661602161279525,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_4"
+    },
+    {
+      "abs_coefficient": 0.19743611828345736,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": -0.19743611828345736,
+      "direction": "negative",
+      "exp_coefficient": 0.8208325751467979,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_5"
+    },
+    {
+      "abs_coefficient": 0.19322719020951698,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": -0.19322719020951698,
+      "direction": "negative",
+      "exp_coefficient": 0.8242946811830291,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_6"
+    },
+    {
+      "abs_coefficient": 0.42328139389875935,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": -0.42328139389875935,
+      "direction": "negative",
+      "exp_coefficient": 0.654894323914199,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_7"
+    },
+    {
+      "abs_coefficient": 0.07171353414794311,
+      "canonical_sources": [
+        "repayment_status_2005_04"
+      ],
+      "coefficient": 0.07171353414794311,
+      "direction": "positive",
+      "exp_coefficient": 1.0743475360953498,
+      "feature_type": "one_hot_category",
+      "source_columns": [
+        "PAY_6"
+      ],
+      "source_feature": "repayment_status_2005_04",
+      "transformed_feature_name": "repayment__repayment_status_2005_04_status_8"
+    }
+  ],
+  "intercept": [
+    -1.626504411859469
+  ],
+  "model_version": "logistic-baseline-1.0.0"
+}
