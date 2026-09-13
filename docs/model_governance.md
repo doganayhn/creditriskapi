@@ -25,3 +25,6 @@ Compare models on the same eligible population and comparable splits, recording 
 
 ## Portfolio disclaimer
 This system is not a regulatory or production lending authority. No real lending decision should rely on this repository. Security, privacy, monitoring and operational validation remain future work.
+
+## Verified V1 data boundary
+UCI 350 is selected under [ADR 001](decisions/001-dataset-selection.md). Experiments must identify the XLS checksum in the dataset manifest and the canonical schema. The label is next-month default payment, not a regulatory or 12-month PD. No event-level scoring dates or multiple calendar scoring cohorts exist in the verified workbook; do not call a future random/stratified split out-of-time validation. Income/employment are absent. Undocumented repayment/category codes and demographic eligibility remain Phase-3 decisions. Phase 2 has profiled data but has fitted no model or preprocessing component.

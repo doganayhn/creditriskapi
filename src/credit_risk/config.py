@@ -15,11 +15,12 @@ class ProjectPaths:
     interim: Path
     processed: Path
     artifacts: Path
+    metadata: Path
 
 
 @dataclass(frozen=True)
 class ProjectConfig:
-    """Validated experiment settings; target remains unset in Phase 1."""
+    """Validated experiment settings; target may be unset for new experiments."""
 
     random_seed: int
     experiment_name: str
@@ -98,7 +99,7 @@ def load_config(project_root: str | Path) -> ProjectConfig:
     if target is not None:
         target = _nonempty_string(target, "target_column")
     paths = _check_keys(
-        base["paths"], {"raw", "interim", "processed", "artifacts"}, "paths"
+        base["paths"], {"raw", "interim", "processed", "artifacts", "metadata"}, "paths"
     )
     resolved_paths = ProjectPaths(
         **{key: _resolve_path(root, value, f"paths.{key}") for key, value in paths.items()}

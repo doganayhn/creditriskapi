@@ -5,7 +5,7 @@ Only an explicitly requested phase may be implemented. Each phase ends with test
 | Phase | Name | Scope | Status |
 | --- | --- | --- | --- |
 | 1 | Project Foundation & Data Contract | Repository foundation, documentation, configuration, financial definitions, dataset decision framework and leakage policy | COMPLETED |
-| 2 | Data Ingestion & Data Quality | Acquisition/ingestion, schema verification, quality checks, EDA and dataset-specific limitations | NOT_STARTED |
+| 2 | Data Ingestion & Data Quality | Acquisition/ingestion, schema verification, quality checks, EDA and dataset-specific limitations | COMPLETED |
 | 3 | Credit Risk Feature Engineering | Feature definitions, preprocessing, transformations, leakage-safe engineering and train/validation/test preparation | NOT_STARTED |
 | 4 | Baseline Risk Model | Logistic Regression / scorecard-oriented baseline and initial evaluation | NOT_STARTED |
 | 5 | XGBoost Risk Model | Challenger, tuning, imbalance handling and model comparison | NOT_STARTED |

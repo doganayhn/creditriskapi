@@ -1,3 +1,3 @@
 experiment_name: foundation
-# Phase 2 must verify the selected dataset target before setting this value.
-target_column: null
+# Verified from the official workbook's target header and UCI binary semantics.
+target_column: default_next_month

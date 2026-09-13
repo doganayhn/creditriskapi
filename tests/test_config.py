@@ -17,7 +17,7 @@ def project(tmp_path):
     configs.mkdir()
     (configs / "base.yaml").write_text(
         "random_seed: 42\npaths:\n  raw: data/raw\n  interim: data/interim\n"
-        "  processed: data/processed\n  artifacts: artifacts\n", encoding="utf-8"
+        "  processed: data/processed\n  artifacts: artifacts\n  metadata: data/metadata\n", encoding="utf-8"
     )
     (configs / "experiment.yaml").write_text(
         "experiment_name: foundation\ntarget_column: null\n", encoding="utf-8"
@@ -39,7 +39,7 @@ def test_repository_configuration():
     config = load_config(root)
     assert config.random_seed == 42
     assert config.experiment_name == "foundation"
-    assert config.target_column is None
+    assert config.target_column == "default_next_month"
     assert config.paths.artifacts == root / "artifacts"
 
 
@@ -52,6 +52,7 @@ def test_paths_independent_of_cwd(project, monkeypatch, tmp_path):
     assert config.paths.interim == project / "data/interim"
     assert config.paths.processed == project / "data/processed"
     assert config.paths.artifacts == project / "artifacts"
+    assert config.paths.metadata == project / "data/metadata"
     assert not (project / "data").exists()
     assert not config.paths.artifacts.exists()
 

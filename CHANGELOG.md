@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Completed official UCI 350 acquisition, pinned raw checksum, provenance manifest and strict canonical schema for the next-month default-payment target.
+- Added descriptive data-quality profiling, aggregate metadata, dataset card, physical contract and dataset-selection ADR; retained undocumented codes and numeric anomalies unchanged.
+- Added offline acquisition/loader/schema/quality tests and executed real-data integration; modeling and preprocessing remain future work.
 - Established ten-phase governance and persistent project memory, with completion reports and project-owner technical review before the owner creates each Git commit.
 - Defined the credit-risk problem, conceptual data contract, candidate framework and leakage policy.
 - Added a minimal Python package, YAML configuration and dataset-independent foundation tests.

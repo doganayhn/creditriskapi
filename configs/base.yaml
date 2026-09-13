@@ -4,3 +4,4 @@ paths:
   interim: data/interim
   processed: data/processed
   artifacts: artifacts
+  metadata: data/metadata
