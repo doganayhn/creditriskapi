@@ -1,0 +1,128 @@
+{
+  "downstream_selection_status": "XGBOOST_SELECTED_FOR_DOWNSTREAM",
+  "final_test_evaluation_pending": true,
+  "models": {
+    "logistic": {
+      "calibration_method": "identity",
+      "calibration_version": "logistic-calibration-1.0.0",
+      "model_version": "logistic-baseline-1.0.0",
+      "validation_reported": {
+        "average_precision": 0.5196840915711507,
+        "brier_score": 0.13879160679011868,
+        "ece": 0.01608590497146575,
+        "gini": 0.5312763532355071,
+        "ks": 0.4053505759897921,
+        "log_loss": 0.4413186207185612,
+        "mean_predicted_probability": 0.21972506473541445,
+        "observed_positive_rate": 0.22111111111111112,
+        "roc_auc": 0.7656381766177536
+      }
+    },
+    "xgboost": {
+      "calibration_method": "identity",
+      "calibration_version": "xgboost-calibration-1.0.0",
+      "model_version": "xgboost-challenger-1.0.0",
+      "validation_reported": {
+        "average_precision": 0.5562119323663669,
+        "brier_score": 0.1352848711738327,
+        "ece": 0.011402128674917751,
+        "gini": 0.5686088072315931,
+        "ks": 0.42443888486655823,
+        "log_loss": 0.4288266211833506,
+        "mean_predicted_probability": 0.21956850854390197,
+        "observed_positive_rate": 0.22111111111111112,
+        "roc_auc": 0.7843044036157966
+      }
+    }
+  },
+  "paired_bootstrap": {
+    "delta_average_precision_95_ci": [
+      0.022063804246867397,
+      0.048515345183520756
+    ],
+    "delta_brier_score_95_ci": [
+      -0.0048973040524709546,
+      -0.002226468155769559
+    ],
+    "delta_log_loss_95_ci": [
+      -0.01684604697936962,
+      -0.008589427876646466
+    ],
+    "delta_roc_auc_95_ci": [
+      0.011856615613170909,
+      0.026106355036558695
+    ],
+    "method": "paired validation row bootstrap; replacement; percentile 95%",
+    "random_seed": 42,
+    "requested_replicates": 1000,
+    "skipped_single_class": 0,
+    "successful_replicates": 1000,
+    "test_set_evaluated": false
+  },
+  "selected_downstream_model": "xgboost",
+  "selection_scope": "development selection, not untouched-test confirmation or production approval",
+  "technical_threshold": {
+    "business_policy": false,
+    "model": "xgboost",
+    "technical_threshold_source": "train_oof_max_ks",
+    "test_set_evaluated": false,
+    "threshold": 0.21430689096450806,
+    "train_oof": {
+      "f1": 0.538953641223381,
+      "false_negative_rate": 0.3379978471474704,
+      "false_positive_rate": 0.2256802201161724,
+      "fn": 1570,
+      "fp": 3691,
+      "precision": 0.4544782737215489,
+      "predicted_positive_count": 6766,
+      "predicted_positive_rate": 0.3221904761904762,
+      "recall": 0.6620021528525296,
+      "specificity": 0.7743197798838276,
+      "threshold": 0.21430689096450806,
+      "tn": 12664,
+      "tp": 3075
+    },
+    "validation_frozen": {
+      "f1": 0.5260115606936416,
+      "false_negative_rate": 0.35979899497487433,
+      "false_positive_rate": 0.22539229671897287,
+      "fn": 358,
+      "fp": 790,
+      "precision": 0.44639103013314646,
+      "predicted_positive_count": 1427,
+      "predicted_positive_rate": 0.3171111111111111,
+      "recall": 0.6402010050251257,
+      "specificity": 0.7746077032810271,
+      "threshold": 0.21430689096450806,
+      "tn": 2715,
+      "tp": 637
+    },
+    "validation_reference_0_50": {
+      "f1": 0.4636363636363636,
+      "false_negative_rate": 0.6412060301507538,
+      "false_positive_rate": 0.05363766048502139,
+      "fn": 638,
+      "fp": 188,
+      "precision": 0.655045871559633,
+      "predicted_positive_count": 545,
+      "predicted_positive_rate": 0.12111111111111111,
+      "recall": 0.3587939698492462,
+      "specificity": 0.9463623395149786,
+      "threshold": 0.5,
+      "tn": 3317,
+      "tp": 357
+    }
+  },
+  "test_set_evaluated": false,
+  "xgboost_minus_logistic": {
+    "average_precision": 0.036527840795216204,
+    "brier_score": -0.0035067356162859775,
+    "ece": -0.004683776296547999,
+    "gini": 0.03733245399608598,
+    "ks": 0.019088308876766158,
+    "log_loss": -0.01249199953521063,
+    "mean_predicted_probability": -0.00015655619151247469,
+    "observed_positive_rate": 0.0,
+    "roc_auc": 0.01866622699804299
+  }
+}

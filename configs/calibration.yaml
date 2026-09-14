@@ -1,0 +1,7 @@
+oof_folds: 5
+selection_folds: 5
+reliability_bins: 10
+bootstrap_replicates: 1000
+numerical_epsilon: 1.0e-6
+selection_tolerance: 1.0e-12
+reference_threshold: 0.50

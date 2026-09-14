@@ -3,10 +3,10 @@
 A portfolio fintech project intended to estimate borrower default risk from information available at scoring time, explain model outputs and eventually expose auditable predictions through a versioned API.
 
 ## Current status
-Phases 1–5 are COMPLETED. Implemented scope includes reproducible ingestion/quality, leakage-safe features, Logistic Regression, XGBoost with TRAIN-only fold-safe CV, validation model comparison, class-weight sensitivity and native gain diagnostics. Phases 6–10 remain NOT_STARTED. See the [Phase 5 completion report](docs/phase_reports/phase_05_completion_report.md). Historical Phase 1–4 reports remain unchanged. TEST SET REMAINS SEALED.
+Phases 1–6 are COMPLETED. Implemented scope includes reproducible ingestion/quality, leakage-safe features, Logistic Regression, XGBoost, TRAIN-only OOF calibration selection, frozen validation comparison and TRAIN-derived technical thresholds. Phases 7–10 remain NOT_STARTED. See the [Phase 6 completion report](docs/phase_reports/phase_06_completion_report.md). Historical Phase 1–5 reports remain unchanged. TEST SET REMAINS SEALED.
 
 ## Intended architecture
-Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → calibration when justified → PD → explainability/internal score → versioned policy → API → persistence/audit. Acquisition, quality, financial features, train-only preprocessing, Logistic Regression, XGBoost and validation comparison are implemented. Final TEST evaluation, calibration, SHAP, internal score, production API, PostgreSQL and Docker deployment are not implemented.
+Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → TRAIN OOF calibration selection → versioned mapping → reported default probability → validation model comparison → TRAIN-derived technical threshold analysis. These steps are implemented. Explainability/internal score, versioned policy, API and persistence/audit remain planned. Final TEST evaluation, SHAP, internal score, production API, PostgreSQL and Docker deployment are not implemented.
 
 ## Development
 Python 3.11 or newer is required. From the repository root:
@@ -78,6 +78,18 @@ The final unweighted challenger uses the same 103 transformed values as Logistic
 
 Aggregate search results, metrics, comparison and native gain importance are written under metadata. The native JSON model stays ignored under artifacts/models; no customer outputs are exported. Only trusted XGBoost-generated native models may be loaded. Gain is not SHAP or a customer explanation. See the [XGBoost report](docs/xgboost_model_report.md) and [ADR 004](docs/decisions/004-xgboost-challenger.md).
 
+## Run calibration and technical threshold analysis
+
+```powershell
+.venv\Scripts\python.exe -m credit_risk.modeling.calibration
+```
+
+The CLI verifies both fixed model artifacts and the shared data contract. Five stratified TRAIN folds generate exactly one OOF raw probability per row and model, with fresh preprocessing in each fold. A second five-fold TRAIN-only CV compares identity, nonnegative-slope sigmoid and monotonic isotonic mappings. Minimum mean Brier selects the method; log loss then simplicity break ties within 1e-12. Both final mappings are frozen before canonical VALIDATION scoring. Settings are in `configs/calibration.yaml`; the seed remains 42 in base.yaml. This command performs no model hyperparameter search.
+
+**Identity was selected for both models**, so reported_probability equals raw_probability. This is an assessed passthrough decision, not proof of perfect calibration or regulatory PD. XGBoost is selected for downstream development because reported validation AUC/AP are no lower and Brier/log loss no higher, with strict improvements. This does not establish untouched-test performance or production readiness.
+
+The XGBoost TRAIN OOF max-KS threshold is **0.21430689096450806**, evaluated unchanged on VALIDATION alongside reference 0.50. It is a technical classification diagnostic, not a lending cut-off. Aggregate manifests, metrics, ten-bin reliability, paired bootstrap and TRAIN threshold tables are saved under metadata. Identity decisions are versioned metadata with null binary paths; non-identity serialization is implemented and tested under ignored artifacts/calibration. No customer probabilities are exported. See the [calibration report](docs/calibration_report.md) and [ADR 005](docs/decisions/005-calibration-and-model-selection.md).
+
 ## Ten-phase plan
 1. Foundation and data contract
 2. Ingestion and data quality
@@ -93,9 +105,9 @@ Aggregate search results, metrics, comparison and native gain importance are wri
 See [ROADMAP.md](ROADMAP.md) for scope/status and [AGENTS.md](AGENTS.md) for instruction precedence. Each phase follows phase prompt → Codex implementation → tests → phase completion report → technical review by the project owner. If issues exist, apply fixes and verify them; if no issues remain, the project owner creates the Git commit. The next phase starts only when explicitly requested. Codex must not automatically commit or start the next phase.
 
 ## Repository layout
-`src/credit_risk/config.py` handles shared configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements baseline/challenger training, fold-safe search, contract verification, comparison, metrics and local serialization. Tests use synthetic data and mocks. Aggregate metadata is tracked under `data/metadata/`; raw/interim/processed customer data, local preprocessing/model artifacts, secrets and environments are ignored. Calibration, explainability and serving remain future work.
+`src/credit_risk/config.py` handles shared configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements training, fold-safe search, contract verification, calibration, comparison, reliability, technical thresholds and local serialization. Tests use synthetic data and mocks. Aggregate metadata is intended for tracking under `data/metadata/`; customer data, local preprocessing/model/calibrator artifacts, secrets and environments are ignored. Explainability and serving remain future work.
 
 ## Limitations
-The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). Undocumented codes and negative bills remain; no regulatory default threshold or event-level scoring dates are supplied. Within-row history is not out-of-time validation. Demographic exclusion does not remove proxies or prove fairness. Related features affect both coefficients and gain; neither is causal. Only TRAIN/CV/VALIDATION performance has been evaluated. The bounded search and paired bootstrap do not establish deployment generalization. Raw probabilities are not calibrated PD. TEST evaluation, calibration, SHAP, scores, API, PostgreSQL, Docker and model operations are not implemented.
+The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). Undocumented codes and negative bills remain; no regulatory default threshold or event-level scoring dates are supplied. Within-row history is not out-of-time validation. Demographic exclusion does not remove proxies or prove fairness. Related features affect both coefficients and gain; neither is causal. Only TRAIN/CV/VALIDATION performance has been evaluated. The bounded search, calibration selection and paired bootstrap do not establish deployment generalization. Identity selection does not turn raw probability into regulatory PD. VALIDATION is a reused development set; TEST remains reserved. TEST evaluation, SHAP, scores, API, PostgreSQL, Docker and model operations are not implemented.
 
 This repository is educational / portfolio work, not a regulatory or production lending authority. Outputs are not real lending decisions; no real lending decision should rely on this project.

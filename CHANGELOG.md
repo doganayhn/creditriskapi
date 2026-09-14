@@ -1,6 +1,10 @@
 # Changelog
 
 ## Unreleased
+- Added Phase-6 five-fold TRAIN OOF generation for both fixed models, fold-local preprocessing, and a second TRAIN-only CV over identity, sigmoid and isotonic calibration.
+- Selected versioned identity mappings for both models; added aggregate reliability/ECE, reported-probability comparison and paired AUC/AP/Brier/log-loss bootstrap. XGBoost is selected for downstream development, with TEST still sealed.
+- Added TRAIN-derived max-KS technical threshold analysis, non-identity artifact serialization tests, calibration documentation, ADR 005 and the Phase-6 report. No SHAP, score, risk bands, business policy or Phase-7 functionality was implemented.
+- Reproduced the unchanged Phase-4/5 workflows as required verification; model hashes, parameters and measured metrics are unchanged. The pre-commit governance fix restores historical metadata and preserves original provenance, timestamps and search timings on identical reruns; new experiments use explicitly scoped source hashes.
 - Added XGBoost 3.2.0 and the unweighted xgboost-challenger-1.0.0 model with 24-candidate, four-fold TRAIN-only randomized search and fresh preprocessing within each fold.
 - Added stored-baseline compatibility checks, validation deltas, paired bootstrap comparison, separate class-weight sensitivity, mapped native gain importance and ignored native JSON model serialization. TEST remains sealed and final selection is deferred.
 - Added Phase-5 configuration, synthetic leakage/comparison/sealing tests, ADR 004 and XGBoost/phase reports. No calibration, SHAP or lending policy was implemented.

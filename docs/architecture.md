@@ -1,6 +1,6 @@
 # Intended architecture and implemented boundary
 
-Implemented now (Phases 1–5): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost with fold-local TRAIN CV, raw probabilities, validation comparison, coefficient/gain diagnostics, aggregate manifests and tests. TEST remains sealed.
+Implemented now (Phases 1–6): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, aggregate manifests and tests. TEST remains sealed.
 
 ```text
 Official UCI data / ingestion / quality  [Phase 2: implemented]
@@ -14,13 +14,24 @@ TRAIN-only preprocessing                [Phase 3: implemented]
         │
         └──── XGBoost challenger         [Phase 5: implemented]
                         ↓
-              Validation comparison     [Phase 5: provisional discrimination]
+              TRAIN OOF raw probabilities [Phase 6: fresh preprocessing/model per fold]
+                        ↓
+              Calibration selection CV   [Phase 6: TRAIN probabilities/labels only]
+                        ↓
+              Versioned frozen mappings  [Phase 6: identity selected for both]
+                        ↓
+              Reported default probability
+                        ↓
+              Validation model comparison [Phase 6: frozen mappings]
+                        ↓
+              XGBoost selected downstream [Development selection; TEST sealed]
+                        ↓
+              TRAIN OOF technical threshold analysis [No lending policy]
 
 TRAIN engineered inputs → fresh preprocessing inside each CV fold
                         → XGBoost search → selected canonical parameters
 
 PLANNED:
-Phase 6: calibration / probability assessment
 Phase 7: explainability / internal score
 Phase 8: API / business rules / persistence
 ```
@@ -41,4 +52,8 @@ The Phase-4 `modeling/contract.py` adapter verifies committed V1 semantic manife
 
 `search.py` builds a fresh Phase-3 preprocessor inside every candidate/fold Pipeline, discarding y only at its unsupervised boundary. RandomizedSearchCV receives engineered TRAIN inputs only. `xgboost_challenger.py` verifies the existing final-data/baseline contracts, performs bounded CPU search, fits the selected unweighted model on full TRAIN, evaluates TRAIN/VALIDATION, runs one separate weighted sensitivity model, maps native gain and validates native JSON serialization. Dense materialization preserves the same 103 values and zero semantics.
 
-`comparison.py` loads stored Phase-4 metrics and checks reproduced baseline probabilities, computes validation deltas and paired-bootstrap uncertainty, and assigns the deterministic provisional status. No final model is selected. No customer outputs are exported; only aggregate search results, metrics, importance and manifests enter metadata. TEST remains sealed. Calibration, SHAP, score, policy, API and persistence remain unimplemented. See [XGBoost report](xgboost_model_report.md) and [ADR 004](decisions/004-xgboost-challenger.md).
+`comparison.py` loads stored Phase-4 metrics and checks reproduced baseline probabilities, computes validation deltas and paired-bootstrap uncertainty, and assigns the Phase-5 provisional status. No customer outputs are exported; only aggregate search results, metrics, importance and manifests enter metadata. See [XGBoost report](xgboost_model_report.md) and [ADR 004](decisions/004-xgboost-challenger.md).
+
+`calibration.py` verifies both stored models without first scoring validation, creates five-fold TRAIN OOF probabilities using fresh preprocessing and fixed model builders, and performs a separate TRAIN-only calibration-selection CV. `calibrators.py` implements identity, constrained sigmoid and monotonic isotonic using public SciPy/sklearn APIs. Both selected mappings are fitted and frozen before canonical VALIDATION scoring. Non-identity mappings have trusted local content-addressed joblib serialization; actual identity choices are metadata-only.
+
+`calibration_metrics.py` adds quantile reliability/ECE and paired probability-quality intervals. Its four-metric dominance rule selects XGBoost for downstream development. `thresholds.py` derives max-KS only from selected-model TRAIN OOF probabilities and produces a TRAIN grid; the orchestration evaluates the frozen threshold and reference 0.50 on VALIDATION. Five aggregate metadata outputs link model/calibration/data identities. OOF and validation customer probabilities stay in memory. TEST remains sealed; SHAP, score, policy, API and persistence remain unimplemented. See [calibration report](calibration_report.md) and [ADR 005](decisions/005-calibration-and-model-selection.md).

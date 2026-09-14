@@ -1,5 +1,7 @@
 # Objective
 
+This report records the Phase-5 experiment. Phase 6 separately adds [TRAIN OOF calibration and downstream selection](calibration_report.md): identity was selected for XGBoost, which leads the reported-probability comparison. Measurements below are unchanged. Identical reproduction preserves historical manifest bytes and original search timings, selected parameters and model bytes.
+
 Establish `xgboost-challenger-1.0.0` as a nonlinear comparison to the committed Logistic Regression baseline, using TRAIN-only selection and project VALIDATION assessment. No final production champion is selected.
 
 # Dataset and Target

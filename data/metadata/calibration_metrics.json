@@ -1,0 +1,387 @@
+{
+  "models": {
+    "logistic": {
+      "calibration_selection_cv": {
+        "identity": {
+          "fold_metrics": [
+            {
+              "brier_score": 0.1350731048221513,
+              "ece": 0.017596643319523635,
+              "log_loss": 0.4343939933655115,
+              "mean_predicted_probability": 0.222115179323148,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1316251939441506,
+              "ece": 0.012956639186976508,
+              "log_loss": 0.42283469015433706,
+              "mean_predicted_probability": 0.22357141971828415,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13831480424962364,
+              "ece": 0.019325520384189214,
+              "log_loss": 0.44148353294518566,
+              "mean_predicted_probability": 0.22482167235100517,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13589363270395807,
+              "ece": 0.01998355740116766,
+              "log_loss": 0.4350020995882305,
+              "mean_predicted_probability": 0.21591469078682868,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13543434866249282,
+              "ece": 0.011474209013305465,
+              "log_loss": 0.4330579297343756,
+              "mean_predicted_probability": 0.21973995973745103,
+              "observed_positive_rate": 0.2211904761904762
+            }
+          ],
+          "mean_brier_score": 0.13526821687647528,
+          "mean_ece": 0.016267313861032497,
+          "mean_log_loss": 0.4333544491575281,
+          "mean_mean_predicted_probability": 0.22123258438334342,
+          "mean_observed_positive_rate": 0.22119047619047622
+        },
+        "isotonic": {
+          "fold_metrics": [
+            {
+              "brier_score": 0.13513381604307376,
+              "ece": 0.02011772419250421,
+              "log_loss": 0.44252832966155753,
+              "mean_predicted_probability": 0.22267899395124416,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1317018509303398,
+              "ece": 0.014610881484262008,
+              "log_loss": 0.4221947265512783,
+              "mean_predicted_probability": 0.22388244409150485,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13857448046658105,
+              "ece": 0.017310900392942856,
+              "log_loss": 0.4624004752212127,
+              "mean_predicted_probability": 0.22588606029621489,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13584690533152302,
+              "ece": 0.016141911444529713,
+              "log_loss": 0.43495640988241563,
+              "mean_predicted_probability": 0.2146577896668571,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1350872612327627,
+              "ece": 0.011191969120211151,
+              "log_loss": 0.43150421427588126,
+              "mean_predicted_probability": 0.21865908993307212,
+              "observed_positive_rate": 0.2211904761904762
+            }
+          ],
+          "mean_brier_score": 0.13526886280085607,
+          "mean_ece": 0.015874677326889988,
+          "mean_log_loss": 0.43871683111846915,
+          "mean_mean_predicted_probability": 0.2211528755877786,
+          "mean_observed_positive_rate": 0.22119047619047622
+        },
+        "sigmoid": {
+          "fold_metrics": [
+            {
+              "brier_score": 0.13509578641608092,
+              "ece": 0.017199663686968517,
+              "log_loss": 0.4342711194328672,
+              "mean_predicted_probability": 0.22228380093982802,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1317602137726558,
+              "ece": 0.01691278882804978,
+              "log_loss": 0.42325271315727453,
+              "mean_predicted_probability": 0.22402359159719654,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1382818050342352,
+              "ece": 0.018862966701317548,
+              "log_loss": 0.44136400295613143,
+              "mean_predicted_probability": 0.22563239269497243,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1359203872313668,
+              "ece": 0.021486299913776395,
+              "log_loss": 0.4349913994424215,
+              "mean_predicted_probability": 0.21469967457662686,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13548515994328247,
+              "ece": 0.01491340510077984,
+              "log_loss": 0.43315234939971725,
+              "mean_predicted_probability": 0.21941399944582593,
+              "observed_positive_rate": 0.2211904761904762
+            }
+          ],
+          "mean_brier_score": 0.13530867047952425,
+          "mean_ece": 0.017875024846178415,
+          "mean_log_loss": 0.4334063168776824,
+          "mean_mean_predicted_probability": 0.22121069185088996,
+          "mean_observed_positive_rate": 0.22119047619047622
+        }
+      },
+      "calibration_version": "logistic-calibration-1.0.0",
+      "raw_distribution": {
+        "exact_one_count": 0,
+        "exact_zero_count": 0,
+        "max": 0.8923315009754978,
+        "mean": 0.21972506473541445,
+        "min": 3.116527049909547e-07,
+        "std": 0.19535017027969154,
+        "unique_values": 4438
+      },
+      "reported_distribution": {
+        "exact_one_count": 0,
+        "exact_zero_count": 0,
+        "max": 0.8923315009754978,
+        "mean": 0.21972506473541445,
+        "min": 3.116527049909547e-07,
+        "std": 0.19535017027969154,
+        "unique_values": 4438
+      },
+      "reported_minus_raw": {
+        "average_precision": 0.0,
+        "brier_score": 0.0,
+        "ece": 0.0,
+        "gini": 0.0,
+        "ks": 0.0,
+        "log_loss": 0.0,
+        "mean_predicted_probability": 0.0,
+        "observed_positive_rate": 0.0,
+        "roc_auc": 0.0
+      },
+      "selected_method": "identity",
+      "test_set_evaluated": false,
+      "underlying_model_version": "logistic-baseline-1.0.0",
+      "validation_raw": {
+        "average_precision": 0.5196840915711507,
+        "brier_score": 0.13879160679011868,
+        "ece": 0.01608590497146575,
+        "gini": 0.5312763532355071,
+        "ks": 0.4053505759897921,
+        "log_loss": 0.4413186207185612,
+        "mean_predicted_probability": 0.21972506473541445,
+        "observed_positive_rate": 0.22111111111111112,
+        "roc_auc": 0.7656381766177536
+      },
+      "validation_reported": {
+        "average_precision": 0.5196840915711507,
+        "brier_score": 0.13879160679011868,
+        "ece": 0.01608590497146575,
+        "gini": 0.5312763532355071,
+        "ks": 0.4053505759897921,
+        "log_loss": 0.4413186207185612,
+        "mean_predicted_probability": 0.21972506473541445,
+        "observed_positive_rate": 0.22111111111111112,
+        "roc_auc": 0.7656381766177536
+      }
+    },
+    "xgboost": {
+      "calibration_selection_cv": {
+        "identity": {
+          "fold_metrics": [
+            {
+              "brier_score": 0.1328266233985918,
+              "ece": 0.01699467339109453,
+              "log_loss": 0.425399576781679,
+              "mean_predicted_probability": 0.22130767356648687,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.12858201052500862,
+              "ece": 0.018165595547429154,
+              "log_loss": 0.4115189006250827,
+              "mean_predicted_probability": 0.22323615919443823,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1365850033292393,
+              "ece": 0.017493382489663506,
+              "log_loss": 0.43220847700355847,
+              "mean_predicted_probability": 0.22484860364480744,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1340934303581227,
+              "ece": 0.013820961039690754,
+              "log_loss": 0.42875146445305573,
+              "mean_predicted_probability": 0.21658167525416328,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13319495376142343,
+              "ece": 0.020153138229534736,
+              "log_loss": 0.4248276911911723,
+              "mean_predicted_probability": 0.21953010771246184,
+              "observed_positive_rate": 0.2211904761904762
+            }
+          ],
+          "mean_brier_score": 0.13305640427447718,
+          "mean_ece": 0.01732555013948254,
+          "mean_log_loss": 0.4245412220109096,
+          "mean_mean_predicted_probability": 0.22110084387447154,
+          "mean_observed_positive_rate": 0.22119047619047622
+        },
+        "isotonic": {
+          "fold_metrics": [
+            {
+              "brier_score": 0.13321509349891889,
+              "ece": 0.01524986893397617,
+              "log_loss": 0.4419873536974204,
+              "mean_predicted_probability": 0.22105436831225073,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.12876084451499753,
+              "ece": 0.01681406656926886,
+              "log_loss": 0.4125940180443979,
+              "mean_predicted_probability": 0.22423217762345574,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1368655464495639,
+              "ece": 0.019766010721524715,
+              "log_loss": 0.4486192318283361,
+              "mean_predicted_probability": 0.22675764462663237,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13388314560066922,
+              "ece": 0.014399837887354428,
+              "log_loss": 0.4284162287765955,
+              "mean_predicted_probability": 0.21524167447880946,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.1333361238223964,
+              "ece": 0.017941105890784455,
+              "log_loss": 0.42494785738948493,
+              "mean_predicted_probability": 0.21848445808421096,
+              "observed_positive_rate": 0.2211904761904762
+            }
+          ],
+          "mean_brier_score": 0.1332121507773092,
+          "mean_ece": 0.016834178000581727,
+          "mean_log_loss": 0.43131293794724695,
+          "mean_mean_predicted_probability": 0.22115406462507187,
+          "mean_observed_positive_rate": 0.22119047619047622
+        },
+        "sigmoid": {
+          "fold_metrics": [
+            {
+              "brier_score": 0.13282225697133818,
+              "ece": 0.01714707814263267,
+              "log_loss": 0.425412100807127,
+              "mean_predicted_probability": 0.22145112028931965,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.12863872083171843,
+              "ece": 0.019341755942362295,
+              "log_loss": 0.411763543247029,
+              "mean_predicted_probability": 0.223853179054749,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13669980754076427,
+              "ece": 0.01917560123408676,
+              "log_loss": 0.4324521741204381,
+              "mean_predicted_probability": 0.22595904384320117,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13409754710194094,
+              "ece": 0.013885332556950087,
+              "log_loss": 0.4288261490957706,
+              "mean_predicted_probability": 0.21553004060808245,
+              "observed_positive_rate": 0.2211904761904762
+            },
+            {
+              "brier_score": 0.13319570490903437,
+              "ece": 0.02020213318088468,
+              "log_loss": 0.4248313313610653,
+              "mean_predicted_probability": 0.2192257334752815,
+              "observed_positive_rate": 0.2211904761904762
+            }
+          ],
+          "mean_brier_score": 0.13309080747095922,
+          "mean_ece": 0.017950380211383298,
+          "mean_log_loss": 0.424657059726286,
+          "mean_mean_predicted_probability": 0.22120382345412676,
+          "mean_observed_positive_rate": 0.22119047619047622
+        }
+      },
+      "calibration_version": "xgboost-calibration-1.0.0",
+      "raw_distribution": {
+        "exact_one_count": 0,
+        "exact_zero_count": 0,
+        "max": 0.8619896173477173,
+        "mean": 0.21956850854390197,
+        "min": 0.02509002760052681,
+        "std": 0.19729850943220206,
+        "unique_values": 4404
+      },
+      "reported_distribution": {
+        "exact_one_count": 0,
+        "exact_zero_count": 0,
+        "max": 0.8619896173477173,
+        "mean": 0.21956850854390197,
+        "min": 0.02509002760052681,
+        "std": 0.19729850943220206,
+        "unique_values": 4404
+      },
+      "reported_minus_raw": {
+        "average_precision": 0.0,
+        "brier_score": 0.0,
+        "ece": 0.0,
+        "gini": 0.0,
+        "ks": 0.0,
+        "log_loss": 0.0,
+        "mean_predicted_probability": 0.0,
+        "observed_positive_rate": 0.0,
+        "roc_auc": 0.0
+      },
+      "selected_method": "identity",
+      "test_set_evaluated": false,
+      "underlying_model_version": "xgboost-challenger-1.0.0",
+      "validation_raw": {
+        "average_precision": 0.5562119323663669,
+        "brier_score": 0.1352848711738327,
+        "ece": 0.011402128674917751,
+        "gini": 0.5686088072315931,
+        "ks": 0.42443888486655823,
+        "log_loss": 0.4288266211833506,
+        "mean_predicted_probability": 0.21956850854390197,
+        "observed_positive_rate": 0.22111111111111112,
+        "roc_auc": 0.7843044036157966
+      },
+      "validation_reported": {
+        "average_precision": 0.5562119323663669,
+        "brier_score": 0.1352848711738327,
+        "ece": 0.011402128674917751,
+        "gini": 0.5686088072315931,
+        "ks": 0.42443888486655823,
+        "log_loss": 0.4288266211833506,
+        "mean_predicted_probability": 0.21956850854390197,
+        "observed_positive_rate": 0.22111111111111112,
+        "roc_auc": 0.7843044036157966
+      }
+    }
+  },
+  "test_set_evaluated": false
+}

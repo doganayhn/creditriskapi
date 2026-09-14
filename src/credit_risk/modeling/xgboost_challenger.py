@@ -1,7 +1,6 @@
 """TRAIN-CV XGBoost challenger and provisional validation comparison; TEST stays sealed."""
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -15,7 +14,7 @@ import xgboost
 from xgboost import XGBClassifier
 
 from credit_risk.config import load_config
-from credit_risk.data.download import AcquisitionError, sha256_file, write_json
+from credit_risk.data.download import AcquisitionError, sha256_file
 from credit_risk.data.source import TARGET
 from credit_risk.features.definitions import EXCLUDED_FIELDS
 from credit_risk.features.engineering import engineer_features, select_primary_features
@@ -24,6 +23,7 @@ from credit_risk.features.split import split_dataset
 from credit_risk.modeling.baseline import validate_matrix
 from credit_risk.modeling.comparison import load_baseline, metric_deltas, paired_bootstrap, provisional_status
 from credit_risk.modeling.contract import load_modeling_data
+from credit_risk.modeling.experiment_metadata import XGBOOST_MODULES, implementation_hashes, publish_experiment
 from credit_risk.modeling.metrics import binary_target, evaluate, validate_probabilities
 from credit_risk.modeling.search import load_settings, run_search, search_table
 
@@ -214,21 +214,11 @@ def run_challenger(project_root: str | Path) -> dict:
                 "baseline_manifest_sha256": sha256_file(config.paths.metadata / "baseline_model_manifest.json"),
                 "baseline_metrics_sha256": sha256_file(config.paths.metadata / "baseline_metrics.json"),
                 "configuration_sha256": sha256_file(root / "configs/xgboost.yaml"),
-                "implementation_sha256": {p.name: sha256_file(p) for p in sorted(Path(__file__).parent.glob("*.py"))},
+                "implementation_sha256": implementation_hashes(XGBOOST_MODULES),
                 "test_set_evaluated": False}
-    path = config.paths.metadata / "xgboost_model_manifest.json"
-    generated_at = None
-    if path.exists():
-        old = json.loads(path.read_text(encoding="utf-8"))
-        timestamp = old.pop("generated_at", None)
-        if old == manifest:
-            generated_at = timestamp
-    manifest["generated_at"] = generated_at or datetime.now(timezone.utc).isoformat()
-    write_json(path, manifest)
-    write_json(config.paths.metadata / "xgboost_metrics.json", metrics)
-    write_json(config.paths.metadata / "model_comparison.json", comparison)
-    write_json(config.paths.metadata / "xgboost_feature_importance.json", importance)
-    table.to_csv(config.paths.metadata / "xgboost_search_results.csv", index=False, lineterminator="\n")
+    manifest = publish_experiment(config.paths.metadata / "xgboost_model_manifest.json", manifest, {
+        "xgboost_metrics.json": metrics, "model_comparison.json": comparison,
+        "xgboost_feature_importance.json": importance}, table)
     return {"model_version": MODEL_VERSION, "selected_parameters": parameters,
             "selected_cv_scores": manifest["selected_cv_scores"], "metrics": metrics,
             "comparison": comparison, "artifact_sha256": digest, "test_set_evaluated": False}

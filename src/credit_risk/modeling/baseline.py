@@ -1,7 +1,6 @@
 """Run one fixed Logistic Regression baseline; TRAIN fit, TRAIN/VALIDATION diagnostics."""
 
 import argparse
-from datetime import datetime, timezone
 import json
 from pathlib import Path
 import platform
@@ -18,11 +17,12 @@ from sklearn.utils.validation import check_is_fitted
 from threadpoolctl import threadpool_limits
 
 from credit_risk.config import load_config
-from credit_risk.data.download import AcquisitionError, sha256_file, write_json
+from credit_risk.data.download import AcquisitionError, sha256_file
 from credit_risk.data.source import TARGET
 from credit_risk.features.definitions import EXCLUDED_FIELDS
 from credit_risk.modeling.artifacts import load_model, save_model
 from credit_risk.modeling.contract import PHASE3_IDENTITIES, load_modeling_data
+from credit_risk.modeling.experiment_metadata import BASELINE_MODULES, implementation_hashes, publish_experiment
 from credit_risk.modeling.metrics import (
     REFERENCE_THRESHOLD, binary_target, bootstrap_validation, evaluate, validate_probabilities,
 )
@@ -137,25 +137,15 @@ def run_baseline(project_root: str | Path) -> dict:
         "python_version": platform.python_version(), "numpy_version": np.__version__,
         "scipy_version": scipy.__version__, "joblib_version": joblib.__version__,
         "platform": platform.platform(), "fit_thread_limit": 1,
-        "implementation_sha256": {p.name: sha256_file(p) for p in sorted(Path(__file__).parent.glob("*.py"))},
+        "implementation_sha256": implementation_hashes(BASELINE_MODULES),
         "configuration": {"base_yaml_sha256": sha256_file(root / "configs/base.yaml"),
                           "experiment_yaml_sha256": sha256_file(root / "configs/experiment.yaml")},
         "test_set_evaluated": False,
     }
-    # Preserve timestamp on materially identical reruns; content-addressed binaries
-    # are never overwritten. Aggregate manifests describe the latest fixed baseline.
-    manifest_path = config.paths.metadata / "baseline_model_manifest.json"
-    generated_at = None
-    if manifest_path.exists():
-        previous = json.loads(manifest_path.read_text(encoding="utf-8"))
-        old_time = previous.pop("generated_at", None)
-        if previous == manifest:
-            generated_at = old_time
-    manifest["generated_at"] = generated_at or datetime.now(timezone.utc).isoformat()
-    write_json(manifest_path, manifest)
-    write_json(config.paths.metadata / "baseline_metrics.json", metrics)
-    write_json(config.paths.metadata / "baseline_coefficients.json",
-               {"model_version": MODEL_VERSION, "intercept": model.intercept_.tolist(), "coefficients": coefficients})
+    manifest = publish_experiment(config.paths.metadata / "baseline_model_manifest.json", manifest, {
+        "baseline_metrics.json": metrics,
+        "baseline_coefficients.json": {"model_version": MODEL_VERSION,
+            "intercept": model.intercept_.tolist(), "coefficients": coefficients}})
     return {"model_version": MODEL_VERSION, "convergence_status": "converged",
             "iterations_used": model.n_iter_.tolist(), "metrics": metrics,
             "artifact_relative_path": manifest["artifact_relative_path"], "artifact_sha256": digest,

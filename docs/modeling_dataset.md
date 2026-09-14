@@ -1,6 +1,6 @@
 # Modeling dataset contract
 
-Phase 3 prepares data; Phases 4–5 consume that contract for Logistic Regression and XGBoost TRAIN fitting and VALIDATION comparison. The V1 target remains `default_next_month` with the dataset-defined next-month event and existing limitations.
+Phase 3 prepares data; Phases 4–6 consume that contract for Logistic Regression, XGBoost, TRAIN OOF calibration and VALIDATION comparison. The V1 target remains `default_next_month` with the dataset-defined next-month event and existing limitations.
 
 ## Consumer API
 
@@ -60,6 +60,8 @@ The CLI serializes the fitted preprocessor under the configured ignored artifact
 Matrices, customer-level assignments and review frames are returned in memory and are not exported or tracked. Recreate them from source/config/code. Any future local exports belong only under ignored processed/artifact paths.
 
 ## Reproducibility and sealed test set
+
+Phase 6 uses the same sealed modeling adapter for final-model assessment. OOF generation separately loads only the 21,000 engineered TRAIN rows, then fits a fresh preprocessor and fixed candidate model on each 16,800-row fold-training subset and scores its 4,200 held-out rows. Both models use the same seed-42 five-fold memberships. Fold-learned widths are 103, 103, 103, 100 and 102 because rare categories can be absent; the full-TRAIN canonical width remains 103. OOF values and labels stay in memory. A separate TRAIN-only probability-input CV selects calibration, then freezes both mappings before scoring the 4,500-row canonical VALIDATION set. The full-TRAIN preprocessor is never used inside OOF folds. See [calibration report](calibration_report.md).
 
 Run `python -m credit_risk.features.prepare` from the root, or supply `--project-root PATH`. Preparation is local-only and refuses changed raw/manifest identity. The three aggregate manifests record dataset SHA-256, split algorithm/seed/fractions, feature/preprocessing versions, ordered feature lineage and runtime versions. The preprocessing manifest includes hashes of feature implementation files. Unchanged metadata retains its generation timestamp and is not rewritten.
 

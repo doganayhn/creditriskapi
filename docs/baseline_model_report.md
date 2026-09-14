@@ -1,6 +1,6 @@
 # Objective
 
-This report records the Phase-4 baseline experiment. Phase 5 now adds the separately documented [XGBoost challenger and validation comparison](xgboost_model_report.md); baseline measurements below remain unchanged.
+This report records the Phase-4 baseline experiment. Phase 5 adds the separately documented [XGBoost challenger and validation comparison](xgboost_model_report.md). Phase 6 adds [TRAIN OOF calibration assessment](calibration_report.md), selecting an identity mapping for Logistic Regression. Baseline measurements and historical manifest bytes remain unchanged on identical reproduction; historical source hashes identify the original experiment.
 
 Establish one reproducible, interpretable Logistic Regression baseline, version `logistic-baseline-1.0.0`, using train fitting and validation assessment. No performance-driven model selection occurred.
 
