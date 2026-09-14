@@ -1,0 +1,1461 @@
+{
+  "aggregation_version": "source_family_signed_sum_v1",
+  "calibration_method": "identity",
+  "calibration_version": "xgboost-calibration-1.0.0",
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "feature_engineering_version": "financial_features_v1",
+  "feature_family": [
+    {
+      "mean_abs_shap_margin": 0.7139809837556548,
+      "mean_signed_shap_margin": -0.17807271366814773,
+      "name": "delay_summary",
+      "normalized_mean_abs_shap": 0.4667479809565408,
+      "rank": 1
+    },
+    {
+      "mean_abs_shap_margin": 0.20769052041032085,
+      "mean_signed_shap_margin": -0.03596574878897809,
+      "name": "payment_amount",
+      "normalized_mean_abs_shap": 0.13577270721611528,
+      "rank": 2
+    },
+    {
+      "mean_abs_shap_margin": 0.1903004166286636,
+      "mean_signed_shap_margin": -0.028126337497807172,
+      "name": "bill_to_limit",
+      "normalized_mean_abs_shap": 0.12440434305322459,
+      "rank": 3
+    },
+    {
+      "mean_abs_shap_margin": 0.15795535383320627,
+      "mean_signed_shap_margin": -0.01630171671586706,
+      "name": "repayment_status",
+      "normalized_mean_abs_shap": 0.10325953234092856,
+      "rank": 4
+    },
+    {
+      "mean_abs_shap_margin": 0.14561636715403922,
+      "mean_signed_shap_margin": -0.014982689780279342,
+      "name": "bill_amount",
+      "normalized_mean_abs_shap": 0.09519321509917715,
+      "rank": 5
+    },
+    {
+      "mean_abs_shap_margin": 0.07332061180572297,
+      "mean_signed_shap_margin": -0.01052772860692413,
+      "name": "credit_limit",
+      "normalized_mean_abs_shap": 0.047931595240541254,
+      "rank": 6
+    },
+    {
+      "mean_abs_shap_margin": 0.040828456153613336,
+      "mean_signed_shap_margin": -0.006304388402709365,
+      "name": "payment_to_limit",
+      "normalized_mean_abs_shap": 0.026690626093472267,
+      "rank": 7
+    }
+  ],
+  "model_artifact_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "model_version": "xgboost-challenger-1.0.0",
+  "population": "validation",
+  "preprocessing_artifact_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "source_feature": [
+    {
+      "feature_family": "delay_summary",
+      "mean_abs_shap_margin": 0.3261899153259065,
+      "mean_signed_shap_margin": -0.08061050462722778,
+      "name": "months_with_documented_delay",
+      "normalized_mean_abs_shap": 0.16753702681491053,
+      "rank": 1
+    },
+    {
+      "feature_family": "delay_summary",
+      "mean_abs_shap_margin": 0.25772008837925064,
+      "mean_signed_shap_margin": -0.006763552404112286,
+      "name": "max_documented_delay",
+      "normalized_mean_abs_shap": 0.13236968811373423,
+      "rank": 2
+    },
+    {
+      "feature_family": "delay_summary",
+      "mean_abs_shap_margin": 0.22154940032131143,
+      "mean_signed_shap_margin": -0.09069865663680765,
+      "name": "recent_documented_delay_flag",
+      "normalized_mean_abs_shap": 0.11379177000421188,
+      "rank": 3
+    },
+    {
+      "feature_family": "repayment_status",
+      "mean_abs_shap_margin": 0.15314479613806017,
+      "mean_signed_shap_margin": -0.010481782723373422,
+      "name": "repayment_status_2005_09",
+      "normalized_mean_abs_shap": 0.07865793089130625,
+      "rank": 4
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.07359305252919957,
+      "mean_signed_shap_margin": -0.007387203423448631,
+      "name": "bill_amount_std",
+      "normalized_mean_abs_shap": 0.03779871981221975,
+      "rank": 5
+    },
+    {
+      "feature_family": "credit_limit",
+      "mean_abs_shap_margin": 0.07332061180572297,
+      "mean_signed_shap_margin": -0.01052772860692413,
+      "name": "credit_limit",
+      "normalized_mean_abs_shap": 0.037658789340276846,
+      "rank": 6
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.05608550269117243,
+      "mean_signed_shap_margin": -0.006705195934052528,
+      "name": "bill_amount_2005_09",
+      "normalized_mean_abs_shap": 0.028806526280588586,
+      "rank": 7
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.05589115722776882,
+      "mean_signed_shap_margin": -0.00720903991282426,
+      "name": "bill_to_limit_2005_08",
+      "normalized_mean_abs_shap": 0.02870670694349757,
+      "rank": 8
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.05412022927117586,
+      "mean_signed_shap_margin": -0.0017281330569466162,
+      "name": "payment_amount_2005_04",
+      "normalized_mean_abs_shap": 0.027797126387475318,
+      "rank": 9
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.053883629963319336,
+      "mean_signed_shap_margin": -0.006991985853218163,
+      "name": "bill_to_limit_2005_09",
+      "normalized_mean_abs_shap": 0.027675604713375913,
+      "rank": 10
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.0534254059923373,
+      "mean_signed_shap_margin": -0.008158572475878626,
+      "name": "payment_amount_2005_07",
+      "normalized_mean_abs_shap": 0.02744025261293789,
+      "rank": 11
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.05115299855478871,
+      "mean_signed_shap_margin": -0.010734852812728301,
+      "name": "payment_amount_2005_08",
+      "normalized_mean_abs_shap": 0.02627310314598212,
+      "rank": 12
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.04651899524989615,
+      "mean_signed_shap_margin": -0.0060422597905012984,
+      "name": "payment_amount_2005_09",
+      "normalized_mean_abs_shap": 0.02389299542506599,
+      "rank": 13
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.03345686529580659,
+      "mean_signed_shap_margin": -0.002138670197364667,
+      "name": "payment_amount_max",
+      "normalized_mean_abs_shap": 0.017184049766241254,
+      "rank": 14
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.03289328757976505,
+      "mean_signed_shap_margin": -0.006913936635708928,
+      "name": "payment_amount_mean",
+      "normalized_mean_abs_shap": 0.016894586081165643,
+      "rank": 15
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.03267787084368885,
+      "mean_signed_shap_margin": -0.003856808821748321,
+      "name": "bill_to_limit_2005_04",
+      "normalized_mean_abs_shap": 0.016783944158185533,
+      "rank": 16
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.029988873125364385,
+      "mean_signed_shap_margin": -0.0024084399761373386,
+      "name": "bill_amount_mean",
+      "normalized_mean_abs_shap": 0.01540282640538792,
+      "rank": 17
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.027965869102675546,
+      "mean_signed_shap_margin": -0.004245398111140174,
+      "name": "bill_to_limit_max",
+      "normalized_mean_abs_shap": 0.014363775032946629,
+      "rank": 18
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.023929050491948146,
+      "mean_signed_shap_margin": -0.0031921454942073777,
+      "name": "payment_to_limit_max",
+      "normalized_mean_abs_shap": 0.012290392147529593,
+      "rank": 19
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.0238173775378301,
+      "mean_signed_shap_margin": -0.007490114108224386,
+      "name": "bill_to_limit_mean",
+      "normalized_mean_abs_shap": 0.01223303490308541,
+      "rank": 20
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.0211524273551509,
+      "mean_signed_shap_margin": 0.0020539179616219675,
+      "name": "payment_to_limit_2005_05",
+      "normalized_mean_abs_shap": 0.010864268398548212,
+      "rank": 21
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.02050721616445258,
+      "mean_signed_shap_margin": -0.0011844912331030679,
+      "name": "payment_amount_2005_06",
+      "normalized_mean_abs_shap": 0.01053287628776115,
+      "rank": 22
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.01953791777456839,
+      "mean_signed_shap_margin": -0.0015458659726201504,
+      "name": "bill_amount_max",
+      "normalized_mean_abs_shap": 0.010035027143113547,
+      "rank": 23
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.018848981138816775,
+      "mean_signed_shap_margin": 0.0004925338620410508,
+      "name": "bill_to_limit_2005_07",
+      "normalized_mean_abs_shap": 0.009681176854693775,
+      "rank": 24
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.017054962039695563,
+      "mean_signed_shap_margin": -0.0019348106824618298,
+      "name": "payment_to_limit_2005_07",
+      "normalized_mean_abs_shap": 0.008759736271174727,
+      "rank": 25
+    },
+    {
+      "feature_family": "repayment_status",
+      "mean_abs_shap_margin": 0.016395716469544117,
+      "mean_signed_shap_margin": -0.0028748746013572803,
+      "name": "repayment_status_2005_05",
+      "normalized_mean_abs_shap": 0.00842113584984128,
+      "rank": 26
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.014936929142125235,
+      "mean_signed_shap_margin": 0.0004865276832877296,
+      "name": "bill_amount_min",
+      "normalized_mean_abs_shap": 0.007671876353738096,
+      "rank": 27
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.012883120603461673,
+      "mean_signed_shap_margin": 0.0016489647641461083,
+      "name": "bill_to_limit_2005_05",
+      "normalized_mean_abs_shap": 0.006617003226005194,
+      "rank": 28
+    },
+    {
+      "feature_family": "repayment_status",
+      "mean_abs_shap_margin": 0.012752372843397704,
+      "mean_signed_shap_margin": -0.002904113068720714,
+      "name": "repayment_status_2005_07",
+      "normalized_mean_abs_shap": 0.006549848817010236,
+      "rank": 29
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.011622781781686678,
+      "mean_signed_shap_margin": 0.0020005844871759312,
+      "name": "payment_to_limit_mean",
+      "normalized_mean_abs_shap": 0.005969670463529628,
+      "rank": 30
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.011251731289267708,
+      "mean_signed_shap_margin": -0.0014596325783398545,
+      "name": "bill_amount_2005_08",
+      "normalized_mean_abs_shap": 0.005779092234782206,
+      "rank": 31
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.011247365665140225,
+      "mean_signed_shap_margin": -0.0016917013583491402,
+      "name": "payment_to_limit_2005_06",
+      "normalized_mean_abs_shap": 0.00577684997144988,
+      "rank": 32
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.009383400510498177,
+      "mean_signed_shap_margin": 0.0002591525427605019,
+      "name": "payment_to_limit_2005_08",
+      "normalized_mean_abs_shap": 0.004819483831594478,
+      "rank": 33
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.009276857756687807,
+      "mean_signed_shap_margin": -0.0033418747063519226,
+      "name": "payment_to_limit_2005_04",
+      "normalized_mean_abs_shap": 0.00476476155060603,
+      "rank": 34
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.008924790404888173,
+      "mean_signed_shap_margin": -0.00103926481599774,
+      "name": "bill_amount_2005_05",
+      "normalized_mean_abs_shap": 0.00458393340544349,
+      "rank": 35
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.008799283345022963,
+      "mean_signed_shap_margin": 0.0016574557849671691,
+      "name": "bill_amount_2005_07",
+      "normalized_mean_abs_shap": 0.004519470714642366,
+      "rank": 36
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.00826249435977661,
+      "mean_signed_shap_margin": 0.0018432911787046274,
+      "name": "bill_amount_2005_04",
+      "normalized_mean_abs_shap": 0.004243766205122773,
+      "rank": 37
+    },
+    {
+      "feature_family": "repayment_status",
+      "mean_abs_shap_margin": 0.0058909360033188325,
+      "mean_signed_shap_margin": -0.0010185158761418683,
+      "name": "repayment_status_2005_04",
+      "normalized_mean_abs_shap": 0.0030256910369741404,
+      "rank": 38
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "mean_abs_shap_margin": 0.005572204922898285,
+      "mean_signed_shap_margin": -0.0004744893168390263,
+      "name": "bill_to_limit_2005_06",
+      "normalized_mean_abs_shap": 0.0028619850023660198,
+      "rank": 39
+    },
+    {
+      "feature_family": "repayment_status",
+      "mean_abs_shap_margin": 0.005183600900673708,
+      "mean_signed_shap_margin": -0.00014234431564303426,
+      "name": "repayment_status_2005_06",
+      "normalized_mean_abs_shap": 0.0026623909639458807,
+      "rank": 40
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.005176902233393371,
+      "mean_signed_shap_margin": 0.0009351674132534148,
+      "name": "payment_amount_2005_05",
+      "normalized_mean_abs_shap": 0.0026589504075490078,
+      "rank": 41
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "mean_abs_shap_margin": 0.004122620551704636,
+      "mean_signed_shap_margin": -0.0004575111528974958,
+      "name": "payment_to_limit_2005_09",
+      "normalized_mean_abs_shap": 0.0021174523106532875,
+      "rank": 42
+    },
+    {
+      "feature_family": "bill_amount",
+      "mean_abs_shap_margin": 0.0037789152358584234,
+      "mean_signed_shap_margin": 0.001575638273357375,
+      "name": "bill_amount_2005_06",
+      "normalized_mean_abs_shap": 0.0019409190580546565,
+      "rank": 43
+    },
+    {
+      "feature_family": "repayment_status",
+      "mean_abs_shap_margin": 0.0030835845327884374,
+      "mean_signed_shap_margin": 0.0011199138693692577,
+      "name": "repayment_status_2005_08",
+      "normalized_mean_abs_shap": 0.0015837846612751778,
+      "rank": 44
+    },
+    {
+      "feature_family": "payment_amount",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "payment_amount_sum",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 45
+    }
+  ],
+  "split_version": "sorted_id_two_stage_stratified_v1",
+  "test_set_evaluated": false,
+  "transformed_feature": [
+    {
+      "feature_family": "delay_summary",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.3261899153259065,
+      "mean_signed_shap_margin": -0.08061050462722778,
+      "name": "numeric__months_with_documented_delay",
+      "normalized_mean_abs_shap": 0.1597483556144674,
+      "rank": 1,
+      "source_feature": "months_with_documented_delay"
+    },
+    {
+      "feature_family": "delay_summary",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.25772008837925064,
+      "mean_signed_shap_margin": -0.006763552404112286,
+      "name": "numeric__max_documented_delay",
+      "normalized_mean_abs_shap": 0.12621592021404435,
+      "rank": 2,
+      "source_feature": "max_documented_delay"
+    },
+    {
+      "feature_family": "delay_summary",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.22154940032131143,
+      "mean_signed_shap_margin": -0.09069865663680765,
+      "name": "numeric__recent_documented_delay_flag",
+      "normalized_mean_abs_shap": 0.1085016756368432,
+      "rank": 3,
+      "source_feature": "recent_documented_delay_flag"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.07359305252919957,
+      "mean_signed_shap_margin": -0.007387203423448631,
+      "name": "numeric__bill_amount_std",
+      "normalized_mean_abs_shap": 0.036041485569664515,
+      "rank": 4,
+      "source_feature": "bill_amount_std"
+    },
+    {
+      "feature_family": "credit_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.07332061180572297,
+      "mean_signed_shap_margin": -0.01052772860692413,
+      "name": "numeric__credit_limit",
+      "normalized_mean_abs_shap": 0.035908060360812434,
+      "rank": 5,
+      "source_feature": "credit_limit"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.07322577732428909,
+      "mean_signed_shap_margin": -0.022906876671231455,
+      "name": "repayment__repayment_status_2005_09_status_2",
+      "normalized_mean_abs_shap": 0.035861616090916856,
+      "rank": 6,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.06387283628392551,
+      "mean_signed_shap_margin": 0.026210494096494383,
+      "name": "repayment__repayment_status_2005_09_status_1",
+      "normalized_mean_abs_shap": 0.03128110369259722,
+      "rank": 7,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.05608550269117243,
+      "mean_signed_shap_margin": -0.006705195934052528,
+      "name": "numeric__bill_amount_2005_09",
+      "normalized_mean_abs_shap": 0.027467332396753585,
+      "rank": 8,
+      "source_feature": "bill_amount_2005_09"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.05589115722776882,
+      "mean_signed_shap_margin": -0.00720903991282426,
+      "name": "numeric__bill_to_limit_2005_08",
+      "normalized_mean_abs_shap": 0.02737215358606338,
+      "rank": 9,
+      "source_feature": "bill_to_limit_2005_08"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.05412022927117586,
+      "mean_signed_shap_margin": -0.0017281330569466162,
+      "name": "numeric__payment_amount_2005_04",
+      "normalized_mean_abs_shap": 0.026504858750492646,
+      "rank": 10,
+      "source_feature": "payment_amount_2005_04"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.053883629963319336,
+      "mean_signed_shap_margin": -0.006991985853218163,
+      "name": "numeric__bill_to_limit_2005_09",
+      "normalized_mean_abs_shap": 0.026388986528226556,
+      "rank": 11,
+      "source_feature": "bill_to_limit_2005_09"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.0534254059923373,
+      "mean_signed_shap_margin": -0.008158572475878626,
+      "name": "numeric__payment_amount_2005_07",
+      "normalized_mean_abs_shap": 0.02616457577109332,
+      "rank": 12,
+      "source_feature": "payment_amount_2005_07"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.05115299855478871,
+      "mean_signed_shap_margin": -0.010734852812728301,
+      "name": "numeric__payment_amount_2005_08",
+      "normalized_mean_abs_shap": 0.025051686210814383,
+      "rank": 13,
+      "source_feature": "payment_amount_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.047941297030516174,
+      "mean_signed_shap_margin": -0.014488112218859088,
+      "name": "repayment__repayment_status_2005_09_status_0",
+      "normalized_mean_abs_shap": 0.023478786457876287,
+      "rank": 14,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.04651899524989615,
+      "mean_signed_shap_margin": -0.0060422597905012984,
+      "name": "numeric__payment_amount_2005_09",
+      "normalized_mean_abs_shap": 0.022782227919533483,
+      "rank": 15,
+      "source_feature": "payment_amount_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.03884197696743326,
+      "mean_signed_shap_margin": 0.000840147912191848,
+      "name": "repayment__repayment_status_2005_09_status_-1",
+      "normalized_mean_abs_shap": 0.019022482479763143,
+      "rank": 16,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.03345686529580659,
+      "mean_signed_shap_margin": -0.002138670197364667,
+      "name": "numeric__payment_amount_max",
+      "normalized_mean_abs_shap": 0.01638517613176302,
+      "rank": 17,
+      "source_feature": "payment_amount_max"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.03289328757976505,
+      "mean_signed_shap_margin": -0.006913936635708928,
+      "name": "numeric__payment_amount_mean",
+      "normalized_mean_abs_shap": 0.01610916939713224,
+      "rank": 18,
+      "source_feature": "payment_amount_mean"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.03267787084368885,
+      "mean_signed_shap_margin": -0.003856808821748321,
+      "name": "numeric__bill_to_limit_2005_04",
+      "normalized_mean_abs_shap": 0.01600367113448477,
+      "rank": 19,
+      "source_feature": "bill_to_limit_2005_04"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.029988873125364385,
+      "mean_signed_shap_margin": -0.0024084399761373386,
+      "name": "numeric__bill_amount_mean",
+      "normalized_mean_abs_shap": 0.014686760514105234,
+      "rank": 20,
+      "source_feature": "bill_amount_mean"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.027965869102675546,
+      "mean_signed_shap_margin": -0.004245398111140174,
+      "name": "numeric__bill_to_limit_max",
+      "normalized_mean_abs_shap": 0.013696013863635972,
+      "rank": 21,
+      "source_feature": "bill_to_limit_max"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.023929050491948146,
+      "mean_signed_shap_margin": -0.0031921454942073777,
+      "name": "numeric__payment_to_limit_max",
+      "normalized_mean_abs_shap": 0.011719020999422906,
+      "rank": 22,
+      "source_feature": "payment_to_limit_max"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.0238173775378301,
+      "mean_signed_shap_margin": -0.007490114108224386,
+      "name": "numeric__bill_to_limit_mean",
+      "normalized_mean_abs_shap": 0.011664330250418162,
+      "rank": 23,
+      "source_feature": "bill_to_limit_mean"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.0211524273551509,
+      "mean_signed_shap_margin": 0.0020539179616219675,
+      "name": "numeric__payment_to_limit_2005_05",
+      "normalized_mean_abs_shap": 0.010359196677995713,
+      "rank": 24,
+      "source_feature": "payment_to_limit_2005_05"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.02050721616445258,
+      "mean_signed_shap_margin": -0.0011844912331030679,
+      "name": "numeric__payment_amount_2005_06",
+      "normalized_mean_abs_shap": 0.010043210738837762,
+      "rank": 25,
+      "source_feature": "payment_amount_2005_06"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.01953791777456839,
+      "mean_signed_shap_margin": -0.0015458659726201504,
+      "name": "numeric__bill_amount_max",
+      "normalized_mean_abs_shap": 0.009568506228954185,
+      "rank": 26,
+      "source_feature": "bill_amount_max"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.018848981138816775,
+      "mean_signed_shap_margin": 0.0004925338620410508,
+      "name": "numeric__bill_to_limit_2005_07",
+      "normalized_mean_abs_shap": 0.009231106176061921,
+      "rank": 27,
+      "source_feature": "bill_to_limit_2005_07"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.017054962039695563,
+      "mean_signed_shap_margin": -0.0019348106824618298,
+      "name": "numeric__payment_to_limit_2005_07",
+      "normalized_mean_abs_shap": 0.008352502676811433,
+      "rank": 28,
+      "source_feature": "payment_to_limit_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0166910415259772,
+      "mean_signed_shap_margin": -0.003346460947631082,
+      "name": "repayment__repayment_status_2005_05_status_2",
+      "normalized_mean_abs_shap": 0.008174276125623315,
+      "rank": 29,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.014936929142125235,
+      "mean_signed_shap_margin": 0.0004865276832877296,
+      "name": "numeric__bill_amount_min",
+      "normalized_mean_abs_shap": 0.0073152165541360975,
+      "rank": 30,
+      "source_feature": "bill_amount_min"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.012883120603461673,
+      "mean_signed_shap_margin": 0.0016489647641461083,
+      "name": "numeric__bill_to_limit_2005_05",
+      "normalized_mean_abs_shap": 0.006309383689957422,
+      "rank": 31,
+      "source_feature": "bill_to_limit_2005_05"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.011622781781686678,
+      "mean_signed_shap_margin": 0.0020005844871759312,
+      "name": "numeric__payment_to_limit_mean",
+      "normalized_mean_abs_shap": 0.005692144943951222,
+      "rank": 32,
+      "source_feature": "payment_to_limit_mean"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.011251731289267708,
+      "mean_signed_shap_margin": -0.0014596325783398545,
+      "name": "numeric__bill_amount_2005_08",
+      "normalized_mean_abs_shap": 0.00551042655466673,
+      "rank": 33,
+      "source_feature": "bill_amount_2005_08"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.011247365665140225,
+      "mean_signed_shap_margin": -0.0016917013583491402,
+      "name": "numeric__payment_to_limit_2005_06",
+      "normalized_mean_abs_shap": 0.0055082885324814045,
+      "rank": 34,
+      "source_feature": "payment_to_limit_2005_06"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.009383400510498177,
+      "mean_signed_shap_margin": 0.0002591525427605019,
+      "name": "numeric__payment_to_limit_2005_08",
+      "normalized_mean_abs_shap": 0.004595429629166668,
+      "rank": 35,
+      "source_feature": "payment_to_limit_2005_08"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.009276857756687807,
+      "mean_signed_shap_margin": -0.0033418747063519226,
+      "name": "numeric__payment_to_limit_2005_04",
+      "normalized_mean_abs_shap": 0.0045432513461353295,
+      "rank": 36,
+      "source_feature": "payment_to_limit_2005_04"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.008924790404888173,
+      "mean_signed_shap_margin": -0.00103926481599774,
+      "name": "numeric__bill_amount_2005_05",
+      "normalized_mean_abs_shap": 0.004370829766334684,
+      "rank": 37,
+      "source_feature": "bill_amount_2005_05"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.008799283345022963,
+      "mean_signed_shap_margin": 0.0016574557849671691,
+      "name": "numeric__bill_amount_2005_07",
+      "normalized_mean_abs_shap": 0.004309363897865262,
+      "rank": 38,
+      "source_feature": "bill_amount_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.008417541763176106,
+      "mean_signed_shap_margin": -0.004182302667707619,
+      "name": "repayment__repayment_status_2005_07_status_-1",
+      "normalized_mean_abs_shap": 0.0041224096509543135,
+      "rank": 39,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.00826249435977661,
+      "mean_signed_shap_margin": 0.0018432911787046274,
+      "name": "numeric__bill_amount_2005_04",
+      "normalized_mean_abs_shap": 0.004046476684999142,
+      "rank": 40,
+      "source_feature": "bill_amount_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.007571079081467663,
+      "mean_signed_shap_margin": 0.0012960023910272866,
+      "name": "repayment__repayment_status_2005_07_status_-2",
+      "normalized_mean_abs_shap": 0.0037078627408917123,
+      "rank": 41,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0074198785758991205,
+      "mean_signed_shap_margin": -0.0006828325328210162,
+      "name": "repayment__repayment_status_2005_09_status_3",
+      "normalized_mean_abs_shap": 0.0036338137559360686,
+      "rank": 42,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.005572204922898285,
+      "mean_signed_shap_margin": -0.0004744893168390263,
+      "name": "numeric__bill_to_limit_2005_06",
+      "normalized_mean_abs_shap": 0.002728933457953364,
+      "rank": 43,
+      "source_feature": "bill_to_limit_2005_06"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.005176902233393371,
+      "mean_signed_shap_margin": 0.0009351674132534148,
+      "name": "numeric__payment_amount_2005_05",
+      "normalized_mean_abs_shap": 0.0025353377897510154,
+      "rank": 44,
+      "source_feature": "payment_amount_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.005105946333283404,
+      "mean_signed_shap_margin": -6.154633457643083e-05,
+      "name": "repayment__repayment_status_2005_04_status_0",
+      "normalized_mean_abs_shap": 0.0025005878240680285,
+      "rank": 45,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.004760656293766159,
+      "mean_signed_shap_margin": 0.0005453966908519053,
+      "name": "repayment__repayment_status_2005_09_status_-2",
+      "normalized_mean_abs_shap": 0.002331485367396973,
+      "rank": 46,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.004122620551704636,
+      "mean_signed_shap_margin": -0.0004575111528974958,
+      "name": "numeric__payment_to_limit_2005_09",
+      "normalized_mean_abs_shap": 0.0020190135347967894,
+      "rank": 47,
+      "source_feature": "payment_to_limit_2005_09"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.0037789152358584234,
+      "mean_signed_shap_margin": 0.001575638273357375,
+      "name": "numeric__bill_amount_2005_06",
+      "normalized_mean_abs_shap": 0.001850687181213709,
+      "rank": 48,
+      "source_feature": "bill_amount_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0034119175014396506,
+      "mean_signed_shap_margin": -0.0009363960093922085,
+      "name": "repayment__repayment_status_2005_06_status_-1",
+      "normalized_mean_abs_shap": 0.0016709535909552313,
+      "rank": 49,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0020241688050769476,
+      "mean_signed_shap_margin": -0.0006761826494766865,
+      "name": "repayment__repayment_status_2005_04_status_-1",
+      "normalized_mean_abs_shap": 0.0009913170913762525,
+      "rank": 50,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0017791691727341255,
+      "mean_signed_shap_margin": 0.0005424158811802044,
+      "name": "repayment__repayment_status_2005_08_status_4",
+      "normalized_mean_abs_shap": 0.0008713308914540059,
+      "rank": 51,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0017533293714190627,
+      "mean_signed_shap_margin": 0.0008133953642035421,
+      "name": "repayment__repayment_status_2005_06_status_0",
+      "normalized_mean_abs_shap": 0.0008586760987227176,
+      "rank": 52,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.001544267855442336,
+      "mean_signed_shap_margin": 0.0009318356526782736,
+      "name": "repayment__repayment_status_2005_08_status_0",
+      "normalized_mean_abs_shap": 0.000756290243641387,
+      "rank": 53,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0014708615129929968,
+      "mean_signed_shap_margin": 0.0005181793479261816,
+      "name": "repayment__repayment_status_2005_05_status_-2",
+      "normalized_mean_abs_shap": 0.0007203401975271836,
+      "rank": 54,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0013752691468301539,
+      "mean_signed_shap_margin": -0.00019368912746560657,
+      "name": "repayment__repayment_status_2005_08_status_-1",
+      "normalized_mean_abs_shap": 0.0006735247609170335,
+      "rank": 55,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0009056432584636948,
+      "mean_signed_shap_margin": 0.00024988699855748567,
+      "name": "repayment__repayment_status_2005_06_status_-2",
+      "normalized_mean_abs_shap": 0.00044353002504186553,
+      "rank": 56,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0007875802300663458,
+      "mean_signed_shap_margin": -0.000280786892088751,
+      "name": "repayment__repayment_status_2005_04_status_-2",
+      "normalized_mean_abs_shap": 0.0003857097989735744,
+      "rank": 57,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0007696878261922393,
+      "mean_signed_shap_margin": -0.0002692306690118534,
+      "name": "repayment__repayment_status_2005_06_status_2",
+      "normalized_mean_abs_shap": 0.00037694716725940065,
+      "rank": 58,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0006659302603705631,
+      "mean_signed_shap_margin": -0.00011702068136785076,
+      "name": "repayment__repayment_status_2005_05_status_-1",
+      "normalized_mean_abs_shap": 0.0003261329031028526,
+      "rank": 59,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0005683671563553313,
+      "mean_signed_shap_margin": -0.00016064853702361386,
+      "name": "repayment__repayment_status_2005_08_status_3",
+      "normalized_mean_abs_shap": 0.0002783523166935379,
+      "rank": 60,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.00031160590751096607,
+      "mean_signed_shap_margin": 7.042767971547113e-05,
+      "name": "repayment__repayment_status_2005_05_status_4",
+      "normalized_mean_abs_shap": 0.00015260597886631582,
+      "rank": 61,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.00016150974982560406,
+      "mean_signed_shap_margin": -1.781279204038179e-05,
+      "name": "repayment__repayment_status_2005_07_status_2",
+      "normalized_mean_abs_shap": 7.909783760348862e-05,
+      "rank": 62,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "numeric__payment_amount_sum",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 63,
+      "source_feature": "payment_amount_sum"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_2",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 64,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_3",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 65,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_4",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 66,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_5",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 67,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_6",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 68,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_7",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 69,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_04_status_8",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 70,
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_05_status_0",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 71,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_05_status_3",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 72,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_05_status_5",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 73,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_05_status_6",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 74,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_05_status_7",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 75,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_05_status_8",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 76,
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_1",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 77,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_3",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 78,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_4",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 79,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_5",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 80,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_6",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 81,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_7",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 82,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_06_status_8",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 83,
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_0",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 84,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_1",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 85,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_3",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 86,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_4",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 87,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_5",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 88,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_6",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 89,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_7",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 90,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_07_status_8",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 91,
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_-2",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 92,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_1",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 93,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_2",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 94,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_5",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 95,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_6",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 96,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_7",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 97,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_08_status_8",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 98,
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_09_status_4",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 99,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_09_status_5",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 100,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_09_status_6",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 101,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_09_status_7",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 102,
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "mean_abs_shap_margin": 0.0,
+      "mean_signed_shap_margin": 0.0,
+      "name": "repayment__repayment_status_2005_09_status_8",
+      "normalized_mean_abs_shap": 0.0,
+      "rank": 103,
+      "source_feature": "repayment_status_2005_09"
+    }
+  ],
+  "units": "raw_margin_log_odds",
+  "validation_rows": 4500
+}

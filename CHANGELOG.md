@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Added Phase-7 frozen XGBoost Tree SHAP in raw-margin units, verified 103-feature lineage, signed source/family aggregation and deterministic diagnostic local drivers using SHAP 0.51.0.
+- Added versioned internal score (base 600, good:bad odds 50, PDO 20), inverse/rank validation, guarded additive score points, VALIDATION summary/deciles and the unchanged Phase-6 threshold's technical score equivalent.
+- Added a validation-only shared consumer, five aggregate artifacts, Phase-7 tests, explainability/score documentation, ADR 006 and completion report. TRAIN OOF score statistics remain unavailable under the owner's explicit no-retraining instruction. Historical experiment metadata and reports remain unchanged; TEST stays sealed and Phase 8 has not started.
 - Added Phase-6 five-fold TRAIN OOF generation for both fixed models, fold-local preprocessing, and a second TRAIN-only CV over identity, sigmoid and isotonic calibration.
 - Selected versioned identity mappings for both models; added aggregate reliability/ECE, reported-probability comparison and paired AUC/AP/Brier/log-loss bootstrap. XGBoost is selected for downstream development, with TEST still sealed.
 - Added TRAIN-derived max-KS technical threshold analysis, non-identity artifact serialization tests, calibration documentation, ADR 005 and the Phase-6 report. No SHAP, score, risk bands, business policy or Phase-7 functionality was implemented.

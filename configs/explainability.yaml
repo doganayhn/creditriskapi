@@ -1,0 +1,13 @@
+version: xgboost-shap-1.0.0
+model_output: raw
+feature_perturbation: tree_path_dependent
+local_reason_top_k: 5
+margin_tolerance: 1.0e-5
+probability_tolerance: 1.0e-7
+score_tolerance: 1.0e-3
+score_version: internal-risk-score-1.0.0
+base_score: 600
+base_good_to_bad_odds: 50
+pdo: 20
+numerical_epsilon: 1.0e-12
+display_rounding: nearest_integer_ties_to_even

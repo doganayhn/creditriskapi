@@ -1,0 +1,783 @@
+{
+  "additivity": {
+    "max_absolute_error": 4.256362444721162e-06,
+    "mean_absolute_error": 7.488121890572883e-07,
+    "p50_absolute_error": 5.163674359209836e-07,
+    "p95_absolute_error": 2.091105125145987e-06,
+    "p99_absolute_error": 2.653722985996866e-06
+  },
+  "aggregation_rule": "signed local sum, then global mean absolute value",
+  "aggregation_version": "source_family_signed_sum_v1",
+  "background": "Frozen model training path counts; no background rows supplied",
+  "calibration_method": "identity",
+  "calibration_version": "xgboost-calibration-1.0.0",
+  "config_sha256": "c47a02e2880acd13c9cfe4e92c3707a668c85f3f7830906960b849e725e37368",
+  "customer_level_explanations_exported": false,
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "explainability_version": "xgboost-shap-1.0.0",
+  "explained_output": "raw_margin",
+  "explainer_type": "shap.TreeExplainer",
+  "family_aggregation_enabled": true,
+  "family_total_residual": {
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "p50_absolute_error": 0.0,
+    "p95_absolute_error": 0.0,
+    "p99_absolute_error": 0.0
+  },
+  "feature_engineering_version": "financial_features_v1",
+  "feature_family_count": 7,
+  "feature_perturbation": "tree_path_dependent",
+  "forbidden_feature_count": 0,
+  "implementation_sha256": {
+    "__init__.py": "e4703049fb9bee426e3517484e5bd3af8099f708bbf21c298bd397b0630c3f1b",
+    "aggregation.py": "d4045a832edfa8990a100bc3c682d0ca85be56c3af5e4e2ca2be2c4d2f4db95a",
+    "contract.py": "8f33e6744e36bbe2172f44b6770f55c8ff1f08c5527a3b152cb8a7965579dfff",
+    "local.py": "9c7bff842d71be7faaba1a3089273d66b263940214381fbb92e3b8d09559e82e",
+    "reason_codes.py": "8d0b93c514ea90a1ea655d715ae09ee0b4bf2c7b6549360cdd7adc9848840407",
+    "run.py": "640d9b18fd040019be04646643f8d828efa41f4f926767885c4df485476b64d0",
+    "score.py": "adaaae227d0ac9dd58d081b783084a9083a9d5f619b9f08f5b6dca2d98cd5e20",
+    "shap_explainer.py": "709ebe484efd8b18a20ee6caedffec885d6e4ef51af4f8e2e308d3cad5ec6d38"
+  },
+  "lineage": [
+    {
+      "feature_family": "credit_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__credit_limit",
+      "source_feature": "credit_limit"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_2005_09",
+      "source_feature": "bill_amount_2005_09"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_2005_08",
+      "source_feature": "bill_amount_2005_08"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_2005_07",
+      "source_feature": "bill_amount_2005_07"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_2005_06",
+      "source_feature": "bill_amount_2005_06"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_2005_05",
+      "source_feature": "bill_amount_2005_05"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_2005_04",
+      "source_feature": "bill_amount_2005_04"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_2005_09",
+      "source_feature": "payment_amount_2005_09"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_2005_08",
+      "source_feature": "payment_amount_2005_08"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_2005_07",
+      "source_feature": "payment_amount_2005_07"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_2005_06",
+      "source_feature": "payment_amount_2005_06"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_2005_05",
+      "source_feature": "payment_amount_2005_05"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_2005_04",
+      "source_feature": "payment_amount_2005_04"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_mean",
+      "source_feature": "bill_amount_mean"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_std",
+      "source_feature": "bill_amount_std"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_min",
+      "source_feature": "bill_amount_min"
+    },
+    {
+      "feature_family": "bill_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_amount_max",
+      "source_feature": "bill_amount_max"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_mean",
+      "source_feature": "payment_amount_mean"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_sum",
+      "source_feature": "payment_amount_sum"
+    },
+    {
+      "feature_family": "payment_amount",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_amount_max",
+      "source_feature": "payment_amount_max"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_2005_09",
+      "source_feature": "bill_to_limit_2005_09"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_2005_08",
+      "source_feature": "bill_to_limit_2005_08"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_2005_07",
+      "source_feature": "bill_to_limit_2005_07"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_2005_06",
+      "source_feature": "bill_to_limit_2005_06"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_2005_05",
+      "source_feature": "bill_to_limit_2005_05"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_2005_04",
+      "source_feature": "bill_to_limit_2005_04"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_2005_09",
+      "source_feature": "payment_to_limit_2005_09"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_2005_08",
+      "source_feature": "payment_to_limit_2005_08"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_2005_07",
+      "source_feature": "payment_to_limit_2005_07"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_2005_06",
+      "source_feature": "payment_to_limit_2005_06"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_2005_05",
+      "source_feature": "payment_to_limit_2005_05"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_2005_04",
+      "source_feature": "payment_to_limit_2005_04"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_mean",
+      "source_feature": "bill_to_limit_mean"
+    },
+    {
+      "feature_family": "bill_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__bill_to_limit_max",
+      "source_feature": "bill_to_limit_max"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_mean",
+      "source_feature": "payment_to_limit_mean"
+    },
+    {
+      "feature_family": "payment_to_limit",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__payment_to_limit_max",
+      "source_feature": "payment_to_limit_max"
+    },
+    {
+      "feature_family": "delay_summary",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__months_with_documented_delay",
+      "source_feature": "months_with_documented_delay"
+    },
+    {
+      "feature_family": "delay_summary",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__max_documented_delay",
+      "source_feature": "max_documented_delay"
+    },
+    {
+      "feature_family": "delay_summary",
+      "feature_type": "standardized_numeric",
+      "name": "numeric__recent_documented_delay_flag",
+      "source_feature": "recent_documented_delay_flag"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_-1",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_-2",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_0",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_1",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_2",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_3",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_4",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_5",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_6",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_7",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_09_status_8",
+      "source_feature": "repayment_status_2005_09"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_-1",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_-2",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_0",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_1",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_2",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_3",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_4",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_5",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_6",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_7",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_08_status_8",
+      "source_feature": "repayment_status_2005_08"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_-1",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_-2",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_0",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_1",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_2",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_3",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_4",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_5",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_6",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_7",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_07_status_8",
+      "source_feature": "repayment_status_2005_07"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_-1",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_-2",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_0",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_1",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_2",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_3",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_4",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_5",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_6",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_7",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_06_status_8",
+      "source_feature": "repayment_status_2005_06"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_-1",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_-2",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_0",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_2",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_3",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_4",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_5",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_6",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_7",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_05_status_8",
+      "source_feature": "repayment_status_2005_05"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_-1",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_-2",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_0",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_2",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_3",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_4",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_5",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_6",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_7",
+      "source_feature": "repayment_status_2005_04"
+    },
+    {
+      "feature_family": "repayment_status",
+      "feature_type": "one_hot_category",
+      "name": "repayment__repayment_status_2005_04_status_8",
+      "source_feature": "repayment_status_2005_04"
+    }
+  ],
+  "local_reason_top_k": 5,
+  "local_tie_breaking": "source feature name ascending",
+  "margin_tolerance": 1e-05,
+  "method": "Tree SHAP",
+  "missing_lineage_count": 0,
+  "model_artifact_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "model_name": "xgboost",
+  "model_output": "raw",
+  "model_retrained": false,
+  "model_version": "xgboost-challenger-1.0.0",
+  "native_gain_comparison": {
+    "diagnostic_only": true,
+    "gain_top_features": [
+      "numeric__max_documented_delay",
+      "numeric__recent_documented_delay_flag",
+      "numeric__months_with_documented_delay",
+      "repayment__repayment_status_2005_09_status_1",
+      "repayment__repayment_status_2005_09_status_2",
+      "numeric__payment_amount_max",
+      "numeric__bill_amount_max",
+      "repayment__repayment_status_2005_06_status_-1",
+      "repayment__repayment_status_2005_07_status_-1",
+      "numeric__bill_amount_mean"
+    ],
+    "overlap_count": 5,
+    "overlap_features": [
+      "numeric__max_documented_delay",
+      "numeric__months_with_documented_delay",
+      "numeric__recent_documented_delay_flag",
+      "repayment__repayment_status_2005_09_status_1",
+      "repayment__repayment_status_2005_09_status_2"
+    ],
+    "shap_top_features": [
+      "numeric__months_with_documented_delay",
+      "numeric__max_documented_delay",
+      "numeric__recent_documented_delay_flag",
+      "numeric__bill_amount_std",
+      "numeric__credit_limit",
+      "repayment__repayment_status_2005_09_status_2",
+      "repayment__repayment_status_2005_09_status_1",
+      "numeric__bill_amount_2005_09",
+      "numeric__bill_to_limit_2005_08",
+      "numeric__payment_amount_2005_04"
+    ],
+    "top_k": 10
+  },
+  "output_units": "raw_margin_log_odds",
+  "population": "validation",
+  "preprocessing_artifact_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "probability_reconstruction": {
+    "max_absolute_error": 7.203226326524259e-08,
+    "mean_absolute_error": 6.996434084326979e-09,
+    "p50_absolute_error": 3.6955257187720747e-09,
+    "p95_absolute_error": 2.6547356812844924e-08,
+    "p99_absolute_error": 4.608080821921769e-08
+  },
+  "probability_tolerance": 1e-07,
+  "row_level_outputs_persisted": false,
+  "runtime_versions": {
+    "numpy": "2.5.3",
+    "python": "3.14.6",
+    "shap": "0.51.0",
+    "xgboost": "3.2.0"
+  },
+  "score_point_decomposition_supported": true,
+  "score_version": "internal-risk-score-1.0.0",
+  "shap_linked_probability_reconstruction": {
+    "max_absolute_error": 4.2400324457014804e-07,
+    "mean_absolute_error": 7.458363448983951e-08,
+    "p50_absolute_error": 6.423345257078328e-08,
+    "p95_absolute_error": 1.79474261161744e-07,
+    "p99_absolute_error": 2.448850885984623e-07
+  },
+  "shap_version": "0.51.0",
+  "source_aggregation_enabled": true,
+  "source_feature_count": 45,
+  "source_total_residual": {
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "p50_absolute_error": 0.0,
+    "p95_absolute_error": 0.0,
+    "p99_absolute_error": 0.0
+  },
+  "split_version": "sorted_id_two_stage_stratified_v1",
+  "synthetic_local_validation": {
+    "synthetic_larger_statements": {
+      "passed": true,
+      "score_absolute_residual": 4.3367224861867726e-05,
+      "source_feature_count": 45,
+      "synthetic_input": true
+    },
+    "synthetic_recent_delay": {
+      "passed": true,
+      "score_absolute_residual": 8.158005414315994e-06,
+      "source_feature_count": 45,
+      "synthetic_input": true
+    },
+    "synthetic_regular_payments": {
+      "passed": true,
+      "score_absolute_residual": 2.704050075408304e-06,
+      "source_feature_count": 45,
+      "synthetic_input": true
+    }
+  },
+  "test_rows_explained": 0,
+  "test_set_evaluated": false,
+  "transformed_feature_count": 103,
+  "validation_metrics_unchanged": {
+    "average_precision": 0.5562119323663669,
+    "brier_score": 0.1352848711738327,
+    "ece": 0.011402128674917751,
+    "gini": 0.5686088072315931,
+    "ks": 0.42443888486655823,
+    "log_loss": 0.4288266211833506,
+    "mean_predicted_probability": 0.21956850854390197,
+    "observed_positive_rate": 0.22111111111111112,
+    "roc_auc": 0.7843044036157966
+  },
+  "validation_rows": 4500,
+  "validation_rows_explained": 4500
+}

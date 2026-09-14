@@ -1,11 +1,11 @@
 # Operational phase state
 
-Current Completed Phase: Phase 6
-Current Completed Phase Name: Probability Calibration & Decision Thresholds
+Current Completed Phase: Phase 7
+Current Completed Phase Name: Explainability & Internal Risk Score
 Status: COMPLETED
-Next Phase: Phase 7
+Next Phase: Phase 8
 
-Valid workflow states: NOT_STARTED, IN_PROGRESS and COMPLETED. Phases 1–6 are completed. Phases 7–10 have not started; Phase 7 requires an explicit phase prompt after owner review and commit. After implementation, tests and a completion report, the project owner performs technical review. Issues lead to fixes; once no issues remain, the project owner creates the Git commit. Codex must not automatically commit or start the next phase. Phase 6 selected identity mappings for both models through TRAIN-only calibration CV and selected XGBoost for downstream development using frozen VALIDATION comparison. The technical threshold comes from TRAIN OOF only. TEST remains sealed; production readiness is not established.
+Valid workflow states: NOT_STARTED, IN_PROGRESS and COMPLETED. Phases 1–7 are completed. Phases 8–10 have not started; Phase 8 requires an explicit phase prompt after owner review and commit. Phase 7 adds frozen XGBoost raw-margin Tree SHAP and an internal score. TRAIN OOF score statistics remain unavailable under the owner's explicit no-retraining decision. After implementation, tests and a completion report, the project owner performs technical review. Issues lead to fixes; once no issues remain, the project owner creates the Git commit. Codex must not automatically commit or start the next phase. Phase 6 selected identity mappings for both models through TRAIN-only calibration CV and selected XGBoost for downstream development using frozen VALIDATION comparison. The technical threshold comes from TRAIN OOF only. TEST remains sealed; production readiness is not established.
 
 | Phase | Status |
 | --- | --- |
@@ -15,7 +15,7 @@ Valid workflow states: NOT_STARTED, IN_PROGRESS and COMPLETED. Phases 1–6 are 
 | 4 | COMPLETED |
 | 5 | COMPLETED |
 | 6 | COMPLETED |
-| 7 | NOT_STARTED |
+| 7 | COMPLETED |
 | 8 | NOT_STARTED |
 | 9 | NOT_STARTED |
 | 10 | NOT_STARTED |

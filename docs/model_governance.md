@@ -1,6 +1,6 @@
 # Model governance
 
-Implemented Phase-4–6 model and calibration controls are identified below. Explanation, business-policy and deployment controls remain requirements for future phases.
+Implemented Phase-4–7 model, calibration, explanation and internal-score controls are identified below. Business-policy and deployment controls remain requirements for future phases.
 
 ## Model versioning
 Every deployed/serialized model must have an explicit version or immutable artifact identity; link preprocessing, feature schema and any calibrator to it.
@@ -53,6 +53,23 @@ Both fixed candidates generate TRAIN-only five-fold OOF probabilities with fresh
 
 After both mappings are fitted on TRAIN OOF and frozen, canonical VALIDATION metrics must reproduce stored raw model metrics. The deterministic reported-probability rule requires no worse AUC/AP and no worse Brier/log loss, with at least one strict improvement. Measured status is XGBOOST_SELECTED_FOR_DOWNSTREAM. This is development selection, not untouched-test confirmation or production readiness. Paired 1,000-replicate validation bootstrap intervals quantify conditional sample uncertainty only.
 
-The technical max-KS threshold is selected only from the chosen model's TRAIN OOF reported probabilities, with the highest finite threshold winning ties. It is applied unchanged to VALIDATION; reference 0.50 remains separate. No lending policy, risk bands, score or explanation code exists. Future SHAP explanations of the underlying model must not automatically be claimed to sum to calibrated/reported probability. TEST SET REMAINS SEALED. See [ADR 005](decisions/005-calibration-and-model-selection.md).
+The technical max-KS threshold is selected only from the chosen model's TRAIN OOF reported probabilities, with the highest finite threshold winning ties. It is applied unchanged to VALIDATION; reference 0.50 remains separate. Phase 6 added no lending policy, risk bands, score or explanation code. Phase 7 adds the separately versioned explanation/score controls below; SHAP contributions must never be claimed to sum directly to calibrated/reported probability. TEST SET REMAINS SEALED. See [ADR 005](decisions/005-calibration-and-model-selection.md).
 
 One temporary weighted model uses the TRAIN class ratio with unchanged selected parameters. Its separate validation diagnostics do not replace the canonical artifact. Raw probabilities remain uncalibrated; the fixed 0.50 reference threshold is neither optimized nor business policy. Native gain is an aggregate split diagnostic, not SHAP, causality or a customer reason. The versioned native JSON model is ignored, hash-identified and reloaded to verify TRAIN/VALIDATION probabilities. Load trusted XGBoost-created native files only. No customer-level probabilities or matrices are exported; TEST stays sealed. See [XGBoost report](xgboost_model_report.md).
+
+## Implemented Phase-7 explanation and internal-score governance
+
+| Identity | Version | Contract |
+| --- | --- | --- |
+| Model | `xgboost-challenger-1.0.0` | Frozen binary logistic artifact with SHA-256 |
+| Calibration | `xgboost-calibration-1.0.0` | Identity; null artifact path/hash |
+| Explainability | `xgboost-shap-1.0.0` | Tree SHAP raw margin, path dependent, signed local aggregation |
+| Internal score | `internal-risk-score-1.0.0` | Base 600, good:bad odds 50, PDO 20 |
+
+Future inference/audit records must identify all four independently, alongside preprocessing/feature identity. No API or audit persistence exists yet. Trusted project-local hashes are verified before artifact loading; no arbitrary external object is accepted, and no SHAP explainer binary is required.
+
+Only VALIDATION supplies real-data Phase-7 SHAP, scores and decile diagnostics. Source contributions sum signed one-hot values first; global source/family magnitude is computed afterward. Positive default-risk SHAP lowers score points. Additive score decomposition is disabled for non-identity calibration, a non-logistic objective, different explanation units or numerically clipped probability. Raw-margin explanations and probability-to-score mathematics remain separate capabilities; a future non-identity consumer needs explicit versioned integration.
+
+The score is not FICO, regulatory validation, a new predictive model or a business policy. No lending cutoff or risk bands exist. The Phase-6 threshold is read unchanged and converted only to a technical reference score. Diagnostic reason codes describe model behavior, not causality or regulatory adverse-action explanations. Demographic exclusion does not rule out proxies or establish fairness.
+
+The owner explicitly chose to leave TRAIN OOF score statistics unavailable rather than retrain models to recover discarded row-level OOF probabilities. In-sample TRAIN scores are not substitutes. Historical experiment metadata and Phase-1–6 reports remain immutable. See [ADR 006](decisions/006-explainability-and-internal-score.md).

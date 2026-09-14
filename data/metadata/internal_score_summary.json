@@ -1,0 +1,28 @@
+{
+  "score_version": "internal-risk-score-1.0.0",
+  "test_set_evaluated": false,
+  "train_oof": {
+    "available": false,
+    "in_sample_training_scores_substituted": false,
+    "reason": "Phase 6 retained aggregate OOF statistics only. Project owner instructed no retraining; exact OOF score statistics are unavailable."
+  },
+  "validation": {
+    "available": true,
+    "count": 4500,
+    "max": 592.7245369467144,
+    "mean": 531.9659941618735,
+    "min": 434.2650024890494,
+    "p01": 450.02225230264435,
+    "p05": 462.19255323176225,
+    "p10": 477.53807991899396,
+    "p25": 515.9088970688067,
+    "p50": 538.7320205177244,
+    "p75": 555.1323309826871,
+    "p90": 568.3341142362549,
+    "p95": 573.7377440327334,
+    "p99": 582.5185783441493,
+    "probability_clipping_count": 0,
+    "probability_clipping_rate": 0.0,
+    "std": 32.51493255370449
+  }
+}

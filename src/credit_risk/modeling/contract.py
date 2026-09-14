@@ -38,8 +38,8 @@ def manifest_identity(value: dict) -> str:
 
 @dataclass
 class ModelingData:
-    X_train: sparse.csr_matrix
-    y_train: np.ndarray
+    X_train: sparse.csr_matrix | None
+    y_train: np.ndarray | None
     X_validation: sparse.csr_matrix
     y_validation: np.ndarray
     feature_names: tuple[str, ...]
@@ -62,7 +62,7 @@ def read_contracts(metadata: Path) -> dict:
     return manifests
 
 
-def load_modeling_data(project_root: Path) -> ModelingData:
+def load_modeling_data(project_root: Path, *, validation_only: bool = False) -> ModelingData:
     root = project_root.resolve()
     config = load_config(root)
     manifests = read_contracts(config.paths.metadata)
@@ -100,8 +100,10 @@ def load_modeling_data(project_root: Path) -> ModelingData:
     if set(partitions) != {"train", "validation", "test"}:
         raise ValueError("Missing expected partitions")
     del partitions["test"]
+    if validation_only:
+        del partitions["train"]  # Frozen explanation consumers never transform TRAIN.
     matrices, targets = {}, {}
-    for name in ("train", "validation"):
+    for name in partitions:
         frame = partitions[name]
         if len(frame) != split[f"{name}_rows"] or int(frame[TARGET].sum()) != split[f"{name}_positive_count"]:
             raise ValueError(f"{name} population disagrees with Phase 3")
@@ -109,5 +111,5 @@ def load_modeling_data(project_root: Path) -> ModelingData:
         if list(matrix.shape) != preprocessing["transformed_shapes"][name]:
             raise ValueError(f"{name} transformed shape disagrees with Phase 3")
         matrices[name], targets[name] = matrix, frame[TARGET].to_numpy(dtype=int)
-    return ModelingData(matrices["train"], targets["train"], matrices["validation"],
+    return ModelingData(matrices.get("train"), targets.get("train"), matrices["validation"],
                         targets["validation"], names, trace, split, preprocessing, digest)

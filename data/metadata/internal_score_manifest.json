@@ -1,0 +1,80 @@
+{
+  "FICO_equivalent": false,
+  "base_good_to_bad_odds": 50,
+  "base_score": 600,
+  "business_cutoff_defined": false,
+  "business_policy": false,
+  "calibration_method": "identity",
+  "calibration_version": "xgboost-calibration-1.0.0",
+  "canonical_score": "continuous_float64",
+  "canonical_score_type": "continuous",
+  "cosmetic_score_bounds": null,
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "decomposition_guard": "binary logistic raw margin, identity calibration, no probability clipping",
+  "direction": "higher score means lower predicted default probability",
+  "display_rounding": "nearest_integer_ties_to_even",
+  "epsilon": 1e-12,
+  "factor": 28.85390081777927,
+  "feature_engineering_version": "financial_features_v1",
+  "formula": "offset + factor * ln((1 - reported_probability) / reported_probability)",
+  "higher_score_means": "lower predicted default probability",
+  "inverse_formula": "sigmoid((offset - score) / factor)",
+  "is_fico": false,
+  "mathematical_validation": {
+    "auc_absolute_difference": 0.0,
+    "inverse_max_absolute_error": 4.440892098500626e-16,
+    "inverse_ranking_verified": true,
+    "negative_score_roc_auc": 0.7843044036157966,
+    "pdo_increment": 20.0,
+    "probability_clipping_count": 0,
+    "probability_roc_auc": 0.7843044036157966,
+    "score_at_odds_100": 620.0,
+    "score_at_odds_50": 600.0
+  },
+  "model_artifact_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "model_version": "xgboost-challenger-1.0.0",
+  "numerical_clipping": "clip probability to [epsilon, 1-epsilon] only for logarithm; retain original probability",
+  "numerical_epsilon": 1e-12,
+  "offset": 487.1228762045055,
+  "pdo": 20,
+  "preprocessing_artifact_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "probability_field": "reported_probability",
+  "probability_source": "selected_model_reported_probability",
+  "regulatory_score": false,
+  "score_base_formula": "offset - factor * shap_base_margin",
+  "score_name": "Project-specific internal risk score",
+  "score_point_decomposition": {
+    "feature_family": {
+      "max_absolute_residual": 0.00012160985602349683,
+      "mean_absolute_residual": 2.1715737710678695e-05,
+      "score_point_decomposition_supported": true
+    },
+    "source_feature": {
+      "max_absolute_residual": 0.00012160985602349683,
+      "mean_absolute_residual": 2.171573771077975e-05,
+      "score_point_decomposition_supported": true
+    },
+    "transformed_feature": {
+      "max_absolute_residual": 0.00012160985602349683,
+      "mean_absolute_residual": 2.1715737710249212e-05,
+      "score_point_decomposition_supported": true
+    }
+  },
+  "score_point_decomposition_supported": true,
+  "score_point_formula": "-factor * shap_margin_contribution",
+  "score_tolerance": 0.001,
+  "score_version": "internal-risk-score-1.0.0",
+  "source_model_artifact_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "source_model_name": "xgboost",
+  "source_model_version": "xgboost-challenger-1.0.0",
+  "split_version": "sorted_id_two_stage_stratified_v1",
+  "technical_threshold": {
+    "business_policy": false,
+    "optimized_in_phase7": false,
+    "probability": 0.21430689096450806,
+    "source": "phase6_train_oof_max_ks_probability_threshold",
+    "technical_reference_score": 524.6086295466075
+  },
+  "test_set_evaluated": false
+}
