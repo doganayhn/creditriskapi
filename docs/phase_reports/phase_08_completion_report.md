@@ -6,7 +6,7 @@ Expose frozen Phase-7 inference through FastAPI V1 and persist audit-safe output
 
 ## 2. Pre-Implementation Repository State
 
-HEAD: `9c54b410820724f38d904fda27673ff4e8ebd69e`; branch: `main`, aligned with `origin/main`. Phase 7 was committed (`9c54b41 feat: add shap explanability and internal risk score`). Working tree was clean. Phases 1–7 were COMPLETED; Phases 8–10 were NOT_STARTED. Phase 8 progressed through IN_PROGRESS to COMPLETED. HEAD remains unchanged.
+HEAD: `9c54b410820724f38d904fda27673ff4e8ebd69e`; branch: `main`, aligned with `origin/main`. Phase 7 was committed (`9c54b41 feat: add shap explanability and internal risk score`). Working tree was clean. Phases 1–7 were COMPLETED; Phases 8–10 were NOT_STARTED. Phase 8 progressed through IN_PROGRESS to COMPLETED. HEAD remained unchanged during the original implementation. The subsequent correction starts from the existing Phase-8 commit; see Section 41.
 
 ## 3. Documentation Reviewed
 
@@ -33,6 +33,8 @@ Local artifacts exist and hashes/cross-manifest identities agree. Application lo
 `create_app` constructs routes without startup side effects. FastAPI lifespan validates settings/contracts, loads frozen objects once, initializes the database and checks readiness. Runtime resides on app.state. HTTP routes delegate inference to an independent service and audit transactions to a repository. Explanation calls serialize access to the shared TreeExplainer; prediction calls do not acquire that explanation lock.
 
 ## 6. Dependencies
+
+Pre-commit consistency verification (2026-09-16): importlib.metadata, pip show and pip index versions all report **httpx2 2.13.0**; pyproject.toml declares `httpx2==2.13.0`. An explicit public-index query also lists 2.13.0. [Public PyPI release](https://pypi.org/project/httpx2/2.13.0/) provides a non-yanked wheel and source distribution. The installed distribution identifies pip as its installer and has no direct_url.json; that metadata alone does not retain the original index URL. Independently downloaded public wheel SHA-256 `fc12720cedf72faa26cca6b4ca394e05c894e7d7933fc45cafe767960804e49a` matches PyPI metadata, and all 35 installed wheel payload/metadata files match byte-for-byte (excluding installation-generated RECORD). Public reproducibility is verified; no private/local-only package or downgrade is required. The dependency declaration is unchanged.
 
 Pinned runtime additions: FastAPI 0.141.1; Uvicorn 0.53.0; SQLAlchemy 2.0.53; Alembic 1.20.0; psycopg[binary] 3.3.5; Pydantic 2.13.5. Development HTTP test client: httpx2 2.13.0. Existing numerical/model dependencies were retained. Verification ran on Python 3.14.6; project metadata still requires Python >=3.11. One transitive Starlette/AnyIO warning remains, described in Section 29.
 
@@ -207,6 +209,17 @@ No TEST probability, SHAP, internal score or model metric was calculated. Requir
 
 ## 28. Tests Executed
 
+Additional commands for the 2026-09-16 consistency verification:
+
+```powershell
+.venv\Scripts\python.exe -c "import importlib.metadata; print(importlib.metadata.version('httpx2'))"
+.venv\Scripts\python.exe -m pip show httpx2
+.venv\Scripts\python.exe -m pip index versions httpx2
+.venv\Scripts\python.exe -m pip index versions httpx2 --index-url https://pypi.org/simple
+```
+
+A Python verification fetched public PyPI JSON and the wheel, checked its SHA-256 and compared installed files. The required editable install, full pytest, pip check, whitespace/status and individual historical-diff commands below were rerun for this correction. Data download and feature preparation commands below belong to the original Phase-8 verification and were not rerun during this correction.
+
 Exact CLI commands executed during implementation/verification (some repeated after fixes):
 
 ```powershell
@@ -246,7 +259,9 @@ Alembic upgrade/downgrade/re-upgrade and offline PostgreSQL SQL generation ran p
 
 ## 29. Test Results
 
-Final full suite: **339 passed, 0 failed, 0 skipped, 1 warning in 59.28 seconds**. This includes 70 Phase-8 tests (55 API/persistence/security cases and 15 runtime cases), plus 269 existing tests. pip check: **No broken requirements found.** git diff --check passed. Download verified the 30,000-row dataset checksum; prepare reproduced finite TRAIN 21,000×103, VALIDATION 4,500×103 and TEST 4,500×103 matrices without predictive TEST evaluation.
+Final consistency-fix verification (2026-09-16): **339 passed, 0 failed, 0 skipped, 1 warning in 65.33 seconds**. Editable installation succeeded; every installed package version remained unchanged. pip check returned **No broken requirements found.** git diff --check passed. The warning remains the same upstream Starlette/AnyIO deprecation. All synthetic real-artifact inference/explanation, authentication, rate-limit and persistence tests passed again. The 133 genuine acceptance criteria remain checked; the PostgreSQL N/A limitation remains explicit.
+
+Original implementation verification: **339 passed, 0 failed, 0 skipped, 1 warning in 59.28 seconds**. This includes 70 Phase-8 tests (55 API/persistence/security cases and 15 runtime cases), plus 269 existing tests. pip check: **No broken requirements found.** git diff --check passed. Download verified the 30,000-row dataset checksum; prepare reproduced finite TRAIN 21,000×103, VALIDATION 4,500×103 and TEST 4,500×103 matrices without predictive TEST evaluation.
 
 An intermediate schema-readiness hardening run produced 2 failures and 42 setup errors because SQLite reflects UUID as CHAR(32). Removing the redundant incompatible length comparison fixed it; focused checks and subsequent full suites passed. An initial HTTP-client deprecation was resolved with httpx2. The final remaining warning is Starlette TestClient use of deprecated `anyio.abc.BlockingPortal`; it recommends `anyio.from_thread.BlockingPortal`. No warning was suppressed.
 
@@ -272,6 +287,8 @@ Raw/interim/processed datasets and model binaries remain ignored. `git ls-files 
 
 ## 35. Historical Integrity Validation
 
+Correction verification: all ten individually requested historical report/experiment diffs were rerun and are EMPTY. A before/after SHA-256 inventory confirmed source code, tests, frozen artifacts and all metadata are byte-identical. The required editable install refreshed ignored packaging egg-info files only; no package versions changed. Selected XGBoost, identity calibration, artifact hashes, synthetic API numeric outputs, persistence policy and authentication/rate-limit behavior remain unchanged. TEST remains sealed; no Docker work or Phase 9 work started.
+
 All seven individual historical phase-report diffs are EMPTY. Baseline manifest, XGBoost manifest and XGBoost search-results diffs are EMPTY. All other existing tracked metadata also remain unchanged; api_manifest.json is the only new metadata artifact. Frozen feature/model/calibration/explanation implementations and historical experiment results were not edited.
 
 ## 36. Known Limitations
@@ -279,6 +296,8 @@ All seven individual historical phase-report diffs are EMPTY. Baseline manifest,
 Single-process in-memory rate limiter; no TLS termination inside the app; no distributed deployment; no external secret manager or multi-client credential management; no full historical request reconstruction because raw inputs are omitted; no production observability stack; live PostgreSQL behavior unverified; TEST evaluation pending; no business lending policy. Real-artifact tests require ignored frozen local artifacts and explicitly skip if absent rather than training replacements. Output audit retention/access and uncertain-commit reconciliation remain operator/future-design concerns.
 
 ## 37. Deviations From Prompt
+
+2026-09-16 correction: no dependency change was necessary; installed/pinned httpx2 2.13.0 is publicly reproducible. Removed the erroneous standalone checked “incomplete” line and corrected the acceptance count from 134 to 133. The legitimate live-PostgreSQL N/A entry is preserved. Only this completion report is changed by this correction; the reviewed implementation remains untouched.
 
 The prompt both prohibits fitting preprocessing and explicitly requires the existing features.prepare CLI, which fits the TRAIN preprocessor. The required reproduction command was executed; it reproduced unchanged preprocessing artifact/metadata identities. This is a verification-command exception to the general no-fit wording, not runtime fitting. Service startup and requests never fit preprocessing or any model. No model was retrained.
 
@@ -308,6 +327,8 @@ git diff --check
 Optional explicit aggregate manifest reproduction: `.venv\Scripts\python.exe -m credit_risk.api.manifest`. The service never regenerates missing artifacts.
 
 ## 41. Git Status
+
+The listing below records the original Phase-8 implementation before the owner checkpoint. Current correction status is recorded afterward.
 
 9 modified files and 26 new files, all unstaged. HEAD remains the Phase-7 commit. Nothing was automatically committed. Phase 9 and Phase 10 remain NOT_STARTED.
 
@@ -349,13 +370,19 @@ Optional explicit aggregate manifest reproduction: `.venv\Scripts\python.exe -m 
 ?? tests/test_service_runtime.py
 ```
 
+Current consistency-fix state (2026-09-16): the repository was clean at existing Phase-8 HEAD `169e5156012a26ef4a83b371d644f071da8849bf` before this correction. That HEAD remains unchanged. Only this report is modified, unstaged; no commit was created by Codex. Phase 9 remains NOT_STARTED.
+
+```text
+ M docs/phase_reports/phase_08_completion_report.md
+```
+
 ## 42. Documentation Status
 
 Created API documentation, persistence documentation, ADR 007 and this report. Updated README, ROADMAP, PHASE_STATUS, CHANGELOG, architecture and model-governance documentation, plus the auditability description in PROJECT_RULES and environment/dependency configuration. Phase 8 is COMPLETED; next phase is Phase 9, not started. Historical reports remain intact. Documentation distinguishes implemented persistence from isolated tests and unavailable live PostgreSQL validation.
 
 ## 43. Acceptance Criteria Checklist
 
-All 134 applicable Section-88 criteria are reproduced below. Live-server validation is separately identified as not performed; it is not silently counted as complete.
+All 133 applicable Section-88 criteria are reproduced below. Live-server validation is separately identified as not performed; it is not silently counted as complete.
 
 - [x] Required project documentation was reviewed.
 - [x] Phase 7 is committed.
@@ -490,7 +517,6 @@ All 134 applicable Section-88 criteria are reproduced below. Live-server validat
 - [x] Phase 8 status is COMPLETED.
 - [x] Phase 9 remains NOT_STARTED.
 - [x] No Git commit was created automatically.
-- [x] incomplete
 
 - [N/A] Live PostgreSQL server migration/write/read verification: environment-dependent; DATABASE_URL unavailable, NOT performed. PostgreSQL dialect/offline SQL and isolated database tests passed as explicitly permitted by the prompt.
 
