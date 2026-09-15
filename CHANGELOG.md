@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Added Phase-9 local Docker Compose with PostgreSQL 17, separate migration, one non-root API worker, read-only artifacts/rootfs and pinned container runtime dependencies.
+- Verified actual PostgreSQL 17.10 migration/schema, synthetic API audit writes, restart persistence, outage/recovery, concurrent requests, rate limiting and log privacy. No ML/API behavior changed; TEST remains sealed.
+- Added aggregate audit/monitoring CLI, frozen VALIDATION output baseline, descriptive score PSI, operational metadata, 30 focused tests, reproducible live integration runner and deployment/operations documentation. Phase 10 remains NOT_STARTED.
 - Added Phase-8 FastAPI V1 with strict financial schemas, startup-only frozen runtime loading, API-key authentication, process-local sliding-window rate limiting, bounded JSON bodies and privacy-aware error/log handling.
 - Added PostgreSQL-targeted SQLAlchemy audit storage and Alembic revision phase8_001. Successful inference requires audit commit; failures roll back and return 503. Raw inputs, secrets and full features/SHAP are not persisted.
 - Added synthetic API/security/migration/frozen-artifact tests, API manifest, API/persistence documentation, ADR 007 and Phase-8 completion report. Live PostgreSQL validation was unavailable; isolated database and PostgreSQL offline-SQL tests passed. Historical reports/metadata remain unchanged; TEST stays sealed and Phase 9 has not started.

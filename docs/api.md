@@ -34,7 +34,7 @@ Provision PostgreSQL and inject DATABASE_URL securely, then run:
 .venv\Scripts\python.exe -m alembic upgrade head
 ```
 
-Initial revision: phase8_001. The API does not migrate or create tables automatically. No live PostgreSQL server was tested in this environment because DATABASE_URL was unavailable. Temporary SQLite repository/migration tests and PostgreSQL dialect/offline migration-SQL tests passed; there is no production SQLite fallback.
+Initial revision: phase8_001. The API does not migrate or create tables automatically. Phase 8 had no live PostgreSQL server; Phase 9 subsequently verified a real PostgreSQL 17.10 Compose deployment. Temporary SQLite repository/migration tests and PostgreSQL dialect/offline migration-SQL tests passed; there is no production SQLite fallback.
 
 # Running the API
 
@@ -45,7 +45,7 @@ Install dependencies, inject environment settings with actual secrets outside Gi
 .venv\Scripts\python.exe -m uvicorn credit_risk.api.main:create_app --factory --host 127.0.0.1 --port 8000 --no-access-log
 ```
 
-The supplied command disables generic access logging so query strings are not recorded by Uvicorn. The application emits its own allowlisted JSON operational logs. No TLS termination, Docker or cloud deployment is introduced. Model/preprocessor artifacts must already exist and match metadata; the API never trains missing replacements.
+The supplied command disables generic access logging so query strings are not recorded by Uvicorn. The application emits its own allowlisted JSON operational logs. No TLS termination or cloud deployment is introduced; local Docker Compose is documented below. Model/preprocessor artifacts must already exist and match metadata; the API never trains missing replacements.
 
 # API Versioning
 
@@ -188,3 +188,8 @@ The API returns probability, score and model diagnostics. No approve/decline/man
 # TEST Set Policy
 
 TEST SET WAS NOT EVALUATED. TEST SET REMAINS SEALED. The runtime operates solely on supplied financial records and frozen artifacts. No TEST probability, SHAP, score or model metric is calculated. Real-artifact API integration uses fabricated records only.
+
+
+# Phase-9 Container Run Path
+
+See [deployment](deployment.md) for the local Compose path. The API contract and model semantics are unchanged. The container runs one worker as UID/GID 10001 with a read-only artifact mount and no raw/processed dataset access. Multiple workers/replicas require replacing the process-local limiter. A separate migration service prepares PostgreSQL; FastAPI never auto-migrates. Actual validation results are recorded in the Phase-9 completion report.

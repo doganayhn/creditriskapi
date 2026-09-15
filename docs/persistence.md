@@ -1,6 +1,6 @@
 # PostgreSQL Target
 
-PostgreSQL through SQLAlchemy 2.0.53 and psycopg 3.3.5 is the production persistence target. DATABASE_URL must use postgresql+psycopg with a host and database. Production never silently falls back to SQLite. No live PostgreSQL integration was run: DATABASE_URL was unavailable in this environment. Isolated tests use temporary SQLite databases; PostgreSQL dialect/driver configuration and generated migration SQL are also checked.
+PostgreSQL through SQLAlchemy 2.0.53 and psycopg 3.3.5 is the production persistence target. DATABASE_URL must use postgresql+psycopg with a host and database. Production never silently falls back to SQLite. Phase 8 had no live PostgreSQL server. Phase 9 subsequently verified PostgreSQL 17.10 through local Compose. Isolated tests use temporary SQLite databases; PostgreSQL dialect/driver configuration and generated migration SQL are also checked.
 
 # SQLAlchemy Architecture
 
@@ -52,4 +52,9 @@ Financial output probabilities, scores and top-k diagnostics remain sensitive ev
 
 # Current Limitations
 
-No live PostgreSQL migration/write/read verification was possible in this environment. It remains an explicitly environment-dependent Phase-9 operational validation item. Temporary SQLite tests cannot establish PostgreSQL concurrency or deployment behavior. No Docker, external secret manager, TLS termination, distributed rate limiting, observability stack or business policy is implemented. TEST remains sealed.
+Phase 9 passed actual PostgreSQL migration/schema inspection, UUID/timezone/index/constraint checks, synthetic predict/explain write/read matching, API/DB restart persistence, controlled outage/recovery and 10 concurrent requests. Temporary SQLite remains the ordinary unit-test dependency. Local Docker is implemented; external secret management, TLS termination, distributed rate limiting, observability infrastructure and business policy remain absent. TEST remains sealed.
+
+
+# Phase-9 Validation
+
+The dedicated creditrisk-phase9 project uses its own named volume and synthetic records only. Existing rows survived API and database restarts. Readiness returned 503 during DB outage; prediction/explanation did not return unaudited success, and recovery passed. Raw financial inputs, secrets and full vectors remain excluded. The API schema/revision and transaction policy were not changed. See [deployment](deployment.md) and the [Phase-9 report](phase_reports/phase_09_completion_report.md).

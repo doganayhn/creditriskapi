@@ -1,6 +1,6 @@
 # Intended architecture and implemented boundary
 
-Implemented now (Phases 1–8): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, raw-margin Tree SHAP, source/family global importance, diagnostic local drivers, continuous internal scores, FastAPI V1, startup-loaded inference, authentication/rate limiting, PostgreSQL audit persistence, migration management, aggregate manifests and tests. TEST remains sealed.
+Implemented foundation (Phases 1–8): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, raw-margin Tree SHAP, source/family global importance, diagnostic local drivers, continuous internal scores, FastAPI V1, startup-loaded inference, authentication/rate limiting, PostgreSQL audit persistence, migration management, aggregate manifests and tests. TEST remains sealed.
 
 ```text
 Official UCI data / ingestion / quality  [Phase 2: implemented]
@@ -112,6 +112,21 @@ Database failure → rollback → HTTP 503 (no successful model response)
 
 The Phase-8 runtime reads tracked manifests and frozen artifacts only; it never opens raw data, split matrices or labels. It cannot call the batch Phase-7 loader. Artifact/explainer loading is startup-scoped and tested with spies. SQLAlchemy sessions are per request; schema creation is explicitly operator-driven through Alembic, never create_all at service startup.
 
-Only outputs, audit identities and optional safe top-k reasons are retained in the database. Raw inputs, secrets and complete transformed/SHAP vectors are excluded. PostgreSQL is required by production configuration; isolated tests inject temporary SQLite connections and validate PostgreSQL migration SQL without a server. A real PostgreSQL run remains unverified because DATABASE_URL was unavailable.
+Only outputs, audit identities and optional safe top-k reasons are retained in the database. Raw inputs, secrets and complete transformed/SHAP vectors are excluded. PostgreSQL is required by production configuration; isolated tests inject temporary SQLite connections and validate PostgreSQL migration SQL without a server. Phase 8 did not verify a live server; Phase 9 subsequently verified PostgreSQL 17.10 migration, schema, inference writes and restart/recovery.
 
-Planned Phase 9: Docker, broader operational tests and deployment hardening. Planned Phase 10: final TEST evaluation and portfolio release. No business lending policy exists.
+Implemented Phase 9: local Docker Compose, live PostgreSQL validation and aggregate model operations. Planned Phase 10: final TEST evaluation and portfolio release. No business lending policy exists.
+
+
+## Phase-9 local container and operations boundary
+
+```text
+Operator -> Docker Compose
+  db: PostgreSQL 17, private network, named audit volume
+  migrate: one-shot Alembic, after DB healthy
+  api: one non-root worker, after migration success
+       read-only rootfs + /tmp tmpfs + read-only frozen artifact mount
+       no dataset partitions in image or mounts
+prediction_events -> read-only audit contract counts -> output aggregates -> score PSI
+```
+
+The Phase-8 request flow and independent identities remain unchanged. Phase 9 adds a reproducible synthetic live-integration runner, output-only operations CLI and a frozen VALIDATION aggregate reference. No raw-feature or outcome/performance monitoring is possible. Live validation evidence and remaining limitations are recorded in the Phase-9 completion report. No Phase 10 work is implemented. See [deployment](deployment.md) and [model operations](model_operations.md).

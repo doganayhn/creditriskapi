@@ -1,0 +1,39 @@
+{
+  "baseline_version": "output-monitoring-baseline-1.0.0",
+  "bin_intervals": "left closed, right open; unbounded outer tails",
+  "binning_variable": "internal_risk_score",
+  "calibration_version": "xgboost-calibration-1.0.0",
+  "expected_bin_proportions": [
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1
+  ],
+  "expected_mean_reported_probability": 0.21956850854390197,
+  "expected_mean_score": 531.9659941618735,
+  "minimum_count": 100,
+  "psi_epsilon": 1e-06,
+  "score_bin_boundaries": [
+    477.5249724409605,
+    507.637937019314,
+    522.4739653125544,
+    531.8603747105851,
+    538.7320205177244,
+    544.9001691771049,
+    551.5482712847397,
+    559.1096052655798,
+    568.3553490422391
+  ],
+  "score_version": "internal-risk-score-1.0.0",
+  "source_aggregate_sha256": "e8f740b5755615719967ea6f855c81dbcfee9663fe5062fbfed62fe40f4369ac",
+  "source_count": 4500,
+  "source_model_version": "xgboost-challenger-1.0.0",
+  "source_population": "validation",
+  "test_set_evaluated": false
+}

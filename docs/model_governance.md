@@ -82,4 +82,11 @@ API requests contain only the 19 financial predictors. The artifact-only runtime
 
 Audit rows include server UUID, timezone-aware UTC timestamp, non-secret API-key ID, canonical outputs and optional top-k diagnostic reasons. Raw financial inputs, secrets, full feature/SHAP arrays, demographics and target labels are not retained. Consequently full historical input reconstruction needs an explicitly authorized future secure retention design. Database write failure rolls back and prevents a successful inference response.
 
-Production target is PostgreSQL; this environment verified isolated persistence/migrations and PostgreSQL SQL generation only, with no configured live database. Process-local rate limiting, shared-SHAP locking and absence of TLS/secret-management/observability infrastructure are explicit limitations. See [API](api.md), [persistence](persistence.md) and [ADR 007](decisions/007-api-and-persistence.md).
+Phase 8 verified isolated persistence/migrations and PostgreSQL SQL generation; Phase 9 subsequently verified live PostgreSQL 17.10 under local Docker Compose. Process-local rate limiting, shared-SHAP locking and absence of TLS/secret-management/observability infrastructure are explicit limitations. See [API](api.md), [persistence](persistence.md) and [ADR 007](decisions/007-api-and-persistence.md).
+
+
+## Phase-9 operational identities and limits
+
+Operations version model-operations-1.0.0 and baseline output-monitoring-baseline-1.0.0 are independent of model, calibration, explanation, score, API/service and Alembic revision. Container runtime versions/digests and actual PostgreSQL validation status are recorded separately in new operations metadata/report; historical scientific and API manifests are immutable.
+
+The aggregate baseline consumes only the existing VALIDATION decile table. No row-level data or TEST scoring is required. PSI is descriptive, uses frozen bins and a small-sample flag, and never triggers retraining or lending actions. Audit failures emit counts rather than offending records. No feature drift, live predictive performance or API failure rate is inferred from retained successful output records. Cloud deployment, external secret management and final TEST evaluation remain unimplemented. See [model operations](model_operations.md).

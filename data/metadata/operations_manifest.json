@@ -1,0 +1,49 @@
+{
+  "api_version": "v1",
+  "api_workers": 1,
+  "artifact_delivery": "read_only_mount",
+  "calibration_version": "xgboost-calibration-1.0.0",
+  "compose_version": "5.0.0-desktop.1",
+  "containerized": true,
+  "customer_level_monitoring_artifacts_exported": false,
+  "database_revision": "phase8_001",
+  "docker_version": "29.1.3",
+  "explainability_version": "xgboost-shap-1.0.0",
+  "model_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "model_version": "xgboost-challenger-1.0.0",
+  "monitoring_baseline_version": "output-monitoring-baseline-1.0.0",
+  "monitoring_metrics_supported": [
+    "event_counts",
+    "version_counts",
+    "probability_statistics",
+    "score_statistics",
+    "latency_quantiles",
+    "output_bins",
+    "score_psi",
+    "audit_contract_counts"
+  ],
+  "operations_version": "model-operations-1.0.0",
+  "postgres_validated": true,
+  "rate_limit_type": "in_process",
+  "score_version": "internal-risk-score-1.0.0",
+  "service_version": "credit-risk-api-1.0.0",
+  "test_set_evaluated": false,
+  "validated_runtime": {
+    "calibration": "identity",
+    "feature_width": 103,
+    "gid": 10001,
+    "model_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+    "postgresql": "17.10",
+    "preprocessor_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+    "python": "3.14.6",
+    "uid": 10001,
+    "versions": {
+      "alembic": "1.20.0",
+      "fastapi": "0.141.1",
+      "psycopg": "3.3.5",
+      "shap": "0.51.0",
+      "sqlalchemy": "2.0.53",
+      "xgboost": "3.2.0"
+    }
+  }
+}

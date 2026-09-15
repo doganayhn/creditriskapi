@@ -12,5 +12,5 @@ Only an explicitly requested phase may be implemented. Each phase ends with test
 | 6 | Probability Calibration & Decision Thresholds | TRAIN OOF calibration selection, frozen probability-quality comparison and TRAIN-derived technical thresholds; no risk bands or business policy; TEST sealed | COMPLETED |
 | 7 | Explainability & Internal Risk Score | Frozen raw-margin Tree SHAP, signed aggregation, diagnostic local drivers and versioned internal score; TRAIN OOF score summary unavailable by owner decision; TEST sealed | COMPLETED |
 | 8 | Production API & Persistence | Versioned FastAPI, startup-loaded frozen inference, API-key auth, process-local rate limiting and PostgreSQL audit persistence; no business policy | COMPLETED |
-| 9 | Testing, Docker & Model Operations | Integration tests, Dockerization, startup loading, concurrency, security and monitoring foundations | NOT_STARTED |
+| 9 | Testing, Docker & Model Operations | Local Docker Compose, real PostgreSQL migration/restart/recovery, concurrency and aggregate output monitoring | COMPLETED |
 | 10 | Final Validation & Portfolio Release | End-to-end validation, model card, final README, architecture review, limitations, demo and release preparation | NOT_STARTED |
