@@ -1,0 +1,32 @@
+{
+  "api_version": "v1",
+  "authentication": "api_key",
+  "business_decision_defined": false,
+  "calibration_method": "identity",
+  "calibration_version": "xgboost-calibration-1.0.0",
+  "database_schema_revision": "phase8_001",
+  "dataset_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "default_requests_per_minute": 60,
+  "endpoints": [
+    "GET /v1/health/live",
+    "GET /v1/health/ready",
+    "GET /v1/model-info",
+    "POST /v1/predict",
+    "POST /v1/explain"
+  ],
+  "explainability_version": "xgboost-shap-1.0.0",
+  "feature_engineering_version": "financial_features_v1",
+  "generated_at": "2026-09-15T09:34:54.775095+00:00",
+  "input_schema_version": "financial-record-1.0.0",
+  "model_artifact_sha256": "2900f0cfe341400daeffeed7b0ef212d0a317113a657a4fcf73c332caec755ef",
+  "persistence_target": "PostgreSQL",
+  "preprocessing_version": "train_median_scale_onehot_v1",
+  "preprocessor_sha256": "e8f6ce776bd44c48871c585c5d472676ad8c418da39c513c1019bf36070ee8b4",
+  "rate_limit_type": "in_process",
+  "raw_inputs_persisted": false,
+  "score_version": "internal-risk-score-1.0.0",
+  "selected_model_name": "xgboost",
+  "selected_model_version": "xgboost-challenger-1.0.0",
+  "service_version": "credit-risk-api-1.0.0",
+  "test_set_evaluated": false
+}

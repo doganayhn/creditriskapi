@@ -1,6 +1,6 @@
 # Intended architecture and implemented boundary
 
-Implemented now (Phases 1–7): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, raw-margin Tree SHAP, source/family global importance, diagnostic local drivers, continuous internal scores, aggregate manifests and tests. TEST remains sealed.
+Implemented now (Phases 1–8): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, raw-margin Tree SHAP, source/family global importance, diagnostic local drivers, continuous internal scores, FastAPI V1, startup-loaded inference, authentication/rate limiting, PostgreSQL audit persistence, migration management, aggregate manifests and tests. TEST remains sealed.
 
 ```text
 Official UCI data / ingestion / quality  [Phase 2: implemented]
@@ -32,7 +32,6 @@ TRAIN engineered inputs → fresh preprocessing inside each CV fold
                         → XGBoost search → selected canonical parameters
 
 PLANNED:
-Phase 8: API / business rules / persistence
 Phase 9: testing / Docker / model operations
 Phase 10: final validation / portfolio release
 ```
@@ -57,7 +56,7 @@ The Phase-4 `modeling/contract.py` adapter verifies committed V1 semantic manife
 
 `calibration.py` verifies both stored models without first scoring validation, creates five-fold TRAIN OOF probabilities using fresh preprocessing and fixed model builders, and performs a separate TRAIN-only calibration-selection CV. `calibrators.py` implements identity, constrained sigmoid and monotonic isotonic using public SciPy/sklearn APIs. Both selected mappings are fitted and frozen before canonical VALIDATION scoring. Non-identity mappings have trusted local content-addressed joblib serialization; actual identity choices are metadata-only.
 
-`calibration_metrics.py` adds quantile reliability/ECE and paired probability-quality intervals. Its four-metric dominance rule selects XGBoost for downstream development. `thresholds.py` derives max-KS only from selected-model TRAIN OOF probabilities and produces a TRAIN grid; the orchestration evaluates the frozen threshold and reference 0.50 on VALIDATION. Five aggregate metadata outputs link model/calibration/data identities. OOF and validation customer probabilities stay in memory. TEST remains sealed; policy, API and persistence remain unimplemented. Phase-7 explanation and score consumption is described below. See [calibration report](calibration_report.md) and [ADR 005](decisions/005-calibration-and-model-selection.md).
+`calibration_metrics.py` adds quantile reliability/ECE and paired probability-quality intervals. Its four-metric dominance rule selects XGBoost for downstream development. `thresholds.py` derives max-KS only from selected-model TRAIN OOF probabilities and produces a TRAIN grid; the orchestration evaluates the frozen threshold and reference 0.50 on VALIDATION. Five aggregate metadata outputs link model/calibration/data identities. OOF and validation customer probabilities stay in memory. TEST remains sealed; business policy remains unimplemented. Phase 8 now implements the API and persistence layer below. Phase-7 explanation and score consumption is described below. See [calibration report](calibration_report.md) and [ADR 005](decisions/005-calibration-and-model-selection.md).
 
 ## Implemented Phase-7 frozen consumption
 
@@ -89,4 +88,30 @@ The shared data adapter now accepts `validation_only=True`, discarding TRAIN as 
 
 `explainability/contract.py` verifies the selected versions, hashes, logistic objective, feature width and sealed-test flags. `shap_explainer.py` uses public TreeExplainer APIs and independently validates margin/probability reconstruction. `aggregation.py` preserves signed totals before computing global importance; `reason_codes.py` ranks source contributions. `score.py` implements the fixed log good:bad odds mapping, inverse, deciles and guarded score points. `local.py` handles in-memory records; `run.py` validates all results before writing five aggregate artifacts. No real row-level outputs or explainer binary are persisted.
 
-The model, calibration, explanation and score have four independent version identities. TRAIN OOF score summaries remain unavailable under the owner's no-retraining decision. API, business policy, database and deployment components remain planned.
+The model, calibration, explanation and score have four independent version identities. TRAIN OOF score summaries remain unavailable under the owner's no-retraining decision. Phase 8 now implements API and database integration below. Business policy and deployment hardening remain planned.
+
+## Implemented Phase-8 API and audit path
+
+```text
+Application lifespan
+  → validate environment and tracked contracts
+  → load trusted preprocessor/model once
+  → construct TreeExplainer/score mapper once
+  → initialize database and verify Alembic schema readiness
+
+Client → FastAPI /v1 → request UUID + authentication + rate limit
+  → bounded JSON body + strict financial schema
+  → HTTP-independent inference service
+  → existing feature engineering → frozen preprocessor → frozen XGBoost
+  → raw margin/probability → identity calibration → reported probability
+  → continuous internal score + optional locked Tree SHAP top-k diagnostics
+  → audit repository → PostgreSQL commit → versioned response
+
+Database failure → rollback → HTTP 503 (no successful model response)
+```
+
+The Phase-8 runtime reads tracked manifests and frozen artifacts only; it never opens raw data, split matrices or labels. It cannot call the batch Phase-7 loader. Artifact/explainer loading is startup-scoped and tested with spies. SQLAlchemy sessions are per request; schema creation is explicitly operator-driven through Alembic, never create_all at service startup.
+
+Only outputs, audit identities and optional safe top-k reasons are retained in the database. Raw inputs, secrets and complete transformed/SHAP vectors are excluded. PostgreSQL is required by production configuration; isolated tests inject temporary SQLite connections and validate PostgreSQL migration SQL without a server. A real PostgreSQL run remains unverified because DATABASE_URL was unavailable.
+
+Planned Phase 9: Docker, broader operational tests and deployment hardening. Planned Phase 10: final TEST evaluation and portfolio release. No business lending policy exists.

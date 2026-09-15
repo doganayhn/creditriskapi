@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Added Phase-8 FastAPI V1 with strict financial schemas, startup-only frozen runtime loading, API-key authentication, process-local sliding-window rate limiting, bounded JSON bodies and privacy-aware error/log handling.
+- Added PostgreSQL-targeted SQLAlchemy audit storage and Alembic revision phase8_001. Successful inference requires audit commit; failures roll back and return 503. Raw inputs, secrets and full features/SHAP are not persisted.
+- Added synthetic API/security/migration/frozen-artifact tests, API manifest, API/persistence documentation, ADR 007 and Phase-8 completion report. Live PostgreSQL validation was unavailable; isolated database and PostgreSQL offline-SQL tests passed. Historical reports/metadata remain unchanged; TEST stays sealed and Phase 9 has not started.
 - Added Phase-7 frozen XGBoost Tree SHAP in raw-margin units, verified 103-feature lineage, signed source/family aggregation and deterministic diagnostic local drivers using SHAP 0.51.0.
 - Added versioned internal score (base 600, good:bad odds 50, PDO 20), inverse/rank validation, guarded additive score points, VALIDATION summary/deciles and the unchanged Phase-6 threshold's technical score equivalent.
 - Added a validation-only shared consumer, five aggregate artifacts, Phase-7 tests, explainability/score documentation, ADR 006 and completion report. TRAIN OOF score statistics remain unavailable under the owner's explicit no-retraining instruction. Historical experiment metadata and reports remain unchanged; TEST stays sealed and Phase 8 has not started.

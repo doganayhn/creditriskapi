@@ -21,7 +21,7 @@ Future experiments record dataset identity/version and checksum where possible, 
 Use explicit experiment identifiers such as `baseline_<UTC timestamp>_<config digest>`, with configuration snapshots and dependency versions. Future artifacts live under `artifacts/<experiment_id>/`; never silently overwrite an experiment. A model version or content digest must identify each serialized model. Phase 1 creates no experiments or model artifacts.
 
 ## Auditability
-Later production phases must identify model, preprocessing, calibration (if applicable), API schema and decision-rule versions, prediction timestamp, and an appropriate input representation subject to privacy/technical constraints. Audit persistence does not exist yet.
+Later production phases must identify model, preprocessing, calibration (if applicable), API schema and decision-rule versions, prediction timestamp, and an appropriate input representation subject to privacy/technical constraints. Phase 8 persists successful inference outputs and independent version identities to a PostgreSQL-targeted audit schema. Raw financial inputs are not retained; complete historical input reconstruction remains unavailable. Business-rule versions remain future work because no lending policy is implemented.
 
 ## No false production claims
 This is educational / portfolio work, not a real bank credit-decision engine. No real lending decision should rely on it. Do not claim regulatory compliance without implemented and verified controls.

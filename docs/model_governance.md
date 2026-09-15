@@ -1,6 +1,6 @@
 # Model governance
 
-Implemented Phase-4–7 model, calibration, explanation and internal-score controls are identified below. Business-policy and deployment controls remain requirements for future phases.
+Implemented Phase-4–8 model, calibration, explanation, internal-score and API audit controls are identified below. Business-policy and deployment controls remain requirements for future phases.
 
 ## Model versioning
 Every deployed/serialized model must have an explicit version or immutable artifact identity; link preprocessing, feature schema and any calibrator to it.
@@ -26,7 +26,7 @@ Operational recommendation rules must be independently versioned from the model,
 Compare models on the same eligible population and comparable splits, recording metrics, configurations, runtime/dependency versions and artifact identity. Record nondeterminism. Assess sensitive attributes and proxies explicitly; this is not a fairness certification.
 
 ## Portfolio disclaimer
-This system is not a regulatory or production lending authority. No real lending decision should rely on this repository. Security, privacy, monitoring and operational validation remain future work.
+This system is not a regulatory or production lending authority. No real lending decision should rely on this repository. Phase 8 adds API authentication, request safeguards and audit-minimization controls; deployment security, retention operations, monitoring and broader operational validation remain future work.
 
 ## Verified V1 data boundary
 UCI 350 is selected under [ADR 001](decisions/001-dataset-selection.md). Experiments must identify the XLS checksum in the dataset manifest and the canonical schema. The label is next-month default payment, not a regulatory or 12-month PD. No event-level scoring dates or multiple calendar scoring cohorts exist in the verified workbook; the Phase-3 stratified random split is not out-of-time validation. Income/employment are absent. [ADR 002](decisions/002-feature-policy-and-split.md) excludes demographics from primary predictors while retaining separate review frames and preserves literal categorical repayment codes without assigning undocumented meanings.
@@ -66,10 +66,20 @@ One temporary weighted model uses the TRAIN class ratio with unchanged selected 
 | Explainability | `xgboost-shap-1.0.0` | Tree SHAP raw margin, path dependent, signed local aggregation |
 | Internal score | `internal-risk-score-1.0.0` | Base 600, good:bad odds 50, PDO 20 |
 
-Future inference/audit records must identify all four independently, alongside preprocessing/feature identity. No API or audit persistence exists yet. Trusted project-local hashes are verified before artifact loading; no arbitrary external object is accepted, and no SHAP explainer binary is required.
+Future inference/audit records must identify all four independently, alongside preprocessing/feature identity. Phase 8 now supplies the independently versioned API/audit boundary below. Trusted project-local hashes are verified before artifact loading; no arbitrary external object is accepted, and no SHAP explainer binary is required.
 
 Only VALIDATION supplies real-data Phase-7 SHAP, scores and decile diagnostics. Source contributions sum signed one-hot values first; global source/family magnitude is computed afterward. Positive default-risk SHAP lowers score points. Additive score decomposition is disabled for non-identity calibration, a non-logistic objective, different explanation units or numerically clipped probability. Raw-margin explanations and probability-to-score mathematics remain separate capabilities; a future non-identity consumer needs explicit versioned integration.
 
 The score is not FICO, regulatory validation, a new predictive model or a business policy. No lending cutoff or risk bands exist. The Phase-6 threshold is read unchanged and converted only to a technical reference score. Diagnostic reason codes describe model behavior, not causality or regulatory adverse-action explanations. Demographic exclusion does not rule out proxies or establish fairness.
 
 The owner explicitly chose to leave TRAIN OOF score statistics unavailable rather than retrain models to recover discarded row-level OOF probabilities. In-sample TRAIN scores are not substitutes. Historical experiment metadata and Phase-1–6 reports remain immutable. See [ADR 006](decisions/006-explainability-and-internal-score.md).
+
+## Implemented Phase-8 inference audit contract
+
+Each successful response follows an audit commit identifying API/input schema, model version and artifact SHA-256, calibration version/method, score version and explanation version where applicable. Service version credit-risk-api-1.0.0 and Alembic revision phase8_001 remain independent. Existing model/calibration/explanation/score identities are loaded from tracked metadata without rewriting historical records.
+
+API requests contain only the 19 financial predictors. The artifact-only runtime loads once at startup, performs no fitting and never reads dataset partitions. Synthetic real-artifact tests verify direct inference and Phase-7 reason agreement. TEST remains sealed. No business action derives from the Phase-6 technical threshold.
+
+Audit rows include server UUID, timezone-aware UTC timestamp, non-secret API-key ID, canonical outputs and optional top-k diagnostic reasons. Raw financial inputs, secrets, full feature/SHAP arrays, demographics and target labels are not retained. Consequently full historical input reconstruction needs an explicitly authorized future secure retention design. Database write failure rolls back and prevents a successful inference response.
+
+Production target is PostgreSQL; this environment verified isolated persistence/migrations and PostgreSQL SQL generation only, with no configured live database. Process-local rate limiting, shared-SHAP locking and absence of TLS/secret-management/observability infrastructure are explicit limitations. See [API](api.md), [persistence](persistence.md) and [ADR 007](decisions/007-api-and-persistence.md).

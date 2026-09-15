@@ -3,10 +3,10 @@
 A portfolio fintech project intended to estimate borrower default risk from information available at scoring time, explain model outputs and eventually expose auditable predictions through a versioned API.
 
 ## Current status
-Phases 1–7 are COMPLETED. Implemented scope includes reproducible ingestion/quality, leakage-safe features, Logistic Regression, XGBoost, TRAIN-only OOF calibration assessment, frozen validation comparison, TRAIN-derived technical thresholds, raw-margin Tree SHAP, aggregate global explanations, diagnostic local drivers and a project-specific internal risk score. Phases 8–10 remain NOT_STARTED. See the [Phase 7 completion report](docs/phase_reports/phase_07_completion_report.md). Historical Phase 1–6 reports remain unchanged. TEST SET REMAINS SEALED.
+Phases 1–8 are COMPLETED. Implemented scope includes reproducible ingestion/quality, leakage-safe features, Logistic Regression, XGBoost, TRAIN-only OOF calibration assessment, frozen validation comparison, TRAIN-derived technical thresholds, raw-margin Tree SHAP, aggregate global explanations, diagnostic local drivers and a project-specific internal risk score. Phase 8 adds FastAPI V1, API-key authentication, process-local rate limiting and a PostgreSQL-targeted SQLAlchemy/Alembic audit layer. Phases 9–10 remain NOT_STARTED. See the [Phase 8 completion report](docs/phase_reports/phase_08_completion_report.md). Historical Phase 1–7 reports remain unchanged. Live PostgreSQL verification was unavailable; isolated persistence/migration and PostgreSQL offline-SQL checks passed. TEST SET REMAINS SEALED.
 
 ## Intended architecture
-Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → TRAIN OOF calibration selection → versioned mapping → reported default probability → validation model comparison → TRAIN-derived technical threshold analysis. These steps are implemented. The frozen XGBoost model now supplies raw-margin SHAP and reported-probability internal scores. Versioned policy, production API, PostgreSQL persistence/audit, authentication, Docker, monitoring, final TEST evaluation and regulatory validation remain unimplemented.
+Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → TRAIN OOF calibration selection → versioned mapping → reported default probability → validation model comparison → TRAIN-derived technical threshold analysis. These steps are implemented. The frozen XGBoost model now supplies raw-margin SHAP and reported-probability internal scores. The versioned API consumes this frozen stack and commits output audit metadata before successful responses. Business policy, Docker deployment, distributed rate limiting, external secret management, observability/model monitoring, final TEST evaluation and regulatory validation remain unimplemented.
 
 ## Development
 Python 3.11 or newer is required. From the repository root:
@@ -17,7 +17,7 @@ python -m venv .venv
 .venv\Scripts\python.exe -m pytest
 ```
 
-On POSIX use `.venv/bin/python` for the last two commands. Runtime dependencies: PyYAML, pandas, xlrd (original XLS reader), scikit-learn 1.8.0, XGBoost 3.2.0 and SHAP 0.51.0. NumPy/SciPy/joblib are used through declared dependencies; HTTP uses the standard library. Development dependency: pytest. Configuration is explicit YAML, not environment-driven; `.env.example` documents this. Configuration loading creates no directories and changes no random generators.
+On POSIX use `.venv/bin/python` for the last two commands. Runtime dependencies: PyYAML, pandas, xlrd (original XLS reader), scikit-learn 1.8.0, XGBoost 3.2.0 SHAP 0.51.0, FastAPI 0.141.1, Uvicorn 0.53.0, SQLAlchemy 2.0.53, Alembic 1.20.0, psycopg 3.3.5 and Pydantic 2.13.5. NumPy/SciPy/joblib are used through declared dependencies; HTTP uses the standard library. Development dependencies: pytest and httpx2 for the current Starlette TestClient. Modeling configuration remains explicit YAML; API runtime secrets/database settings use the environment, documented in `.env.example`, which is not loaded automatically. Configuration loading creates no directories and changes no random generators.
 
 ```python
 from pathlib import Path
@@ -104,6 +104,21 @@ The continuous `internal-risk-score-1.0.0` uses reported probability, base score
 
 TRAIN OOF score statistics are unavailable because row-level OOF probabilities were not retained in Phase 6. The owner explicitly required no retraining; no in-sample TRAIN scores replace them. Five deterministic aggregate metadata files record the actual validation results. See [explainability](docs/explainability_report.md), [internal score](docs/internal_risk_score.md) and [ADR 006](docs/decisions/006-explainability-and-internal-score.md). Existing model/calibration CLIs above reproduce historical experiments and are not prerequisites for this frozen Phase-7 workflow.
 
+## Run the V1 API
+
+The API accepts exactly one 19-field financial record. It returns raw/reported probabilities, the continuous internal score and optional top-k raw-margin SHAP diagnostics. Authentication uses X-API-Key; health endpoints are public. The default process-local rate limit is 60 authenticated inference attempts per minute, and the JSON body limit is 64 KiB. No lending decision or risk band is returned.
+
+Install dependencies, inject the environment variables documented in `.env.example` with actual secrets outside Git, and provision PostgreSQL before running:
+
+```powershell
+.venv\Scripts\python.exe -m alembic upgrade head
+.venv\Scripts\python.exe -m uvicorn credit_risk.api.main:create_app --factory --host 127.0.0.1 --port 8000 --no-access-log
+```
+
+Lifespan verifies/loads model, preprocessor, SHAP and score state once and validates database migration readiness. Requests never fit models or open dataset partitions. Successful results require a committed audit row; failures roll back and return 503. Raw financial input, secrets and full features/SHAP are not persisted. Model output and safe top-k audit data remain sensitive and need operator retention/access controls.
+
+See [API documentation](docs/api.md), [persistence](docs/persistence.md) and [ADR 007](docs/decisions/007-api-and-persistence.md). Database schema revision is phase8_001; service version is credit-risk-api-1.0.0. No Docker files, live deployment or business rules are added.
+
 ## Ten-phase plan
 1. Foundation and data contract
 2. Ingestion and data quality
@@ -119,9 +134,9 @@ TRAIN OOF score statistics are unavailable because row-level OOF probabilities w
 See [ROADMAP.md](ROADMAP.md) for scope/status and [AGENTS.md](AGENTS.md) for instruction precedence. Each phase follows phase prompt → Codex implementation → tests → phase completion report → technical review by the project owner. If issues exist, apply fixes and verify them; if no issues remain, the project owner creates the Git commit. The next phase starts only when explicitly requested. Codex must not automatically commit or start the next phase.
 
 ## Repository layout
-`src/credit_risk/config.py` handles shared configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements training, fold-safe search, contract verification, calibration, comparison, reliability, technical thresholds and local serialization. Tests use synthetic data and mocks. Aggregate metadata is intended for tracking under `data/metadata/`; customer data, local preprocessing/model/calibrator artifacts, secrets and environments are ignored. `explainability/` implements frozen-contract checks, public Tree SHAP, signed aggregation, diagnostic local drivers, the score mapping and aggregate publication. Serving remains future work.
+`src/credit_risk/config.py` handles shared configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements training, fold-safe search, contract verification, calibration, comparison, reliability, technical thresholds and local serialization. Tests use synthetic data and mocks. Aggregate metadata is intended for tracking under `data/metadata/`; customer data, local preprocessing/model/calibrator artifacts, secrets and environments are ignored. `explainability/` implements frozen-contract checks, public Tree SHAP, signed aggregation, diagnostic local drivers, the score mapping and aggregate publication. `service/` loads frozen artifacts without dataset access; `api/` implements HTTP/security/lifespan and `persistence/` owns SQLAlchemy audit transactions. Audit rows live in the configured database, not tracked files.
 
 ## Limitations
-The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). Undocumented codes and negative bills remain; no regulatory default threshold or event-level scoring dates are supplied. Within-row history is not out-of-time validation. Demographic exclusion does not remove proxies or prove fairness. Related features affect both coefficients and gain; neither is causal. Only TRAIN/CV/VALIDATION performance has been evaluated. The bounded search, calibration selection and paired bootstrap do not establish deployment generalization. Identity selection does not turn raw probability into regulatory PD. VALIDATION is a reused development set; TEST remains reserved. SHAP remains noncausal and correlated-feature attribution depends on the declared perturbation semantics. The internal score is a monotonic representation, not another predictive model. TEST evaluation, API, PostgreSQL, Docker and model operations are not implemented.
+The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). Undocumented codes and negative bills remain; no regulatory default threshold or event-level scoring dates are supplied. Within-row history is not out-of-time validation. Demographic exclusion does not remove proxies or prove fairness. Related features affect both coefficients and gain; neither is causal. Only TRAIN/CV/VALIDATION performance has been evaluated. The bounded search, calibration selection and paired bootstrap do not establish deployment generalization. Identity selection does not turn raw probability into regulatory PD. VALIDATION is a reused development set; TEST remains reserved. SHAP remains noncausal and correlated-feature attribution depends on the declared perturbation semantics. The internal score is a monotonic representation, not another predictive model. TEST evaluation, Docker deployment, distributed rate limiting, secret management, full observability and model operations are not implemented. No live PostgreSQL server was verified here; temporary SQLite is strictly an isolated test dependency, never a production fallback.
 
 This repository is educational / portfolio work, not a regulatory or production lending authority. Outputs are not real lending decisions; no real lending decision should rely on this project.

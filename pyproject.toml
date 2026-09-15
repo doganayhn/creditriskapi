@@ -9,10 +9,10 @@ version = "0.0.0"
 description = "Portfolio credit-risk system: data quality and leakage-safe dataset preparation"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["PyYAML==6.0.3", "pandas==2.3.3", "xlrd==2.0.2", "scikit-learn==1.8.0", "xgboost==3.2.0", "shap==0.51.0"]
+dependencies = ["PyYAML==6.0.3", "pandas==2.3.3", "xlrd==2.0.2", "scikit-learn==1.8.0", "xgboost==3.2.0", "shap==0.51.0", "fastapi==0.141.1", "uvicorn==0.53.0", "SQLAlchemy==2.0.53", "alembic==1.20.0", "psycopg[binary]==3.3.5", "pydantic==2.13.5"]
 
 [project.optional-dependencies]
-dev = ["pytest==9.0.2"]
+dev = ["pytest==9.0.2", "httpx2==2.13.0"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
