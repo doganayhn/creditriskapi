@@ -1,6 +1,15 @@
 # Changelog
 
 ## Unreleased
+
+### Phase 10 — final evaluation and release preparation
+
+- Formally unsealed the existing 4,500-row TEST after frozen-contract prechecks and an identity snapshot; evaluated only the existing Logistic/XGBoost artifacts without fitting or tuning.
+- Published aggregate final holdout metrics, seeded paired bootstrap, reliability, frozen technical-threshold diagnostics, internal score/deciles/lift, residual-only SHAP checks and descriptive demographic review diagnostics.
+- Added immutable final publication/reproduction, release identity `credit-risk-system-1.0.0`, model card, final evaluation report, limitations, portfolio documentation and README with actual TEST results.
+- Preserved historical reports, scientific/API/operations metadata and frozen runtime. All ten core phases are complete subject to the Phase-10 completion report; no commit, tag or subsequent phase was started.
+
+### Historical implementation entries
 - Added Phase-9 local Docker Compose with PostgreSQL 17, separate migration, one non-root API worker, read-only artifacts/rootfs and pinned container runtime dependencies.
 - Verified actual PostgreSQL 17.10 migration/schema, synthetic API audit writes, restart persistence, outage/recovery, concurrent requests, rate limiting and log privacy. No ML/API behavior changed; TEST remains sealed.
 - Added aggregate audit/monitoring CLI, frozen VALIDATION output baseline, descriptive score PSI, operational metadata, 30 focused tests, reproducible live integration runner and deployment/operations documentation. Phase 10 remains NOT_STARTED.

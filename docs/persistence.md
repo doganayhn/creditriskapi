@@ -58,3 +58,7 @@ Phase 9 passed actual PostgreSQL migration/schema inspection, UUID/timezone/inde
 # Phase-9 Validation
 
 The dedicated creditrisk-phase9 project uses its own named volume and synthetic records only. Existing rows survived API and database restarts. Readiness returned 503 during DB outage; prediction/explanation did not return unaudited success, and recovery passed. Raw financial inputs, secrets and full vectors remain excluded. The API schema/revision and transaction policy were not changed. See [deployment](deployment.md) and the [Phase-9 report](phase_reports/phase_09_completion_report.md).
+
+## Phase-10 lifecycle clarification
+
+The separate final evaluator has now evaluated the frozen TEST holdout and published aggregate results. Earlier sealed-TEST statements above describe the Phase-8/9 implementation boundary: this API/persistence/deployment/operations path still does not load or evaluate dataset TEST records. Its historical metadata and audit false TEST flags remain unchanged. No TEST record is used in API demonstrations, and the monitoring baseline remains VALIDATION-only. See [final evaluation](final_evaluation_report.md) and [governance](model_governance.md).

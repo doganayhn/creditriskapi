@@ -1,6 +1,6 @@
 # Model governance
 
-Implemented Phase-4–8 model, calibration, explanation, internal-score and API audit controls are identified below. Business-policy and deployment controls remain requirements for future phases.
+Implemented development, inference, local operations and final evaluation controls are identified below. No business lending policy or regulatory validation is implemented. Historical phase sections retain their original scope.
 
 ## Model versioning
 Every deployed/serialized model must have an explicit version or immutable artifact identity; link preprocessing, feature schema and any calibrator to it.
@@ -89,4 +89,18 @@ Phase 8 verified isolated persistence/migrations and PostgreSQL SQL generation; 
 
 Operations version model-operations-1.0.0 and baseline output-monitoring-baseline-1.0.0 are independent of model, calibration, explanation, score, API/service and Alembic revision. Container runtime versions/digests and actual PostgreSQL validation status are recorded separately in new operations metadata/report; historical scientific and API manifests are immutable.
 
-The aggregate baseline consumes only the existing VALIDATION decile table. No row-level data or TEST scoring is required. PSI is descriptive, uses frozen bins and a small-sample flag, and never triggers retraining or lending actions. Audit failures emit counts rather than offending records. No feature drift, live predictive performance or API failure rate is inferred from retained successful output records. Cloud deployment, external secret management and final TEST evaluation remain unimplemented. See [model operations](model_operations.md).
+The aggregate baseline consumes only the existing VALIDATION decile table. No row-level data or TEST scoring is required. PSI is descriptive, uses frozen bins and a small-sample flag, and never triggers retraining or lending actions. Audit failures emit counts rather than offending records. No feature drift, live predictive performance or API failure rate is inferred from retained successful output records. Cloud deployment and external secret management remain unimplemented. Final TEST evaluation is separately governed below. See [model operations](model_operations.md).
+
+## Final evaluation lifecycle
+
+DEVELOPMENT → VALIDATION → model selection → calibration decision → explainability/score → API/operations → frozen TEST unsealing → final release.
+
+This is a governance outline; in the actual Phase-6 implementation, TRAIN OOF calibration mappings were frozen before the reported-VALIDATION downstream comparison. XGBoost selection, identity calibration, score/SHAP parameters and the TRAIN-derived technical threshold all predate TEST unsealing.
+
+Phase 10 evaluates the existing 4,500-row TEST with frozen artifacts only. TEST results did not feed back into model development. Neither weaker metrics nor subgroup results authorize retraining, tuning, recalibration, reselection or a new threshold. A prediction-affecting issue discovered after unsealing must stop work for owner review.
+
+`final_pre_unseal_snapshot.json` records identities and diagnostic choices before the first probability. New `final_test_*` artifacts contain aggregates only; `final_release_manifest.json` defines `credit-risk-system-1.0.0` independently of model/service/operations identities. Reproduction verifies identical content and retains timestamps. Identity/result changes and incomplete publication fail closed. If an initial write is interrupted, owner investigation is required; no automatic overwrite/recovery is performed.
+
+Historical Phase 1–9 reports/scientific/API/operations manifests are immutable. Their false TEST flags describe their own historical or runtime scope, not the current lifecycle of the final evaluator. The API still never loads TEST; its audit false flag is unchanged. TEST is not a monitoring reference. Only the final-evaluation/release artifacts record TEST evaluation as true.
+
+Final metrics, bootstrap and subgroup comparisons are descriptive and conditional on the fixed historical sample. ECE and subgroup differences do not trigger changes or fairness certification. All ten phases end with owner technical review; the owner decides whether to commit/tag/release. No automatic commit, tag or further phase follows. Repository licensing remains unspecified pending owner choice.

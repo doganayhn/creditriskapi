@@ -1,6 +1,6 @@
-# Intended architecture and implemented boundary
+# Final architecture and implemented boundary
 
-Implemented foundation (Phases 1–8): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, raw-margin Tree SHAP, source/family global importance, diagnostic local drivers, continuous internal scores, FastAPI V1, startup-loaded inference, authentication/rate limiting, PostgreSQL audit persistence, migration management, aggregate manifests and tests. TEST remains sealed.
+Historical foundation (Phases 1–8): project rules, configuration, official UCI ingestion/quality, raw identity checks, canonical schema, stratified splitting, financial features, train-only preprocessing, Logistic Regression, XGBoost, TRAIN OOF calibration selection, reported probabilities, validation comparison, TRAIN-derived technical thresholds, coefficient/gain diagnostics, raw-margin Tree SHAP, source/family global importance, diagnostic local drivers, continuous internal scores, FastAPI V1, startup-loaded inference, authentication/rate limiting, PostgreSQL audit persistence, migration management, aggregate manifests and tests. TEST remained sealed through Phase 9.
 
 ```text
 Official UCI data / ingestion / quality  [Phase 2: implemented]
@@ -31,12 +31,12 @@ TRAIN-only preprocessing                [Phase 3: implemented]
 TRAIN engineered inputs → fresh preprocessing inside each CV fold
                         → XGBoost search → selected canonical parameters
 
-PLANNED:
-Phase 9: testing / Docker / model operations
-Phase 10: final validation / portfolio release
+IMPLEMENTED:
+Phase 9: local Docker / PostgreSQL / model operations
+Phase 10: separate frozen TEST evaluation / portfolio release
 ```
 
-The flow is conceptual: explainability also consumes the underlying model and transformed features; it does not automatically decompose calibrated PD. Training, calibration and policy retain independent identities. Operational controls arrive in Phase 9; final validation in Phase 10.
+The flow is conceptual: explainability also consumes the underlying model and transformed features; it does not automatically decompose calibrated PD. Training, calibration and policy retain independent identities. Operational controls were added in Phase 9; final holdout validation is isolated in Phase 10.
 
 Use a src-layout Python package. Configuration receives an explicit project root and reads two fixed YAML files; no import-time I/O or environment discovery. `data/source.py` fixes the verified V1 identity/URL/hash; `download.py` acquires only the official archive and extracts its single XLS member unchanged; `load.py` validates the two header rows and numeric cells; `schema.py` holds immutable column definitions and validation; `quality.py` writes aggregate descriptive metadata. Paths come from config; CLI `--project-root` supports invocation outside the repository.
 
@@ -114,7 +114,7 @@ The Phase-8 runtime reads tracked manifests and frozen artifacts only; it never 
 
 Only outputs, audit identities and optional safe top-k reasons are retained in the database. Raw inputs, secrets and complete transformed/SHAP vectors are excluded. PostgreSQL is required by production configuration; isolated tests inject temporary SQLite connections and validate PostgreSQL migration SQL without a server. Phase 8 did not verify a live server; Phase 9 subsequently verified PostgreSQL 17.10 migration, schema, inference writes and restart/recovery.
 
-Implemented Phase 9: local Docker Compose, live PostgreSQL validation and aggregate model operations. Planned Phase 10: final TEST evaluation and portfolio release. No business lending policy exists.
+Implemented Phase 9: local Docker Compose, live PostgreSQL validation and aggregate model operations. Implemented Phase 10: frozen final TEST evaluation and portfolio release preparation. No business lending policy exists.
 
 
 ## Phase-9 local container and operations boundary
@@ -129,4 +129,12 @@ Operator -> Docker Compose
 prediction_events -> read-only audit contract counts -> output aggregates -> score PSI
 ```
 
-The Phase-8 request flow and independent identities remain unchanged. Phase 9 adds a reproducible synthetic live-integration runner, output-only operations CLI and a frozen VALIDATION aggregate reference. No raw-feature or outcome/performance monitoring is possible. Live validation evidence and remaining limitations are recorded in the Phase-9 completion report. No Phase 10 work is implemented. See [deployment](deployment.md) and [model operations](model_operations.md).
+The Phase-8 request flow and independent identities remain unchanged. Phase 9 adds a reproducible synthetic live-integration runner, output-only operations CLI and a frozen VALIDATION aggregate reference. No raw-feature or outcome/performance monitoring is possible. Live validation evidence and remaining limitations are recorded in the Phase-9 completion report. Phase 10 subsequently added the separate evaluation boundary below. See [deployment](deployment.md) and [model operations](model_operations.md).
+
+## Phase-10 final holdout boundary
+
+`evaluation/final.py` consumes the unchanged frozen runtime plus the Logistic artifact. Before predicting, it validates hashes/contracts and records `final_pre_unseal_snapshot.json`, including exact source/configuration identity and a fixed diagnostic policy. It reconstructs the existing Phase-3 TEST, discards TRAIN/VALIDATION immediately, transforms with the TRAIN-fitted preprocessor and never fits anything.
+
+The evaluator computes both models' metrics, seeded paired bootstrap, Phase-6 reliability/ECE, the frozen TRAIN OOF threshold, score summaries/deciles/lift, aligned demographic review aggregates and residual-only SHAP checks. Customer arrays remain in memory. New final metadata and a deterministic evaluation report are published without touching historical manifests. Existing publication must match byte-for-byte; partial or changed publication fails rather than being repaired silently.
+
+TEST was predictively sealed through Phases 1–9 and evaluated only at Phase 10. It is not an API input source or monitoring baseline. Historical false TEST flags preserve original experiment provenance; serving/audit/operations false flags retain their no-dataset-evaluation meaning. Only the separate final evaluation/release metadata records true. The frozen runtime, API and persistence architecture are unchanged. No TEST results feed back into development.

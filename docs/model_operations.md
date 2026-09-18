@@ -60,3 +60,7 @@ TEST SET WAS NOT EVALUATED. TEST SET REMAINS SEALED. No dataset partitions are l
 # Limitations
 
 Single local deployment; no monitoring server, retention automation, input telemetry, outcomes, distributed limiter or external secret manager. Multiple requests from one synthetic input do not form a representative population. See the Phase-9 report for actual integration evidence and limitations.
+
+## Phase-10 lifecycle clarification
+
+The separate final evaluator has now evaluated the frozen TEST holdout and published aggregate results. Earlier sealed-TEST statements above describe the Phase-8/9 implementation boundary: this API/persistence/deployment/operations path still does not load or evaluate dataset TEST records. Its historical metadata and audit false TEST flags remain unchanged. No TEST record is used in API demonstrations, and the monitoring baseline remains VALIDATION-only. See [final evaluation](final_evaluation_report.md) and [governance](model_governance.md).

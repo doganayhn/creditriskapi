@@ -1,142 +1,154 @@
 # Credit Risk Scoring & Explainability System
 
-A portfolio fintech project intended to estimate borrower default risk from information available at scoring time, explain model outputs and eventually expose auditable predictions through a versioned API.
+A portfolio credit-risk ML system with leakage-safe development, frozen holdout evaluation, raw-margin SHAP, an internal risk score and an auditable FastAPI service. It uses historical UCI Taiwan credit-card data to estimate **default payment next month**. The ten-phase core project is complete; `credit-risk-system-1.0.0` is prepared for owner review and release.
 
-## Current status
-Phases 1–9 are COMPLETED. The frozen risk-model API now runs in local Docker Compose with PostgreSQL 17, a separate Alembic migration service, one non-root API worker and read-only artifacts. Real PostgreSQL migration/write/read, restart, outage recovery, concurrency and privacy validation passed. Operations provide audit contract counts, aggregate outputs and descriptive score-distribution PSI against a frozen VALIDATION reference. See the [Phase 9 completion report](docs/phase_reports/phase_09_completion_report.md), [deployment guide](docs/deployment.md) and [model operations](docs/model_operations.md). Phase 10 remains NOT_STARTED. TEST SET REMAINS SEALED.
+## What This Project Demonstrates
 
-## Intended architecture
-Public dataset → validation → leakage-safe preprocessing/features → baseline/challenger → TRAIN OOF calibration selection → versioned mapping → reported default probability → validation model comparison → TRAIN-derived technical threshold analysis. These steps are implemented. The frozen XGBoost model now supplies raw-margin SHAP and reported-probability internal scores. The versioned API consumes this frozen stack and commits output audit metadata before successful responses. Business policy, Docker deployment, distributed rate limiting, external secret management, observability/model monitoring, final TEST evaluation and regulatory validation remain unimplemented.
+Reproducible data contracts, TRAIN-only model development, independent component identities, honest probability/explanation semantics, privacy-minimized PostgreSQL persistence, local container deployment and aggregate monitoring. No automated lending decision is implemented.
 
-## Development
-Python 3.11 or newer is required. From the repository root:
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Public UCI dataset] --> B[Data contract and quality]
+    B --> C[Deterministic TRAIN / VALIDATION / TEST split]
+    C --> D[Financial features and TRAIN-fitted preprocessing]
+    D --> E[Logistic baseline and XGBoost challenger]
+    E --> F[TRAIN calibration analysis and VALIDATION selection]
+    F --> G[Frozen XGBoost with identity calibration]
+    G --> H[Raw-margin SHAP and internal score]
+    H --> I[FastAPI with authentication and rate limiting]
+    I --> J[PostgreSQL output audit]
+    J --> K[Local Docker Compose and aggregate monitoring]
+    C --> L[Sealed TEST until Phase 10]
+    G --> M[Final frozen holdout evaluation]
+    L --> M
+    M --> N[Aggregate results and model card]
+```
+
+## Modeling Pipeline
+
+30,000 records → seeded stratified TRAIN 21,000 / VALIDATION 4,500 / TEST 4,500. Nineteen financial predictors plus 26 engineered features become 103 TRAIN-fitted transformed columns. IDs, target and demographics are excluded from inference. Logistic is the baseline; XGBoost uses fold-local TRAIN search. TRAIN OOF calibration analysis selected identity for both; VALIDATION selected XGBoost in Phase 6. TEST stayed sealed until Phase 10. No retraining, calibration change or model reselection followed TEST results.
+
+## Final Holdout Performance
+
+| Metric | Logistic TEST | XGBoost TEST |
+| --- | --- | --- |
+| average_precision | 0.52981208 | 0.55493342 |
+| brier_score | 0.13815888 | 0.13517626 |
+| ece | 0.013705673 | 0.018104312 |
+| gini | 0.5206425 | 0.56029254 |
+| ks | 0.40494512 | 0.43652693 |
+| log_loss | 0.44034703 | 0.43003453 |
+| mean_predicted_probability | 0.22051946 | 0.22103783 |
+| observed_positive_rate | 0.22133333 | 0.22133333 |
+| roc_auc | 0.76032125 | 0.78014627 |
+
+TEST prevalence: 996 / 4,500 = 22.1333%. XGBoost 95% AUC CI: [0.762707, 0.796668], using 1,000 paired row-bootstrap replicates, seed 42. Logistic has lower TEST ECE; XGBoost has better discrimination and Brier/log loss on this sample. XGBoost remains selected by the earlier development decision.
+
+XGBoost TEST−VALIDATION differences: AUC −0.004158, AP −0.001279, Brier −0.000109 and log loss +0.001208. These small observed differences are consistent with similar generalization behavior, subject to sampling uncertainty; they do not establish absence of overfitting. [Full evaluation and paired intervals](docs/final_evaluation_report.md).
+
+## Explainability
+
+Tree SHAP explains the frozen XGBoost **raw margin**, with signed source/family aggregation. It is noncausal and does not add directly to probability. Global interpretation is VALIDATION-based. Phase 10 publishes only aggregate residual checks from a predeclared 32-row TEST sample. [Explainability](docs/explainability_report.md).
+
+## Internal Risk Score
+
+Base score 600 at good:bad odds 50:1; PDO 20. Higher score means lower modeled risk. It is an internal probability transformation, not FICO, risk bands or a lending cutoff. [Score contract](docs/internal_risk_score.md).
+
+## API
+
+`GET /v1/health/live`, `GET /v1/health/ready`, authenticated `GET /v1/model-info`, `POST /v1/predict` and `POST /v1/explain`. Frozen startup-loaded artifacts, API-key authentication, process-local rate limiting and mandatory PostgreSQL output audit. No raw inputs, secrets or full feature/SHAP vectors are persisted. [API](docs/api.md) · [Persistence](docs/persistence.md).
+
+## Quick Start with Docker
+
+Requires Docker Linux containers and **trusted existing frozen model/preprocessor artifacts** at manifest-declared paths under ignored `artifacts/`. Binaries and datasets are not distributed in the repository/image; missing artifacts fail explicitly. The API does not need the raw dataset.
+
+```powershell
+Copy-Item .env.example .env
+# Replace credential placeholders locally with random secrets; never commit .env.
+docker compose config --quiet
+docker compose build
+docker compose up -d db
+docker compose run --rm migrate
+docker compose up -d api
+```
+
+One non-root worker; read-only artifacts; PostgreSQL 17; Alembic `phase8_001`. Use the [deployment guide](docs/deployment.md) for credentials, artifact requirements, healthchecks, stopping services and limitations. No cloud deployment or TLS termination is supplied.
+
+## Example API Request
+
+Fabricated input only; no TEST record. Supply the same API secret used in the local deployment through the environment.
+
+```powershell
+$financial = @{ credit_limit = 200000 }
+foreach ($month in @('09','08','07','06','05','04')) {
+    $financial["repayment_status_2005_$month"] = -1
+    $financial["bill_amount_2005_$month"] = 20000
+    $financial["payment_amount_2005_$month"] = 20000
+}
+$body = $financial | ConvertTo-Json
+Invoke-RestMethod -Uri http://127.0.0.1:8000/v1/predict -Method Post `
+    -ContentType application/json -Headers @{ 'X-API-Key' = $env:CREDIT_RISK_API_KEY } -Body $body
+```
+
+The response contains probability, score and version identities, not approve/decline or a credit limit.
+
+## Model Operations
+
+```powershell
+docker compose exec -T api python -m credit_risk.ops.run audit --hours 24
+docker compose exec -T api python -m credit_risk.ops.run summary --hours 24 --minimum-count 100
+```
+
+Aggregate contract checks and output-distribution PSI against a frozen VALIDATION reference. No feature drift, realized-outcome performance monitoring or automatic retraining. [Operations](docs/model_operations.md).
+
+## Testing
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\python.exe -m pip install -e ".[dev]"
 .venv\Scripts\python.exe -m pytest
+.venv\Scripts\python.exe -m pip check
 ```
 
-On POSIX use `.venv/bin/python` for the last two commands. Runtime dependencies: PyYAML, pandas, xlrd (original XLS reader), scikit-learn 1.8.0, XGBoost 3.2.0 SHAP 0.51.0, FastAPI 0.141.1, Uvicorn 0.53.0, SQLAlchemy 2.0.53, Alembic 1.20.0, psycopg 3.3.5 and Pydantic 2.13.5. NumPy/SciPy/joblib are used through declared dependencies; HTTP uses the standard library. Development dependencies: pytest and httpx2 for the current Starlette TestClient. Modeling configuration remains explicit YAML; API runtime secrets/database settings use the environment, documented in `.env.example`, which is not loaded automatically. Configuration loading creates no directories and changes no random generators.
+On POSIX use `.venv/bin/python`. Frozen numerical artifacts require the manifest-pinned runtime versions (verified on Python 3.14.6), beyond the package's declared Python 3.11+ minimum. Ordinary tests do not require Docker. Real-artifact tests explicitly skip when local prerequisites are absent; they do not train replacements or automatically unseal unpublished TEST. An explicit synthetic Docker/PostgreSQL integration runner is documented in the deployment guide.
 
-```python
-from pathlib import Path
-from credit_risk.config import load_config
+## Repository Structure
 
-config = load_config(Path.cwd())  # Explicit repository root
-print(config.random_seed, config.paths.raw, config.target_column)
+```text
+configs/                  versioned development and inference contracts
+src/credit_risk/
+  data/ features/         ingestion, schema, split, financial preprocessing
+  modeling/               historical development and immutable experiments
+  explainability/         raw-margin SHAP and internal score
+  service/ api/           frozen runtime and versioned HTTP interface
+  persistence/ ops/       PostgreSQL audit and aggregate operations
+  evaluation/             no-fit final TEST evaluation and publication guard
+data/metadata/            aggregate contracts, results and release identity
+docs/                    model card, methodology, operations, phase reports
+tests/                   synthetic and explicit real-artifact regression
+scripts/                  synthetic live Compose verification
 ```
 
-`configs/base.yaml` owns the centralized seed, validated 70/15/15 split fractions and relative data/artifact/metadata paths. `configs/experiment.yaml` owns the experiment name and target, now `default_next_month`. Both files are mandatory; unknown/missing keys and invalid values fail explicitly. Paths resolve from the supplied root, independent of the working directory. Configurations remain external to the package; wheel users must supply the configuration directory in their project root.
+## Reproducibility
 
-## Acquire and profile the official dataset
+Supply trusted frozen artifacts and the pinned raw workbook separately; hashes are in tracked manifests. Source data acquisition: `python -m credit_risk.data.download`. This checks/reuses the pinned official bytes. Do not run historical training commands to reproduce the final evaluation.
 
 ```powershell
-.venv\Scripts\python.exe -m credit_risk.data.download
-.venv\Scripts\python.exe -m credit_risk.data.quality
+.venv\Scripts\python.exe -m credit_risk.evaluation.final --verify-existing
 ```
 
-Both commands accept `--project-root PATH`; by default the CLI uses the current directory as the root. Download requires HTTPS access to UCI and a filesystem supporting hard links for atomic no-overwrite publication. It reuses a matching file offline and fails on a changed checksum, unexpected workbook schema or invalid target. Do not manually edit the raw XLS. The checksum pins the bytes verified from UCI, not a publisher-signed version. A different official version requires investigation and an explicit update.
-
-The original workbook stays ignored under `data/raw/`. The manifest and quality summary under `data/metadata/` contain only aggregate/schema information and are intended for Git. Profiling does not download anything, change raw values, fit preprocessing or produce a modeled dataset. Offline tests use mocks and a four-row synthetic XLS fixture with no live network. An additional Phase-7 integration test checks the frozen real model on VALIDATION when trusted ignored data/model/preprocessor artifacts are present; otherwise that test explicitly skips.
-
-See the [dataset card](docs/dataset_card.md), [quality report](docs/data_quality_report.md), [physical contract](docs/data_contract.md) and [selection ADR](docs/decisions/001-dataset-selection.md) for attribution, target meaning, observed issues and traceability.
-
-## Prepare modeling data
-
-```powershell
-.venv\Scripts\python.exe -m credit_risk.features.prepare
-```
-
-The command verifies raw/manifest identity, sorts by customer ID, creates a seeded stratified random 70/15/15 split, engineers 26 financial features and fits preprocessing only on train. ID, target and demographics are excluded from primary predictors; ID/demographics remain separately available for review. Repayment codes stay literal categories, including unresolved -2/0.
-
-Real results: train 21,000 × 103; validation 4,500 × 103; test 4,500 × 103. All matrices are finite. The 103 columns comprise 39 numeric features and 64 train-learned one-hot columns from six categorical fields. This is not an out-of-time split. The test partition is reserved for future final evaluation.
-
-The command writes aggregate split/feature/preprocessing manifests under configured metadata and a trusted local fitted preprocessor under ignored artifacts/preprocessing. It validates serialization on training data. Customer matrices/targets/review frames are available through `prepare_dataset` in memory; none are exported to tracked paths. Repeated execution preserves materially identical metadata and does not rewrite unchanged files. It accepts `--project-root PATH`.
-
-See [feature engineering](docs/feature_engineering.md), [modeling dataset contract](docs/modeling_dataset.md) and [ADR 002](docs/decisions/002-feature-policy-and-split.md).
-
-## Run the fixed baseline
-
-```powershell
-.venv\Scripts\python.exe -m credit_risk.modeling.baseline
-```
-
-The CLI accepts `--project-root PATH`, verifies the Phase-3 V1 contracts and trusted local preprocessor, fits one L2 LogisticRegression on TRAIN only, and evaluates raw probabilities on TRAIN and VALIDATION only. Version: `logistic-baseline-1.0.0`. Fixed C=1.0, class_weight=None, LBFGS; no tuning or resampling. It does not refit preprocessing or score TEST. A missing artifact requires the documented Phase-3 preparation command; contract disagreements fail instead of being silently repaired.
-
-Validation ROC-AUC: **0.765638**; Average Precision: **0.519684**. Probabilities remain raw/uncalibrated. The reference threshold 0.50 is a diagnostic, not a business policy. Aggregate metrics, validation bootstrap intervals, coefficient lineage and model provenance are written under metadata. The content-addressed model binary stays ignored under artifacts/models. Only trusted project-created joblib files may be loaded; hashes do not make untrusted pickle safe. See the [baseline model report](docs/baseline_model_report.md) and [ADR 003](docs/decisions/003-logistic-baseline.md).
-
-## Run the XGBoost challenger
-
-```powershell
-.venv\Scripts\python.exe -m credit_risk.modeling.xgboost_challenger
-```
-
-The CLI accepts `--project-root PATH`, verifies the stored baseline and Phase-3 contracts, then searches 24 candidates across four stratified folds inside TRAIN. Every fold fits fresh preprocessing. `configs/xgboost.yaml` is the authoritative search/invariant configuration; the seed remains centralized in base.yaml. There are 96 candidate-fold fits, one search refit, one final canonical fit and one temporary weighted sensitivity fit. CPU hist and n_jobs=1 are used throughout; no early stopping or project-validation fitting occurs.
-
-The final unweighted challenger uses the same 103 transformed values as Logistic Regression. Dense arrays preserve zero semantics for XGBoost. Validation AUC is **0.784304**, AP **0.556212**; paired-bootstrap deltas favor XGBoost on this sample. Status: **XGBOOST_LEADS_ON_VALIDATION_DISCRIMINATION**, a provisional comparison, not final model selection. Raw probabilities remain uncalibrated. The separate weighted model is diagnostic only and is not serialized.
-
-Aggregate search results, metrics, comparison and native gain importance are written under metadata. The native JSON model stays ignored under artifacts/models; no customer outputs are exported. Only trusted XGBoost-generated native models may be loaded. Gain is not SHAP or a customer explanation. See the [XGBoost report](docs/xgboost_model_report.md) and [ADR 004](docs/decisions/004-xgboost-challenger.md).
-
-## Run calibration and technical threshold analysis
-
-```powershell
-.venv\Scripts\python.exe -m credit_risk.modeling.calibration
-```
-
-The CLI verifies both fixed model artifacts and the shared data contract. Five stratified TRAIN folds generate exactly one OOF raw probability per row and model, with fresh preprocessing in each fold. A second five-fold TRAIN-only CV compares identity, nonnegative-slope sigmoid and monotonic isotonic mappings. Minimum mean Brier selects the method; log loss then simplicity break ties within 1e-12. Both final mappings are frozen before canonical VALIDATION scoring. Settings are in `configs/calibration.yaml`; the seed remains 42 in base.yaml. This command performs no model hyperparameter search.
-
-**Identity was selected for both models**, so reported_probability equals raw_probability. This is an assessed passthrough decision, not proof of perfect calibration or regulatory PD. XGBoost is selected for downstream development because reported validation AUC/AP are no lower and Brier/log loss no higher, with strict improvements. This does not establish untouched-test performance or production readiness.
-
-The XGBoost TRAIN OOF max-KS threshold is **0.21430689096450806**, evaluated unchanged on VALIDATION alongside reference 0.50. It is a technical classification diagnostic, not a lending cut-off. Aggregate manifests, metrics, ten-bin reliability, paired bootstrap and TRAIN threshold tables are saved under metadata. Identity decisions are versioned metadata with null binary paths; non-identity serialization is implemented and tested under ignored artifacts/calibration. No customer probabilities are exported. See the [calibration report](docs/calibration_report.md) and [ADR 005](docs/decisions/005-calibration-and-model-selection.md).
-
-## Explain the frozen model and map internal scores
-
-```powershell
-.venv\Scripts\python.exe -m credit_risk.explainability.run
-```
-
-This CLI accepts `--project-root PATH`. It verifies frozen data, feature/preprocessor, XGBoost and identity-calibration contracts, then explains all 4,500 VALIDATION rows across the same 103 features. It never retrains a model, refits preprocessing or consumes TRAIN/TEST for prediction. The required preparation command separately performs its existing structural split checks.
-
-SHAP 0.51.0 TreeExplainer uses explicit `raw` output and `tree_path_dependent` perturbation with frozen training path counts. Signed local contributions are summed to 45 source features and seven families before global mean absolute importance. Local source-level top-five drivers are deterministic diagnostics, not causal or regulatory adverse-action reasons. No customer explanations, scores or reason codes are persisted, and no explainer binary is created.
-
-The continuous `internal-risk-score-1.0.0` uses reported probability, base score 600, good:bad odds 50 and PDO 20; higher predicted risk lowers score. It is not FICO, a regulatory score or a lending decision policy. Exact additive score points are supported only for binary logistic raw-margin SHAP with identity calibration and no numerical clipping. The frozen TRAIN OOF threshold maps to technical reference score 524.608630; it is not a business cutoff. Score deciles are validation diagnostics, not risk bands.
-
-TRAIN OOF score statistics are unavailable because row-level OOF probabilities were not retained in Phase 6. The owner explicitly required no retraining; no in-sample TRAIN scores replace them. Five deterministic aggregate metadata files record the actual validation results. See [explainability](docs/explainability_report.md), [internal score](docs/internal_risk_score.md) and [ADR 006](docs/decisions/006-explainability-and-internal-score.md). Existing model/calibration CLIs above reproduce historical experiments and are not prerequisites for this frozen Phase-7 workflow.
-
-## Run the V1 API
-
-The API accepts exactly one 19-field financial record. It returns raw/reported probabilities, the continuous internal score and optional top-k raw-margin SHAP diagnostics. Authentication uses X-API-Key; health endpoints are public. The default process-local rate limit is 60 authenticated inference attempts per minute, and the JSON body limit is 64 KiB. No lending decision or risk band is returned.
-
-Install dependencies, inject the environment variables documented in `.env.example` with actual secrets outside Git, and provision PostgreSQL before running:
-
-```powershell
-.venv\Scripts\python.exe -m alembic upgrade head
-.venv\Scripts\python.exe -m uvicorn credit_risk.api.main:create_app --factory --host 127.0.0.1 --port 8000 --no-access-log
-```
-
-Lifespan verifies/loads model, preprocessor, SHAP and score state once and validates database migration readiness. Requests never fit models or open dataset partitions. Successful results require a committed audit row; failures roll back and return 503. Raw financial input, secrets and full features/SHAP are not persisted. Model output and safe top-k audit data remain sensitive and need operator retention/access controls.
-
-See [API documentation](docs/api.md), [persistence](docs/persistence.md) and [ADR 007](docs/decisions/007-api-and-persistence.md). Database schema revision is phase8_001; service version is credit-risk-api-1.0.0. No Docker files, live deployment or business rules are added.
-
-## Ten-phase plan
-1. Foundation and data contract
-2. Ingestion and data quality
-3. Feature engineering
-4. Baseline risk model
-5. XGBoost challenger
-6. Calibration and thresholds
-7. Explainability and internal risk score
-8. API and persistence
-9. Testing, Docker and operations
-10. Final validation and portfolio release
-
-See [ROADMAP.md](ROADMAP.md) for scope/status and [AGENTS.md](AGENTS.md) for instruction precedence. Each phase follows phase prompt → Codex implementation → tests → phase completion report → technical review by the project owner. If issues exist, apply fixes and verify them; if no issues remain, the project owner creates the Git commit. The next phase starts only when explicitly requested. Codex must not automatically commit or start the next phase.
-
-## Repository layout
-`src/credit_risk/config.py` handles shared configuration; `data/` contains ingestion and quality code, `features/` handles preparation and `modeling/` implements training, fold-safe search, contract verification, calibration, comparison, reliability, technical thresholds and local serialization. Tests use synthetic data and mocks. Aggregate metadata is intended for tracking under `data/metadata/`; customer data, local preprocessing/model/calibrator artifacts, secrets and environments are ignored. `explainability/` implements frozen-contract checks, public Tree SHAP, signed aggregation, diagnostic local drivers, the score mapping and aggregate publication. `service/` loads frozen artifacts without dataset access; `api/` implements HTTP/security/lifespan and `persistence/` owns SQLAlchemy audit transactions. Audit rows live in the configured database, not tracked files.
+This reconstructs the existing split, transforms without fitting, evaluates the frozen models, and checks exact aggregate publication bytes without refreshing timestamps. Contract/result mismatches stop rather than overwrite. [Pre-unseal identity](data/metadata/final_pre_unseal_snapshot.json) · [Release manifest](data/metadata/final_release_manifest.json).
 
 ## Limitations
-The selected historical Taiwan credit-card dataset contains 30,000 rows, 25 columns and 6,636 positive next-month labels (22.12%). Undocumented codes and negative bills remain; no regulatory default threshold or event-level scoring dates are supplied. Within-row history is not out-of-time validation. Demographic exclusion does not remove proxies or prove fairness. Related features affect both coefficients and gain; neither is causal. Only TRAIN/CV/VALIDATION performance has been evaluated. The bounded search, calibration selection and paired bootstrap do not establish deployment generalization. Identity selection does not turn raw probability into regulatory PD. VALIDATION is a reused development set; TEST remains reserved. SHAP remains noncausal and correlated-feature attribution depends on the declared perturbation semantics. The internal score is a monotonic representation, not another predictive model. Final TEST evaluation, distributed rate limiting, external secret management, full observability, cloud deployment, feature drift and realized outcome monitoring remain unimplemented. Phase 9 verified local PostgreSQL 17.10 through Docker; SQLite remains an isolated test dependency only. No automatic retraining or business policy exists.
 
-This repository is educational / portfolio work, not a regulatory or production lending authority. Outputs are not real lending decisions; no real lending decision should rely on this project.
+Historical Taiwan 2005 static data; no modern out-of-time validation. The target is not established as 90+ DPD, Basel PD or IFRS 9 lifetime PD. No bureau/affordability verification, reject inference, LGD/EAD or expected-loss engine. Demographic exclusion is not fairness certification. Local single-worker deployment lacks external secrets management, TLS, cloud HA and realized-performance monitoring. [All limitations](docs/limitations.md).
+
+## Responsible Use
+
+Educational portfolio work only. No real lending decision should rely on this system. No regulatory validation, fairness certification or adverse-action certification is claimed. Repository licensing remains unspecified; no LICENSE was added without owner authorization. Dataset attribution is separate.
+
+## Documentation
+
+[Model card](docs/model_card.md) · [Final evaluation](docs/final_evaluation_report.md) · [Subgroups](docs/subgroup_diagnostics.md) · [Portfolio overview](docs/portfolio_release.md) · [Dataset card](docs/dataset_card.md) · [Architecture](docs/architecture.md) · [Governance](docs/model_governance.md) · [Phase 10 report](docs/phase_reports/phase_10_completion_report.md)

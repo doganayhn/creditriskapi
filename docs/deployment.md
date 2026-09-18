@@ -127,3 +127,7 @@ Start Docker Desktop if docker info cannot reach the daemon. Check ignored secre
 # TEST Set Boundary
 
 TEST SET WAS NOT EVALUATED. TEST SET REMAINS SEALED. The image has no dataset partitions; only tracked aggregates/configuration/source and separately mounted frozen binaries are used.
+
+## Phase-10 lifecycle clarification
+
+The separate final evaluator has now evaluated the frozen TEST holdout and published aggregate results. Earlier sealed-TEST statements above describe the Phase-8/9 implementation boundary: this API/persistence/deployment/operations path still does not load or evaluate dataset TEST records. Its historical metadata and audit false TEST flags remain unchanged. No TEST record is used in API demonstrations, and the monitoring baseline remains VALIDATION-only. See [final evaluation](final_evaluation_report.md) and [governance](model_governance.md).

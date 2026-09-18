@@ -193,3 +193,7 @@ TEST SET WAS NOT EVALUATED. TEST SET REMAINS SEALED. The runtime operates solely
 # Phase-9 Container Run Path
 
 See [deployment](deployment.md) for the local Compose path. The API contract and model semantics are unchanged. The container runs one worker as UID/GID 10001 with a read-only artifact mount and no raw/processed dataset access. Multiple workers/replicas require replacing the process-local limiter. A separate migration service prepares PostgreSQL; FastAPI never auto-migrates. Actual validation results are recorded in the Phase-9 completion report.
+
+## Phase-10 lifecycle clarification
+
+The separate final evaluator has now evaluated the frozen TEST holdout and published aggregate results. Earlier sealed-TEST statements above describe the Phase-8/9 implementation boundary: this API/persistence/deployment/operations path still does not load or evaluate dataset TEST records. Its historical metadata and audit false TEST flags remain unchanged. No TEST record is used in API demonstrations, and the monitoring baseline remains VALIDATION-only. See [final evaluation](final_evaluation_report.md) and [governance](model_governance.md).

@@ -1,11 +1,11 @@
 # Operational phase state
 
-Current Completed Phase: Phase 9
-Current Completed Phase Name: Containerization, Operational Validation & Model Operations
+Current Completed Phase: Phase 10
+Current Completed Phase Name: Final Validation & Portfolio Release
 Status: COMPLETED
-Next Phase: Phase 10
+Next Phase: None — all ten core phases completed
 
-Valid workflow states: NOT_STARTED, IN_PROGRESS and COMPLETED. Phases 1–9 are completed. Phase 9 verified local Docker Compose and PostgreSQL 17.10 with a non-root single-worker API, separate migration service, read-only artifacts, synthetic persistence/restart/outage/concurrency tests and aggregate operations diagnostics. Frozen XGBoost, identity calibration, explanations and score remain unchanged. TEST remains sealed. Phase 10 has not started. No automatic Git commit or next-phase work is permitted. Project-owner technical review precedes the owner's commit. No production/regulatory readiness is claimed.
+Valid workflow states: NOT_STARTED, IN_PROGRESS and COMPLETED. All ten phases are completed. Phase 10 evaluated the existing 4,500-row frozen TEST after prechecks and a pre-unseal identity snapshot. XGBoost remains selected with identity calibration; no retraining, recalibration, threshold optimization or score/explanation changes occurred. Only aggregate TEST results are published. Historical reports/manifests remain immutable. Final release identity: credit-risk-system-1.0.0, prepared for project-owner technical review before the owner's commit/tag/release. No automatic commit or tag was created. No further phase exists; frontend is outside the authorized core project and can only be a separately requested optional extension. No production/regulatory readiness is claimed.
 
 | Phase | Status |
 | --- | --- |
@@ -18,4 +18,4 @@ Valid workflow states: NOT_STARTED, IN_PROGRESS and COMPLETED. Phases 1–9 are 
 | 7 | COMPLETED |
 | 8 | COMPLETED |
 | 9 | COMPLETED |
-| 10 | NOT_STARTED |
+| 10 | COMPLETED |
