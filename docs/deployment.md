@@ -124,6 +124,40 @@ Exactly one API worker because the rate limiter is process-local. Multiple worke
 
 Start Docker Desktop if docker info cannot reach the daemon. Check ignored secret settings without printing them. Missing artifacts must be supplied, never trained automatically. Wrong runtime/source hashes require investigation, not edits to historical manifests. For a controlled database outage readiness and audited inference should return non-success and recover after db starts. Examine logs locally for startup errors; never publish resolved secrets or raw inspect/config output.
 
+## Settings rejection before runtime loading
+
+A present API key of sufficient length can still be invalid. In particular, the
+example placeholder is longer than 32 characters but contains `replace`, which
+is deliberately rejected. Validation also requires at least eight distinct
+characters. Generate a cryptographically random key (for example with Python's
+`secrets.token_hex(32)`) and store it only in the ignored local `.env`, not in
+the tracked `.env.example`. Clients must use the same local key. Do not weaken
+the placeholder check to make startup succeed.
+
+Isolate settings without printing credentials or requiring a running database:
+
+```powershell
+docker compose config --quiet
+docker compose run --rm --no-deps --entrypoint python api -c "from credit_risk.api.settings import Settings; Settings.from_env(); print('SETTINGS_OK')"
+```
+
+The generic error intentionally hides configuration values. Check API-key
+placeholder/length/diversity, non-secret key ID, APP_ENV, numeric limits and
+the PostgreSQL URL locally. Shell environment variables can override `.env`;
+use the resolved Compose configuration only in memory, never paste its secret
+values into logs or reports. POSTGRES_* variables are not required inside the
+API container when DATABASE_URL is supplied correctly.
+
+After correcting `.env`, recreate the API so it receives the new environment:
+
+```powershell
+docker compose up -d --force-recreate api
+```
+
+An ordinary container restart does not inject changed environment values.
+Preserve the database volume; this settings failure does not require database
+reset, retraining, artifact edits or dependency changes.
+
 # TEST Set Boundary
 
 TEST SET WAS NOT EVALUATED. TEST SET REMAINS SEALED. The image has no dataset partitions; only tracked aggregates/configuration/source and separately mounted frozen binaries are used.
